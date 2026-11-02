@@ -1,6 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowDown, ArrowUpRight, Sparkles, Zap, TrendingUp, DollarSign, Users, Award, FileText, Download } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+
+// Dynamic Counter: Rapidly rolls numbers on page load and smoothly decelerates to final value
+function AnimatedCounter({ targetValue, prefix = "", suffix = "", decimals = 0, duration = 1900, delay = 150, hoverColor = "" }) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    let startTimestamp = null;
+    let animId;
+
+    const timer = setTimeout(() => {
+      const step = (now) => {
+        if (!startTimestamp) startTimestamp = now;
+        const elapsed = now - startTimestamp;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Smooth cubic ease-out deceleration
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = ease * targetValue;
+        setDisplayValue(current);
+
+        if (progress < 1) {
+          animId = requestAnimationFrame(step);
+        } else {
+          setDisplayValue(targetValue);
+          setIsFinished(true);
+        }
+      };
+
+      animId = requestAnimationFrame(step);
+    }, delay);
+
+    return () => {
+      clearTimeout(timer);
+      cancelAnimationFrame(animId);
+    };
+  }, [targetValue, duration, delay, key]);
+
+  const handleReplay = () => {
+    setIsFinished(false);
+    setDisplayValue(0);
+    setKey((prev) => prev + 1);
+  };
+
+  const formattedNumber = decimals > 0 
+    ? displayValue.toFixed(decimals) 
+    : Math.floor(displayValue);
+
+  return (
+    <div 
+      onMouseEnter={handleReplay}
+      className={`font-syne font-black text-5xl text-[#0B0E14] leading-none mb-1.5 transition-colors cursor-pointer select-none inline-flex items-baseline ${hoverColor}`}
+      title="Hover to re-roll metric counter"
+    >
+      <span>{prefix}</span>
+      <span>{formattedNumber}</span>
+      <span>{suffix}</span>
+      {!isFinished && (
+        <span className="w-1.5 h-6 bg-[#00F0FF] ml-1.5 animate-pulse inline-block self-center rounded-sm" />
+      )}
+    </div>
+  );
+}
 
 export default function Hero({ onOpenMythology }) {
   return (
@@ -83,9 +147,14 @@ export default function Hero({ onOpenMythology }) {
             <div className="text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-wider mb-2">
               AUDIENCE VIRALITY // ZENRISES
             </div>
-            <div className="font-syne font-black text-5xl text-[#0B0E14] leading-none mb-1.5 group-hover:text-[#00F0FF] transition-colors">
-              +137.5%
-            </div>
+            <AnimatedCounter 
+              targetValue={137.5} 
+              prefix="+" 
+              suffix="%" 
+              decimals={1} 
+              delay={150} 
+              hoverColor="group-hover:text-[#00F0FF]" 
+            />
             <div className="font-display font-bold text-sm text-[#0B0E14]">
               YouTube View Surge
             </div>
@@ -102,9 +171,14 @@ export default function Hero({ onOpenMythology }) {
             <div className="text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-wider mb-2">
               SPONSORSHIPS CLOSED // NITK
             </div>
-            <div className="font-syne font-black text-5xl text-[#0B0E14] leading-none mb-1.5 group-hover:text-[#FF0055] transition-colors">
-              ₹36L+
-            </div>
+            <AnimatedCounter 
+              targetValue={36} 
+              prefix="₹" 
+              suffix="L+" 
+              decimals={0} 
+              delay={300} 
+              hoverColor="group-hover:text-[#FF0055]" 
+            />
             <div className="font-display font-bold text-sm text-[#0B0E14]">
               Corporate Capital Acquired
             </div>
@@ -121,9 +195,14 @@ export default function Hero({ onOpenMythology }) {
             <div className="text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-wider mb-2">
               CREW LEADERSHIP // INCIDENT
             </div>
-            <div className="font-syne font-black text-5xl text-[#0B0E14] leading-none mb-1.5 group-hover:text-[#F59E0B] transition-colors">
-              120+
-            </div>
+            <AnimatedCounter 
+              targetValue={120} 
+              prefix="" 
+              suffix="+" 
+              decimals={0} 
+              delay={450} 
+              hoverColor="group-hover:text-[#F59E0B]" 
+            />
             <div className="font-display font-bold text-sm text-[#0B0E14]">
               Marketing & Creative Volunteers
             </div>
