@@ -140,8 +140,6 @@ export default function MythologicalSanctum({ onReturnToModern }) {
           </div>
           <span className="text-zinc-600 hidden sm:inline">|</span>
           <span className="text-zinc-300">MBA (Marketing & Operations) — NITK</span>
-          <span className="text-zinc-600 hidden sm:inline">|</span>
-          <span className="text-[#38BDF8] font-bold">₹36L+ Conclave Sponsorship Acquisition</span>
         </div>
 
         {/* Category Relic Filters */}
