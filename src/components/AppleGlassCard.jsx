@@ -1,156 +1,174 @@
 import React, { useRef, useEffect } from 'react';
 
 /**
- * AppleGlassCard (Optimized & Butter-Smooth)
+ * AppleGlassCard (Pristine, Ultra-Smooth & Zero-Fluctuation)
  * 
- * Implements high-performance Apple visionOS / Apple Card interactive glassmorphism:
- * - Direct DOM manipulation via Refs (Zero React re-renders during mouse move)
- * - Fluid Lerp (Linear Interpolation) damping physics for liquid-smooth 60/120fps tracking
- * - Real-time specular spotlight reflection glare
- * - Sub-pixel illuminated glass border refraction & inner 3D parallax depth
- * - Automatically throttles and stops rendering when idle to preserve GPU resources
+ * Implements high-performance Apple visionOS glassmorphism:
+ * 1. Stationary Outer Hitbox: All pointer events are bound to containerRef (stationary layout box),
+ *    completely eliminating boundary thrashing, edge-oscillation, and mouseenter/mouseleave flutter.
+ * 2. GPU translate3d Glare: Glare spotlight uses a pre-rendered high-res circle translated via
+ *    GPU compositing (translate3d), completely eliminating CSS radial-gradient re-parsing and raster churn.
+ * 3. Smart Sleep Physics: Lerp damping loop automatically pauses when values settle, eliminating
+ *    continuous DOM style mutations, sub-pixel jitter, and CPU/GPU resource waste when idle.
+ * 4. Flat Composition Surface: Eliminates transform-style: preserve-3d to ensure Chromium's backdrop-filter
+ *    never drops frames, flickers, or suffers from black-box buffer invalidation.
  */
 export default function AppleGlassCard({ 
   children, 
   className = '', 
   glowColor = 'rgba(0, 240, 255, 0.22)', 
-  maxTilt = 8,
-  scale = 1.015
+  maxTilt = 6,
+  scale = 1.012
 }) {
   const containerRef = useRef(null);
   const cardRef = useRef(null);
   const glareRef = useRef(null);
-  const contentRef = useRef(null);
 
-  // Physics state (stored in ref to eliminate React render overhead)
   const state = useRef({
     isHovered: false,
-    mouseX: 0,
-    mouseY: 0,
-    rect: null,
-    // Target values
+    // Target endpoints
     targetRotateX: 0,
     targetRotateY: 0,
     targetScale: 1,
-    targetGlareX: 50,
-    targetGlareY: 50,
+    targetGlareX: 0,
+    targetGlareY: 0,
     targetGlareOpacity: 0,
-    // Current interpolated values (for buttery smooth inertia)
+    // Interpolated current values
     currentRotateX: 0,
     currentRotateY: 0,
     currentScale: 1,
-    currentGlareX: 50,
-    currentGlareY: 50,
+    currentGlareX: 0,
+    currentGlareY: 0,
     currentGlareOpacity: 0,
     rafId: null,
-    isAnimating: false
+    isAnimating: false,
   });
 
   useEffect(() => {
-    // Disable interactive tilt on coarse pointer devices (touchscreens) for performance
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+    // Disable interactive tilt on coarse pointer devices (touchscreens)
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
 
+    const container = containerRef.current;
     const card = cardRef.current;
     const glare = glareRef.current;
-    const content = contentRef.current;
-    if (!card) return;
+    if (!container || !card) return;
 
     const s = state.current;
+    const LERP = 0.12;
 
-    // Fluid damping factor (0.1 = luxurious heavy glass feel, 0.15 = responsive snap)
-    const LERP_FACTOR = 0.12;
+    const renderLoop = () => {
+      // Fluid linear interpolation (Lerp)
+      s.currentRotateX += (s.targetRotateX - s.currentRotateX) * LERP;
+      s.currentRotateY += (s.targetRotateY - s.currentRotateY) * LERP;
+      s.currentScale += (s.targetScale - s.currentScale) * LERP;
+      s.currentGlareX += (s.targetGlareX - s.currentGlareX) * LERP;
+      s.currentGlareY += (s.targetGlareY - s.currentGlareY) * LERP;
+      s.currentGlareOpacity += (s.targetGlareOpacity - s.currentGlareOpacity) * LERP;
 
-    const updatePhysics = () => {
-      // Linear interpolation (Lerp) towards target values
-      s.currentRotateX += (s.targetRotateX - s.currentRotateX) * LERP_FACTOR;
-      s.currentRotateY += (s.targetRotateY - s.currentRotateY) * LERP_FACTOR;
-      s.currentScale += (s.targetScale - s.currentScale) * LERP_FACTOR;
-      s.currentGlareX += (s.targetGlareX - s.currentGlareX) * LERP_FACTOR;
-      s.currentGlareY += (s.targetGlareY - s.currentGlareY) * LERP_FACTOR;
-      s.currentGlareOpacity += (s.targetGlareOpacity - s.currentGlareOpacity) * LERP_FACTOR;
+      // Apply 3D perspective tilt & scale
+      card.style.transform = `perspective(1000px) rotateX(${s.currentRotateX.toFixed(3)}deg) rotateY(${s.currentRotateY.toFixed(3)}deg) scale3d(${s.currentScale.toFixed(4)}, ${s.currentScale.toFixed(4)}, 1)`;
 
-      // Apply GPU-accelerated transform directly to DOM
-      card.style.transform = `perspective(1000px) rotateX(${s.currentRotateX.toFixed(3)}deg) rotateY(${s.currentRotateY.toFixed(3)}deg) scale3d(${s.currentScale.toFixed(4)}, ${s.currentScale.toFixed(4)}, ${s.currentScale.toFixed(4)})`;
-
+      // Apply GPU-accelerated specular glare spotlight position
       if (glare) {
+        glare.style.transform = `translate3d(${s.currentGlareX.toFixed(1)}px, ${s.currentGlareY.toFixed(1)}px, 0)`;
         glare.style.opacity = s.currentGlareOpacity.toFixed(3);
-        glare.style.background = `radial-gradient(circle 320px at ${s.currentGlareX.toFixed(1)}% ${s.currentGlareY.toFixed(1)}%, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.1) 40%, transparent 75%)`;
       }
 
-      if (content) {
-        const depth = s.isHovered ? 14 : 0;
-        content.style.transform = `translateZ(${depth}px)`;
-      }
+      // Check if settled:
+      // When hovered: if distance to target is sub-pixel, snap and pause loop
+      // When unhovered: if returned to neutral, snap to idle and pause loop
+      const deltaX = Math.abs(s.targetRotateX - s.currentRotateX);
+      const deltaY = Math.abs(s.targetRotateY - s.currentRotateY);
+      const deltaScale = Math.abs(s.targetScale - s.currentScale);
+      const deltaGlare = Math.abs(s.targetGlareOpacity - s.currentGlareOpacity);
 
-      // Check if physics have settled to baseline
-      const isSettled = 
-        !s.isHovered &&
-        Math.abs(s.currentRotateX) < 0.01 &&
-        Math.abs(s.currentRotateY) < 0.01 &&
-        Math.abs(s.currentScale - 1) < 0.001 &&
-        s.currentGlareOpacity < 0.01;
+      const hasSettled = deltaX < 0.005 && deltaY < 0.005 && deltaScale < 0.0005 && deltaGlare < 0.005;
 
-      if (!isSettled) {
-        s.rafId = requestAnimationFrame(updatePhysics);
-      } else {
-        // Snap to perfect idle to release GPU
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        if (glare) glare.style.opacity = '0';
-        if (content) content.style.transform = 'translateZ(0px)';
+      if (hasSettled) {
+        s.currentRotateX = s.targetRotateX;
+        s.currentRotateY = s.targetRotateY;
+        s.currentScale = s.targetScale;
+        s.currentGlareOpacity = s.targetGlareOpacity;
+
+        if (!s.isHovered) {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+          if (glare) glare.style.opacity = '0';
+        } else {
+          card.style.transform = `perspective(1000px) rotateX(${s.currentRotateX.toFixed(3)}deg) rotateY(${s.currentRotateY.toFixed(3)}deg) scale3d(${s.currentScale.toFixed(4)}, ${s.currentScale.toFixed(4)}, 1)`;
+          if (glare) glare.style.opacity = s.currentGlareOpacity.toFixed(3);
+        }
+
         s.isAnimating = false;
+        return;
       }
+
+      // Continue animating
+      s.rafId = requestAnimationFrame(renderLoop);
     };
 
-    const startAnimation = () => {
+    const wakeLoop = () => {
       if (!s.isAnimating) {
         s.isAnimating = true;
-        s.rafId = requestAnimationFrame(updatePhysics);
+        s.rafId = requestAnimationFrame(renderLoop);
       }
     };
 
-    const onMouseEnter = () => {
+    const handlePointerEnter = (e) => {
       s.isHovered = true;
       s.targetScale = scale;
-      s.targetGlareOpacity = 0.9;
-      s.rect = card.getBoundingClientRect();
-      startAnimation();
-    };
+      s.targetGlareOpacity = 0.85;
 
-    const onMouseMove = (e) => {
-      if (!s.rect) s.rect = card.getBoundingClientRect();
-      const x = e.clientX - s.rect.left;
-      const y = e.clientY - s.rect.top;
-      const centerX = s.rect.width / 2;
-      const centerY = s.rect.height / 2;
+      const rect = container.getBoundingClientRect();
+      const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
+      const y = Math.max(0, Math.min(rect.height, e.clientY - rect.top));
+      s.currentGlareX = x;
+      s.currentGlareY = y;
+      s.targetGlareX = x;
+      s.targetGlareY = y;
 
-      // Target angles based on cursor offset from card center
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
       s.targetRotateX = ((y - centerY) / centerY) * -maxTilt;
       s.targetRotateY = ((x - centerX) / centerX) * maxTilt;
 
-      s.targetGlareX = Math.max(0, Math.min(100, (x / s.rect.width) * 100));
-      s.targetGlareY = Math.max(0, Math.min(100, (y / s.rect.height) * 100));
-
-      startAnimation();
+      wakeLoop();
     };
 
-    const onMouseLeave = () => {
+    const handlePointerMove = (e) => {
+      const rect = container.getBoundingClientRect();
+      const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
+      const y = Math.max(0, Math.min(rect.height, e.clientY - rect.top));
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      s.targetRotateX = ((y - centerY) / centerY) * -maxTilt;
+      s.targetRotateY = ((x - centerX) / centerX) * maxTilt;
+      s.targetGlareX = x;
+      s.targetGlareY = y;
+      s.targetScale = scale;
+      s.targetGlareOpacity = 0.85;
+
+      wakeLoop();
+    };
+
+    const handlePointerLeave = () => {
       s.isHovered = false;
-      s.rect = null;
       s.targetRotateX = 0;
       s.targetRotateY = 0;
       s.targetScale = 1;
       s.targetGlareOpacity = 0;
-      startAnimation();
+      wakeLoop();
     };
 
-    card.addEventListener('mouseenter', onMouseEnter, { passive: true });
-    card.addEventListener('mousemove', onMouseMove, { passive: true });
-    card.addEventListener('mouseleave', onMouseLeave, { passive: true });
+    container.addEventListener('pointerenter', handlePointerEnter, { passive: true });
+    container.addEventListener('pointermove', handlePointerMove, { passive: true });
+    container.addEventListener('pointerleave', handlePointerLeave, { passive: true });
 
     return () => {
-      card.removeEventListener('mouseenter', onMouseEnter);
-      card.removeEventListener('mousemove', onMouseMove);
-      card.removeEventListener('mouseleave', onMouseLeave);
+      container.removeEventListener('pointerenter', handlePointerEnter);
+      container.removeEventListener('pointermove', handlePointerMove);
+      container.removeEventListener('pointerleave', handlePointerLeave);
       if (s.rafId) cancelAnimationFrame(s.rafId);
     };
   }, [maxTilt, scale]);
@@ -158,27 +176,32 @@ export default function AppleGlassCard({
   return (
     <div
       ref={containerRef}
-      className="relative [perspective:1000px] my-5"
-      style={{ transformStyle: 'preserve-3d' }}
+      className={`relative [perspective:1200px] my-5 ${className.includes('h-full') ? 'h-full flex flex-col' : ''}`}
     >
       <div
         ref={cardRef}
         style={{
           transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
-          transformStyle: 'preserve-3d',
-          willChange: 'transform'
+          willChange: 'transform',
         }}
         className={`apple-glass-card p-4 sm:p-5 rounded-2xl text-white font-mono relative overflow-hidden select-none cursor-default ${className}`}
       >
-        {/* Dynamic Specular Glare (Updated at 60/120fps with zero React overhead) */}
+        {/* Dynamic Specular Spotlight Glare (GPU translate3d composited) */}
         <div
           ref={glareRef}
-          className="pointer-events-none absolute inset-0 rounded-2xl z-20 transition-opacity duration-200"
-          style={{ opacity: 0 }}
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-[200px] -top-[200px] w-[400px] h-[400px] rounded-full z-20"
+          style={{
+            background: 'radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.08) 40%, transparent 70%)',
+            opacity: 0,
+            willChange: 'transform, opacity',
+            transform: 'translate3d(0, 0, 0)',
+          }}
         />
 
         {/* Ambient colored blur glow behind the frosted glass */}
         <div 
+          aria-hidden="true"
           className="pointer-events-none absolute -top-10 -right-10 w-44 h-44 rounded-full blur-[45px] opacity-25 z-0"
           style={{ backgroundColor: glowColor }}
         />
@@ -186,16 +209,8 @@ export default function AppleGlassCard({
         {/* Apple Sub-pixel Specular Glass Rim Refraction */}
         <div className="glass-reflection z-10 pointer-events-none" />
 
-        {/* Elevated 3D parallax content chassis */}
-        <div 
-          ref={contentRef}
-          className="relative z-10"
-          style={{ 
-            transform: 'translateZ(0px)',
-            transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-            transformStyle: 'preserve-3d'
-          }}
-        >
+        {/* Elevated Content Container */}
+        <div className="relative z-10">
           {children}
         </div>
       </div>
