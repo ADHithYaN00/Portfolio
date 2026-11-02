@@ -56,7 +56,7 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
               ADHITHYAN M. // PORTFOLIO '26
             </span>
             <span className="text-zinc-600">/</span>
-            <span className="text-zinc-400 font-sans text-[11px]">MBA (Marketing & Ops) • NITK</span>
+            <span className="text-zinc-400 font-sans text-[11px]">MBA (Marketing & Operations) • NITK</span>
             <span className="text-zinc-600">/</span>
             <span className={`font-sans font-bold text-[11px] ${isDark ? 'text-zinc-200' : 'text-[#FF0055]'}`}>
               ₹36L+ Sponsorships Raised

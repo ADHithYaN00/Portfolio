@@ -1,5 +1,5 @@
 import React from 'react';
-import { Brain, Zap, DollarSign, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Brain, Zap, DollarSign, Sparkles, CheckCircle2, GraduationCap } from 'lucide-react';
 import { aboutData, personalInfo } from '../data/portfolioData';
 
 export default function About() {
@@ -31,9 +31,10 @@ export default function About() {
             </h2>
           </div>
           <div className="mt-4 md:mt-0">
-            <span className="font-mono font-bold text-xs uppercase bg-[#00F0FF] text-[#0B0E14] px-3 py-1.5 rounded-lg border-2 border-[#0B0E14] shadow-spider-sm">
-              MBA (MARKETING & OPS) • NITK '26
-            </span>
+            <div className="inline-flex items-center gap-2 font-mono font-bold text-xs uppercase bg-white dark:bg-zinc-900 text-[#0B0E14] dark:text-zinc-100 px-3.5 py-1.5 rounded-xl border-2 border-[#0B0E14] dark:border-zinc-700 shadow-spider-sm transition-all hover:scale-105">
+              <GraduationCap className="w-4 h-4 text-[#FF0055] dark:text-[#00F0FF]" />
+              <span>MBA (Marketing & Operations) • NITK '26</span>
+            </div>
           </div>
         </div>
 

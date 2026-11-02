@@ -93,7 +93,7 @@ export default function Hero({ onOpenMythology }) {
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border-2 border-[#0B0E14] shadow-spider-sm mb-6 transform -rotate-1 hover:rotate-0 transition-transform">
           <span className="w-2 h-2 rounded-full bg-[#FF0055] animate-ping" />
           <span className="font-mono font-bold text-[11px] sm:text-xs text-[#0B0E14] uppercase tracking-wider">
-            MULTIVERSE ISSUE '26 // BANGALORE • MBA (MARKETING & OPS) NITK
+            MULTIVERSE ISSUE '26 // BANGALORE • MBA (MARKETING & OPERATIONS) • NITK
           </span>
           <span className="bg-[#00F0FF] text-[#0B0E14] text-[9px] font-mono font-black px-1.5 py-0.5 rounded border border-[#0B0E14] uppercase">
             ACTIVE
