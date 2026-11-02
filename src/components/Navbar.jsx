@@ -367,7 +367,7 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
                 className="matte-sand-btn animate-matte-sand-pulse w-full py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2"
               >
                 <Eye className="w-4 h-4 stroke-[2.5]" />
-                <span>WHAT // ANCIENT CODEX REALM</span>
+                <span>WHAT // ARABIAN DESERT CODEX</span>
               </button>
 
               <a

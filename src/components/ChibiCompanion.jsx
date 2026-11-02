@@ -9,12 +9,12 @@ export default function ChibiCompanion({ onOpenMythology }) {
   const faqs = [
     {
       id: "mythology",
-      category: "🏛️ ANCIENT REALM CODEX",
+      category: "𓆣 ARABIAN DESERT & MUMMY CODEX",
       badgeColor: "bg-[#D4AF37] text-black font-black",
-      shortLabel: "Ancient Codex",
-      question: "What is the Ancient Neuromarketing & Experiential Codex?",
-      answer: "A high-graphics mythological realm unveiling 6 landmark case studies (Coca-Cola fMRI, Cheetos EEG, Red Bull Stratos, Campbell's Biometrics, Hyundai EEG, and ₹36L+ Conclave Architecture) where brands generated billions adapting subconscious neuro-principles.",
-      actionLabel: "Enter Ancient Codex 🏛️",
+      shortLabel: "Arabian Codex",
+      question: "What is the Arabian Desert & Mummy Neuromarketing Codex?",
+      answer: "A high-graphics Arabian desert sanctuary with flickering torches, golden sand dunes, and pharaonic mummy sarcophagi unveiling 6 landmark case studies (Coca-Cola fMRI, Cheetos EEG, Red Bull Stratos, Campbell's Biometrics, Hyundai EEG, and ₹36L+ Conclave Architecture) where brands generated billions adapting subconscious neuro-principles.",
+      actionLabel: "Enter Arabian Codex 𓆣",
       actionCallback: onOpenMythology
     },
     {

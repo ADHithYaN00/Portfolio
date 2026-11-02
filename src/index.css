@@ -509,6 +509,96 @@ body.custom-dust-cursor .spider-btn {
   box-shadow: inset 0 0 12px rgba(212, 175, 55, 0.1);
 }
 
+/* ========================================================
+   ARABIAN DESERT & MUMMY SARCOPHAGUS ENHANCEMENTS
+   ======================================================== */
+@keyframes torchFlicker {
+  0%, 100% {
+    opacity: 0.88;
+    filter: drop-shadow(0 0 16px rgba(255, 122, 0, 0.55));
+  }
+  25% {
+    opacity: 0.98;
+    filter: drop-shadow(0 0 24px rgba(245, 158, 11, 0.75));
+  }
+  50% {
+    opacity: 0.82;
+    filter: drop-shadow(0 0 14px rgba(255, 90, 0, 0.5));
+  }
+  75% {
+    opacity: 0.94;
+    filter: drop-shadow(0 0 22px rgba(251, 191, 36, 0.7));
+  }
+}
+
+@keyframes desertWindDrift {
+  0% {
+    transform: translateX(-5%) translateY(0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(5%) translateY(-8px) scale(1.02);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(-5%) translateY(0) scale(1);
+    opacity: 0.35;
+  }
+}
+
+@keyframes hieroglyphGlow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.4), 0 0 15px rgba(212, 175, 55, 0.2);
+    color: #FDE68A;
+  }
+  50% {
+    text-shadow: 0 0 18px rgba(245, 158, 11, 0.8), 0 0 30px rgba(212, 175, 55, 0.5);
+    color: #FFFBEB;
+  }
+}
+
+.animate-torch-flicker {
+  animation: torchFlicker 3.2s ease-in-out infinite;
+}
+
+.animate-desert-drift {
+  animation: desertWindDrift 18s ease-in-out infinite;
+}
+
+.hieroglyph-text {
+  font-family: "Cinzel", "Times New Roman", serif;
+  animation: hieroglyphGlow 4s ease-in-out infinite;
+}
+
+.arabian-tomb-tablet {
+  background: radial-gradient(circle at 50% 0%, rgba(38, 28, 18, 0.96) 0%, rgba(16, 12, 9, 0.98) 50%, rgba(7, 5, 4, 0.99) 100%);
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.92),
+    0 0 30px rgba(180, 130, 40, 0.12),
+    inset 0 1px 2px rgba(255, 230, 150, 0.4),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.8);
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arabian-tomb-tablet:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245, 158, 11, 0.85);
+  box-shadow: 
+    0 30px 75px rgba(0, 0, 0, 0.96),
+    0 0 45px rgba(212, 175, 55, 0.35),
+    inset 0 1px 3px rgba(255, 240, 180, 0.6);
+}
+
+.mummy-cartouche {
+  background: linear-gradient(135deg, rgba(30, 24, 16, 0.95), rgba(15, 12, 9, 0.98));
+  border: 1.5px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.6),
+    inset 0 0 10px rgba(212, 175, 55, 0.15);
+}
+
 /* Matte Sand Codex Button & Slow Ethereal Appear/Disappear Animation */
 @keyframes matteSandSlowBreath {
   0%, 100% {
