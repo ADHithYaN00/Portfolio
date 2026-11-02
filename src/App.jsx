@@ -21,10 +21,7 @@ export default function App() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('portfolio_theme') || 'light';
   });
-  const [isMuted, setIsMuted] = useState(() => {
-    const saved = localStorage.getItem('portfolio_music_muted');
-    return saved !== null ? saved === 'true' : false;
-  });
+  const [isMuted, setIsMuted] = useState(false);
   const [realm, setRealm] = useState(() => {
     return window.location.hash === '#ancient-codex' || window.location.hash === '#mythology' 
       ? 'mythology' 

@@ -36,9 +36,21 @@ import {
   contactDetails 
 } from '../data/portfolioData';
 import { TOOLKIT_LOGOS } from './ToolLogos';
+import { getAudioEngine } from './AmbientAudio';
 
 export default function ExecutiveDashboard({ onOpenMythology, onToggleTheme, isMuted, onToggleMute }) {
   const [activeTab, setActiveTab] = useState('overview');
+
+  const handleToggleMute = async () => {
+    const engine = getAudioEngine();
+    if (engine) {
+      await engine.resumeContext();
+      if (isMuted) {
+        engine.playWelcomeChime();
+      }
+    }
+    if (onToggleMute) onToggleMute();
+  };
 
   const tabs = [
     { id: 'overview', label: 'Overview' },
@@ -83,7 +95,7 @@ export default function ExecutiveDashboard({ onOpenMythology, onToggleTheme, isM
           <div className="flex items-center space-x-2.5">
             {/* Audio Toggle */}
             <button
-              onClick={onToggleMute}
+              onClick={handleToggleMute}
               className="w-9 h-9 rounded-lg border border-zinc-800 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 flex items-center justify-center transition-colors"
               title={isMuted ? "Unmute Ambient Audio" : "Mute Ambient Audio"}
               aria-label="Toggle ambient music"

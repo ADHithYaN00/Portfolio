@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, Zap, Sparkles, FileText, Download, Sun, Moon, Volume2, VolumeX, Eye } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+import { getAudioEngine } from './AmbientAudio';
 
 export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme, isMuted = false, onToggleMute }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +43,17 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
   ];
 
   const isDark = theme === 'dark';
+
+  const handleToggleMute = async () => {
+    const engine = getAudioEngine();
+    if (engine) {
+      await engine.resumeContext();
+      if (isMuted) {
+        engine.playWelcomeChime();
+      }
+    }
+    if (onToggleMute) onToggleMute();
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -151,7 +163,7 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
           <div className="hidden sm:flex items-center space-x-2">
             {/* Ambient Music Mute/Unmute Button */}
             <button
-              onClick={onToggleMute}
+              onClick={handleToggleMute}
               className={`p-2 rounded-xl border transition-all flex items-center justify-center ${
                 isDark
                   ? isMuted
@@ -232,7 +244,7 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
           <div className="lg:hidden flex items-center space-x-1.5">
             {/* Mobile Mute/Unmute Button */}
             <button
-              onClick={onToggleMute}
+              onClick={handleToggleMute}
               className={`p-1.5 rounded-lg border transition-all flex items-center justify-center ${
                 isDark
                   ? isMuted ? 'bg-white/5 text-zinc-500 border-white/10' : 'bg-white/15 text-white border-white/20'
@@ -304,7 +316,7 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
 
             {/* Quick Audio Mute / Unmute Switch Row */}
             <button
-              onClick={onToggleMute}
+              onClick={handleToggleMute}
               className={`w-full py-2.5 px-3 rounded-lg border flex items-center justify-between font-mono text-xs font-bold uppercase transition-colors ${
                 isDark
                   ? 'bg-white/5 text-zinc-200 border-white/15 hover:bg-white/10'
