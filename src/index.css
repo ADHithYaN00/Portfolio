@@ -35,6 +35,18 @@
   }
 }
 
+/* Custom Dust Particle Cursor Styling (Active when pointer moves on desktop) */
+body.custom-dust-cursor,
+body.custom-dust-cursor a,
+body.custom-dust-cursor button,
+body.custom-dust-cursor input,
+body.custom-dust-cursor textarea,
+body.custom-dust-cursor select,
+body.custom-dust-cursor [role="button"],
+body.custom-dust-cursor .spider-btn {
+  cursor: none !important;
+}
+
 /* Moving Architecture Background Animations */
 @keyframes kenBurnsSlow {
   0% {

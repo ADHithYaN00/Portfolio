@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Sparkles, Brain, Eye, Zap, TrendingUp, DollarSign, Award, ChevronRight, ShieldCheck, Download, ExternalLink, Compass, Layers } from 'lucide-react';
 import { mythologyCodexData } from '../data/mythologyCaseStudies';
 import { personalInfo } from '../data/portfolioData';
+import GoldenParticles from './GoldenParticles';
 
 export default function MythologicalSanctum({ onReturnToModern }) {
   const [selectedCategory, setSelectedCategory] = useState("All Sacred Relics");
@@ -19,6 +20,9 @@ export default function MythologicalSanctum({ onReturnToModern }) {
   return (
     <div className="relative min-h-screen bg-[#05060A] text-[#E5E7EB] font-sans selection:bg-[#D4AF37] selection:text-black overflow-x-hidden">
       
+      {/* Antigravity Floating Stardust Particles */}
+      <GoldenParticles />
+
       {/* ========================================================
           HIGH GRAPHICS ANCIENT MYTHOLOGICAL ATMOSPHERE
           ======================================================== */}
