@@ -10,9 +10,28 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import GoldenParticles from './components/GoldenParticles';
 import ChibiCompanion from './components/ChibiCompanion';
+import MythologicalSanctum from './components/MythologicalSanctum';
 
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [realm, setRealm] = useState(() => {
+    return window.location.hash === '#ancient-codex' || window.location.hash === '#mythology' 
+      ? 'mythology' 
+      : 'modern';
+  });
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#ancient-codex' || window.location.hash === '#mythology') {
+        setRealm('mythology');
+      } else if (!window.location.hash || window.location.hash === '#hero') {
+        setRealm('modern');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +45,23 @@ export default function App() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const openMythologyRealm = () => {
+    setRealm('mythology');
+    window.location.hash = '#ancient-codex';
+  };
+
+  const returnToModernRealm = () => {
+    setRealm('modern');
+    window.location.hash = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (realm === 'mythology') {
+    return (
+      <MythologicalSanctum onReturnToModern={returnToModernRealm} />
+    );
+  }
 
   return (
     <div className="relative min-h-screen bg-[#FAFCFF] text-[#0B0E14] selection:bg-[#FF0055] selection:text-white flex flex-col font-sans overflow-x-hidden">
@@ -57,11 +93,11 @@ export default function App() {
       />
 
       {/* Navigation */}
-      <Navbar />
+      <Navbar onOpenMythology={openMythologyRealm} />
 
       {/* Main Content Area */}
       <main id="main-content" className="flex-grow relative z-10">
-        <Hero />
+        <Hero onOpenMythology={openMythologyRealm} />
         <About />
         <Experience />
         <Projects />
@@ -71,10 +107,10 @@ export default function App() {
       </main>
 
       {/* Interactive Chibi Marketer Companion */}
-      <ChibiCompanion />
+      <ChibiCompanion onOpenMythology={openMythologyRealm} />
 
       {/* Colophon & Footer */}
-      <Footer />
+      <Footer onOpenMythology={openMythologyRealm} />
     </div>
   );
 }

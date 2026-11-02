@@ -422,3 +422,50 @@
 .animate-lightning-pulse {
   animation: lightningPulse 0.4s ease-in-out infinite;
 }
+
+/* Ancient Mythological Theme Styles */
+@keyframes celestialRuneSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes divineGoldPulse {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.2), inset 0 0 15px rgba(212, 175, 55, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 45px rgba(212, 175, 55, 0.45), inset 0 0 25px rgba(212, 175, 55, 0.25);
+  }
+}
+
+.mythic-tablet {
+  background: radial-gradient(circle at 50% 0%, rgba(28, 22, 15, 0.95) 0%, rgba(8, 9, 14, 0.98) 100%);
+  border: 1.5px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    inset 0 1px 2px rgba(255, 230, 150, 0.35),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.6);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mythic-tablet:hover {
+  transform: translateY(-3px);
+  border-color: rgba(212, 175, 55, 0.7);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.9),
+    0 0 35px rgba(212, 175, 55, 0.3),
+    inset 0 1px 3px rgba(255, 230, 150, 0.5);
+}
+
+.mythic-gold-text {
+  background: linear-gradient(135deg, #FFF6D5 0%, #D4AF37 50%, #AA771C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mythic-rune-border {
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: inset 0 0 12px rgba(212, 175, 55, 0.1);
+}
+

@@ -43,6 +43,8 @@ export default {
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        cinzel: ['"Cinzel"', 'serif'],
+        myth: ['"Cinzel Decorative"', 'Cinzel', 'serif'],
       },
       letterSpacing: {
         widest: '0.22em',

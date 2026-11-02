@@ -2,11 +2,21 @@ import React, { useState } from 'react';
 import { HelpCircle, Sparkles, X, ChevronRight, ChevronLeft, Zap, ArrowUpRight, MessageCircle } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
-export default function ChibiCompanion() {
+export default function ChibiCompanion({ onOpenMythology }) {
   const [isOpen, setIsOpen] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const faqs = [
+    {
+      id: "mythology",
+      category: "🏛️ ANCIENT REALM CODEX",
+      badgeColor: "bg-[#D4AF37] text-black font-black",
+      shortLabel: "Ancient Codex",
+      question: "What is the Ancient Neuromarketing & Experiential Codex?",
+      answer: "A high-graphics mythological realm unveiling 6 landmark case studies (Coca-Cola fMRI, Cheetos EEG, Red Bull Stratos, Campbell's Biometrics, Hyundai EEG, and ₹36L+ Conclave Architecture) where brands generated billions adapting subconscious neuro-principles.",
+      actionLabel: "Enter Ancient Codex 🏛️",
+      actionCallback: onOpenMythology
+    },
     {
       id: "superpower",
       category: "🧠 SECRET SUPERPOWER",
@@ -164,15 +174,25 @@ export default function ChibiCompanion() {
               </button>
             </div>
 
-            <a
-              href={currentFaq.actionHref}
-              target={currentFaq.isExternal ? "_blank" : undefined}
-              rel={currentFaq.isExternal ? "noopener noreferrer" : undefined}
-              className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#FF0055] hover:text-[#0B0E14] transition-colors"
-            >
-              <span>{currentFaq.actionLabel}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
-            </a>
+            {currentFaq.actionCallback ? (
+              <button
+                onClick={currentFaq.actionCallback}
+                className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#D4AF37] hover:text-[#0B0E14] transition-colors"
+              >
+                <span>{currentFaq.actionLabel}</span>
+                <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
+              </button>
+            ) : (
+              <a
+                href={currentFaq.actionHref}
+                target={currentFaq.isExternal ? "_blank" : undefined}
+                rel={currentFaq.isExternal ? "noopener noreferrer" : undefined}
+                className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#FF0055] hover:text-[#0B0E14] transition-colors"
+              >
+                <span>{currentFaq.actionLabel}</span>
+                <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
+              </a>
+            )}
           </div>
 
           {/* Speech Bubble Tail */}

@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowDown, ArrowUpRight, Sparkles, Zap, TrendingUp, DollarSign, Users, Award, FileText, Download } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
-export default function Hero() {
+export default function Hero({ onOpenMythology }) {
   return (
     <section 
       id="hero" 
@@ -136,6 +136,16 @@ export default function Hero() {
 
         {/* Centered Spider-Verse Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+          {/* Ancient Mythological Codex Portal Button */}
+          <button
+            onClick={onOpenMythology}
+            className="spider-btn px-6 py-3.5 rounded-xl font-cinzel font-black text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2 bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#D4AF37] text-black border-2 border-[#0B0E14] shadow-[4px_4px_0px_#0B0E14] hover:scale-105 transition-all"
+            title="Enter Ancient Mythological Theme: Neuromarketing & Experiential Case Studies"
+          >
+            <span>🏛️ Ancient Mythological Realm</span>
+            <Sparkles className="w-4 h-4 fill-black" />
+          </button>
+
           <a
             href="/Adhithyan_M_Resume.pdf"
             target="_blank"

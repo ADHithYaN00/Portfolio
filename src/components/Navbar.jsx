@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, Zap, Sparkles, FileText, Download } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
-export default function Navbar() {
+export default function Navbar({ onOpenMythology }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -113,20 +113,30 @@ export default function Navbar() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden sm:flex items-center space-x-2.5">
+          <div className="hidden sm:flex items-center space-x-2">
+            {/* Ancient Realm Portal Button */}
+            <button
+              onClick={onOpenMythology}
+              className="px-3 py-1.5 rounded-xl font-cinzel font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#D4AF37] text-black border-2 border-[#0B0E14] shadow-spider-sm hover:scale-105 transition-transform"
+              title="Enter Ancient Mythological Realm & Neuromarketing Codex"
+            >
+              <span>🏛️ Ancient Codex</span>
+            </button>
+
             <a
               href="/Adhithyan_M_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download="Adhithyan_M_Resume.pdf"
-              className="px-3.5 py-1.5 rounded-xl font-display font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm hover:bg-[#00F0FF] transition-colors"
+              className="px-3 py-1.5 rounded-xl font-display font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm hover:bg-[#00F0FF] transition-colors"
             >
               <FileText className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>Resume (PDF)</span>
+              <span>Resume</span>
             </a>
+
             <a
               href="#contact"
-              className="spider-btn-pink px-4 py-1.5 rounded-xl font-display font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5"
+              className="spider-btn-pink px-3.5 py-1.5 rounded-xl font-display font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5"
             >
               <span>Collaborate</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-[3]" />
@@ -135,6 +145,12 @@ export default function Navbar() {
 
           {/* Mobile Menu Trigger */}
           <div className="lg:hidden flex items-center space-x-2">
+            <button
+              onClick={onOpenMythology}
+              className="sm:hidden text-[11px] font-cinzel font-black uppercase px-2.5 py-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] text-black border-2 border-[#0B0E14] shadow-spider-sm rounded-lg"
+            >
+              🏛️ Codex
+            </button>
             <a
               href="/Adhithyan_M_Resume.pdf"
               target="_blank"
@@ -186,7 +202,17 @@ export default function Navbar() {
                 </span>
               </a>
             ))}
-            <div className="pt-2">
+            <div className="pt-2 space-y-2">
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  if (onOpenMythology) onOpenMythology();
+                }}
+                className="w-full py-3.5 rounded-xl font-cinzel font-black text-xs uppercase tracking-wider bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] text-black border-2 border-[#0B0E14] shadow-spider-sm flex items-center justify-center gap-2"
+              >
+                <span>🏛️ Enter Ancient Neuromarketing Codex</span>
+              </button>
+
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
