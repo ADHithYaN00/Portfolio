@@ -8,30 +8,30 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #FFFFFF;
-    color: #1C1917;
+    background-color: #07090E;
+    color: #F4F4F5;
   }
 
   body {
-    background-color: #FFFFFF;
-    color: #1C1917;
+    background-color: #07090E;
+    color: #F4F4F5;
     overflow-x: hidden;
   }
 
-  /* Matte tactile scrollbar */
+  /* Luxury dark tactile scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #F5F5F4;
+    background: #07090E;
   }
   ::-webkit-scrollbar-thumb {
-    background: #D6D3D1;
+    background: rgba(255, 255, 255, 0.18);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #EA580C;
+    background: #F59E0B;
   }
 }
 

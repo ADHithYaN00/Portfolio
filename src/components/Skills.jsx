@@ -7,58 +7,63 @@ export default function Skills() {
   const sectorAccents = [
     {
       sector: "SECTOR 01",
-      badge: "bg-[#00F0FF] text-[#0B0E14]",
-      accentBorder: "border-[#00F0FF]",
+      badge: "bg-[#00F0FF]/15 text-[#00F0FF] border-[#00F0FF]/30",
+      accentBorder: "border-[#00F0FF]/30 hover:border-[#00F0FF]/60",
       accentText: "text-[#00F0FF]",
       bulletBg: "bg-[#00F0FF]",
-      pillTag: "bg-[#00F0FF]/15 text-[#00A3B4] border-[#00F0FF]"
+      pillTag: "bg-[#00F0FF]/10 text-[#00F0FF] border-[#00F0FF]/30"
     },
     {
       sector: "SECTOR 02",
-      badge: "bg-[#FF0055] text-white",
-      accentBorder: "border-[#FF0055]",
+      badge: "bg-[#FF0055]/15 text-[#FF0055] border-[#FF0055]/30",
+      accentBorder: "border-[#FF0055]/30 hover:border-[#FF0055]/60",
       accentText: "text-[#FF0055]",
       bulletBg: "bg-[#FF0055]",
-      pillTag: "bg-[#FF0055]/15 text-[#FF0055] border-[#FF0055]"
+      pillTag: "bg-[#FF0055]/10 text-[#FF0055] border-[#FF0055]/30"
     },
     {
       sector: "SECTOR 03",
-      badge: "bg-[#F59E0B] text-[#0B0E14]",
-      accentBorder: "border-[#F59E0B]",
+      badge: "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/30",
+      accentBorder: "border-[#F59E0B]/30 hover:border-[#F59E0B]/60",
       accentText: "text-[#F59E0B]",
       bulletBg: "bg-[#F59E0B]",
-      pillTag: "bg-[#F59E0B]/15 text-[#D97706] border-[#F59E0B]"
+      pillTag: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/30"
     },
     {
       sector: "SECTOR 04",
-      badge: "bg-[#7928CA] text-white",
-      accentBorder: "border-[#7928CA]",
-      accentText: "text-[#7928CA]",
-      bulletBg: "bg-[#7928CA]",
-      pillTag: "bg-[#7928CA]/15 text-[#7928CA] border-[#7928CA]"
+      badge: "bg-[#A855F7]/15 text-[#A855F7] border-[#A855F7]/30",
+      accentBorder: "border-[#A855F7]/30 hover:border-[#A855F7]/60",
+      accentText: "text-[#A855F7]",
+      bulletBg: "bg-[#A855F7]",
+      pillTag: "bg-[#A855F7]/10 text-[#A855F7] border-[#A855F7]/30"
     }
   ];
 
   return (
     <section 
       id="skills" 
-      className="py-24 bg-[#FAFCFF] border-b-3 border-[#0B0E14] relative halftone-spider"
+      className="py-28 bg-[#090C12] border-b border-white/10 relative overflow-hidden"
       aria-label="Creative Suite and Capabilities"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      {/* Background Lighting */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#F59E0B]/5 rounded-full blur-[140px] pointer-events-none -z-0" />
+      <div className="absolute bottom-10 -right-20 w-[500px] h-[500px] bg-[#00F0FF]/5 rounded-full blur-[160px] pointer-events-none -z-0" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b-2.5 border-[#0B0E14]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-8 border-b border-white/10">
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#0B0E14] text-[#F59E0B] font-mono font-bold text-xs uppercase px-3 py-1 rounded-md border border-[#0B0E14] shadow-spider-sm mb-3">
-              <span>// CHAPTER 04 • STRATEGIC ARSENAL</span>
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-[#F59E0B] font-bold mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#F59E0B] inline-block animate-pulse" />
+              <span>CHAPTER 04 // STRATEGIC ARSENAL</span>
             </div>
-            <h2 className="spider-glitch font-syne font-black text-4xl sm:text-5xl text-[#0B0E14] tracking-tight uppercase">
-              CREATIVE ARSENAL & CAPABILITIES
+            <h2 className="font-serif font-black text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
+              Creative Arsenal &amp; <span className="italic font-normal text-[#F59E0B]">Capabilities</span>
             </h2>
           </div>
-          <div className="mt-4 md:mt-0">
-            <span className="font-mono font-bold text-xs uppercase bg-white text-[#0B0E14] px-3 py-1.5 rounded-lg border-2 border-[#0B0E14] shadow-spider-sm">
+          <div className="mt-6 md:mt-0">
+            <span className="font-mono font-medium text-xs uppercase bg-white/5 border border-white/15 text-zinc-300 px-4 py-2 rounded-full shadow-md backdrop-blur-md">
               STRATEGY • CREATIVE • INSIGHTS • EXECUTION
             </span>
           </div>
@@ -72,25 +77,25 @@ export default function Skills() {
             return (
               <div 
                 key={catIdx}
-                className="spider-card rounded-3xl p-7 sm:p-8 hover:-translate-y-1 transition-all flex flex-col justify-between"
+                className="bg-[#0E121B]/80 backdrop-blur-xl border border-white/10 hover:border-[#F59E0B]/40 rounded-3xl p-7 sm:p-9 hover:-translate-y-1 transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col justify-between"
               >
                 <div>
                   {/* Sector Header */}
-                  <div className="flex items-start justify-between pb-4 border-b-2 border-zinc-200 mb-6">
+                  <div className="flex items-start justify-between pb-5 border-b border-white/10 mb-6">
                     <div>
-                      <div className="inline-block px-2.5 py-0.5 rounded-md font-mono font-black text-[11px] uppercase tracking-wider mb-2 border border-[#0B0E14] shadow-spider-sm ${acc.badge}">
+                      <div className={`inline-block px-3 py-0.5 rounded-full font-mono font-bold text-[11px] uppercase tracking-wider mb-2 border ${acc.badge}`}>
                         {category.sector || `SECTOR 0${catIdx + 1}`}
                       </div>
-                      <h3 className="font-syne font-black text-2xl sm:text-[1.65rem] text-[#0B0E14] leading-tight uppercase">
+                      <h3 className="font-serif font-bold text-2xl sm:text-[1.65rem] text-white leading-tight">
                         {category.title}
                       </h3>
                       {category.subtitle && (
-                        <p className="font-sans italic text-xs sm:text-sm text-zinc-600 font-medium mt-1.5 leading-snug">
+                        <p className="font-sans italic text-xs sm:text-sm text-zinc-400 font-normal mt-1.5 leading-snug">
                           {category.subtitle}
                         </p>
                       )}
                     </div>
-                    <span className={`font-mono font-black text-[10px] px-2.5 py-0.5 rounded border uppercase ml-2 shrink-0 ${acc.pillTag}`}>
+                    <span className={`font-mono font-bold text-[10px] px-2.5 py-0.5 rounded-full border uppercase ml-2 shrink-0 ${acc.pillTag}`}>
                       ACTIVE
                     </span>
                   </div>
@@ -104,20 +109,20 @@ export default function Skills() {
                       return (
                         <div 
                           key={sIdx}
-                          className="flex items-center justify-between p-3 rounded-xl bg-zinc-50/90 border border-zinc-200 hover:border-[#0B0E14] hover:bg-white hover:translate-x-1 transition-all group"
+                          className="flex items-center justify-between p-3.5 rounded-xl bg-black/40 border border-white/5 hover:border-white/15 hover:bg-white/5 transition-all group"
                         >
                           <div className="flex items-center gap-3">
                             <span className={`w-2 h-2 rounded-full ${acc.bulletBg} group-hover:scale-125 transition-transform shrink-0`} />
-                            <span className="font-sans font-bold text-sm text-[#0B0E14] group-hover:text-black">
+                            <span className="font-sans font-medium text-sm text-zinc-200 group-hover:text-white transition-colors">
                               {skillName}
                             </span>
                           </div>
                           {skillLevel ? (
-                            <span className="font-mono font-bold text-[11px] uppercase bg-white text-zinc-700 px-2 py-0.5 rounded border border-zinc-300">
+                            <span className="font-mono font-bold text-[11px] uppercase bg-white/5 text-[#F59E0B] px-2.5 py-0.5 rounded border border-white/10">
                               {skillLevel}
                             </span>
                           ) : (
-                            <span className="font-mono text-[11px] text-zinc-400 group-hover:text-[#0B0E14] transition-colors">
+                            <span className="font-mono text-[11px] text-zinc-500 group-hover:text-zinc-300 transition-colors">
                               0{sIdx + 1}
                             </span>
                           )}
@@ -128,11 +133,11 @@ export default function Skills() {
                 </div>
 
                 {/* Sector Footer Pill */}
-                <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-mono text-zinc-500">
-                  <span className="uppercase font-bold text-[11px]">
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
+                  <span className="uppercase font-semibold text-[11px]">
                     {category.skills.length} Core Capabilities
                   </span>
-                  <span className="text-[10px] tracking-widest uppercase">
+                  <span className="text-[10px] tracking-widest uppercase text-zinc-500">
                     COMPREHENSIVE COMPETENCY
                   </span>
                 </div>
@@ -142,32 +147,32 @@ export default function Skills() {
         </div>
 
         {/* ========================================================
-            CREATIVE TOOLKIT SECTION (NEW DEDICATED SHOWCASE)
+            CREATIVE TOOLKIT SECTION (LUXURY EDITORIAL SHOWCASE)
             ======================================================== */}
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border-3 border-[#0B0E14] shadow-spider-lg mb-16 relative overflow-hidden">
+        <div className="bg-[#0E121B]/90 backdrop-blur-xl rounded-3xl p-8 sm:p-10 border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.7)] mb-16 relative overflow-hidden">
           {/* Subtle Ambient Glow */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#00F0FF]/10 rounded-full blur-[80px] pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#FF0055]/10 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#F59E0B]/5 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#00F0FF]/5 rounded-full blur-[80px] pointer-events-none" />
 
           <div className="relative z-10">
             {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b-2 border-zinc-200">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
               <div>
-                <div className="inline-flex items-center gap-2 bg-[#0B0E14] text-[#00F0FF] font-mono font-bold text-xs uppercase px-3 py-1 rounded-md border border-[#0B0E14] shadow-spider-sm mb-2">
+                <div className="inline-flex items-center gap-2 bg-[#F59E0B]/10 text-[#F59E0B] font-mono font-bold text-xs uppercase px-3 py-1 rounded-full border border-[#F59E0B]/25 mb-3">
                   <Wrench className="w-3.5 h-3.5" />
-                  <span>// PRODUCTION SUITE & AI SYSTEMS</span>
+                  <span>// PRODUCTION SUITE &amp; AI SYSTEMS</span>
                 </div>
-                <h3 className="spider-glitch font-syne font-black text-3xl sm:text-4xl text-[#0B0E14] tracking-tight uppercase">
-                  CREATIVE TOOLKIT
+                <h3 className="font-serif font-bold text-3xl sm:text-4xl text-white tracking-tight">
+                  Creative Toolkit &amp; <span className="italic font-normal text-[#F59E0B]">Software</span>
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-zinc-600 font-medium mt-1">
+                <p className="font-sans text-xs sm:text-sm text-zinc-400 font-normal mt-1.5">
                   High-velocity creative software, frontier AI models, paid acquisition suites, and operational intelligence engines.
                 </p>
               </div>
 
-              <div className="flex items-center gap-2 font-mono text-xs font-bold bg-[#FAFCFF] px-3.5 py-2 rounded-xl border border-zinc-300">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#00F0FF] animate-ping" />
-                <span>{(skillsData.toolkit?.length || 12)} SPECIALIZED TOOLS</span>
+              <div className="flex items-center gap-2 font-mono text-xs font-bold bg-white/5 px-4 py-2 rounded-full border border-white/10 text-zinc-300">
+                <span className="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse" />
+                <span>{(skillsData.toolkit?.length || 12)} SPECIALIZED ENGINES</span>
               </div>
             </div>
 
@@ -189,21 +194,17 @@ export default function Skills() {
               ]).map((tool, tIdx) => {
                 const logoInfo = TOOLKIT_LOGOS[tool.name];
                 const LogoComponent = logoInfo?.component;
-                const borderAcc = logoInfo?.border || "hover:border-[#00F0FF] hover:shadow-[3px_3px_0px_#00F0FF]";
 
                 return (
                   <div
                     key={tIdx}
-                    className={`group bg-zinc-50 hover:bg-white p-4 rounded-2xl border-2 border-zinc-200 transition-all duration-200 transform hover:-translate-y-1.5 cursor-default flex flex-col justify-between ${borderAcc}`}
+                    className="group bg-black/40 hover:bg-[#141A26] p-4 rounded-2xl border border-white/10 hover:border-[#F59E0B]/50 transition-all duration-300 transform hover:-translate-y-1 cursor-default flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
                   >
                     <div>
                       {/* Top Row: Software Logo & Slot Number */}
                       <div className="flex items-center justify-between mb-3">
                         <div 
-                          className="w-11 h-11 rounded-xl p-2.5 flex items-center justify-center transition-transform duration-200 group-hover:scale-110 shadow-sm border border-black/5 bg-white"
-                          style={{
-                            boxShadow: `0 4px 12px ${logoInfo?.bg || 'rgba(0,0,0,0.05)'}`
-                          }}
+                          className="w-11 h-11 rounded-xl p-2.5 flex items-center justify-center transition-transform duration-200 group-hover:scale-110 shadow-sm border border-white/10 bg-white/5"
                         >
                           {LogoComponent ? (
                             <LogoComponent className="w-6 h-6 object-contain" />
@@ -211,19 +212,19 @@ export default function Skills() {
                             <Sparkles className="w-5 h-5 text-zinc-400" />
                           )}
                         </div>
-                        <span className="font-mono font-black text-[10px] text-zinc-400 group-hover:text-zinc-600 transition-colors">
+                        <span className="font-mono font-medium text-[10px] text-zinc-500 group-hover:text-[#F59E0B] transition-colors">
                           #{String(tIdx + 1).padStart(2, '0')}
                         </span>
                       </div>
 
                       {/* Tool Name */}
-                      <div className="font-syne font-black text-base sm:text-lg text-[#0B0E14] tracking-tight group-hover:text-[#FF0055] transition-colors leading-tight">
+                      <div className="font-serif font-bold text-base sm:text-lg text-white tracking-tight group-hover:text-[#F59E0B] transition-colors leading-tight">
                         {tool.name}
                       </div>
                     </div>
 
                     {/* Category Label */}
-                    <div className="font-mono text-[10px] uppercase font-bold text-zinc-500 mt-2.5 pt-2 border-t border-zinc-200/60">
+                    <div className="font-mono text-[10px] uppercase font-medium text-zinc-400 mt-2.5 pt-2 border-t border-white/5">
                       {tool.category}
                     </div>
                   </div>
@@ -231,12 +232,12 @@ export default function Skills() {
               })}
             </div>
 
-            {/* Quick Copy / Direct Summary Banner */}
-            <div className="mt-8 p-4 rounded-2xl bg-zinc-100 border border-zinc-200 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-              <span className="text-zinc-500 font-bold uppercase">
+            {/* Quick Summary Banner */}
+            <div className="mt-8 p-4 rounded-2xl bg-black/40 border border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+              <span className="text-[#F59E0B] font-bold uppercase tracking-wider">
                 COMPLETE TOOLKIT DIRECTORY:
               </span>
-              <span className="font-sans font-bold text-[#0B0E14] text-xs sm:text-sm">
+              <span className="font-sans font-medium text-zinc-300 text-xs sm:text-sm">
                 Figma · Canva · CapCut · ChatGPT · Gemini · Claude · Perplexity · Google Sheets · Notion · Microsoft Teams · Google Ads · Google Search Console
               </span>
             </div>
@@ -244,44 +245,44 @@ export default function Skills() {
         </div>
 
         {/* Strategic Marketing Tenets Panel */}
-        <div className="bg-[#0B0E14] text-white p-8 sm:p-10 rounded-3xl border-3 border-[#0B0E14] shadow-spider-lg">
+        <div className="bg-gradient-to-r from-black/80 via-[#0E121B] to-black/80 text-white p-8 sm:p-10 rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-4 space-y-2">
-              <span className="inline-block bg-[#FF0055] text-white font-mono font-bold text-xs uppercase px-2.5 py-1 rounded">
+            <div className="md:col-span-4 space-y-3">
+              <span className="inline-block bg-[#F59E0B]/15 text-[#F59E0B] font-mono font-bold text-xs uppercase px-3 py-1 rounded-full border border-[#F59E0B]/30">
                 STRATEGIC CREATIVE CODE
               </span>
-              <h3 className="font-syne font-black text-3xl sm:text-4xl text-white leading-tight uppercase">
-                STRATEGIC TENETS OF MODERN MARKETING
+              <h3 className="font-serif font-black text-3xl sm:text-4xl text-white leading-tight">
+                Strategic Tenets of Modern Marketing
               </h3>
-              <p className="font-sans text-xs text-zinc-400 font-medium">
+              <p className="font-sans text-xs text-zinc-400 font-normal leading-relaxed">
                 Guiding principles for high-conversion creative brand execution and measurable growth.
               </p>
             </div>
 
             <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-zinc-900/90 p-5 rounded-2xl border border-zinc-700 hover:border-[#00F0FF] transition-colors">
+              <div className="bg-black/50 p-6 rounded-2xl border border-white/10 hover:border-[#00F0FF]/40 transition-colors">
                 <span className="font-mono font-bold text-xs uppercase text-[#00F0FF] block mb-2">
                   01 / NEURAL RESONANCE
                 </span>
-                <p className="font-sans text-xs text-zinc-300 font-medium leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-zinc-300 font-normal leading-relaxed">
                   Tapping subconscious consumer emotion, gaze fixations, and EEG brainwave symmetry before spend.
                 </p>
               </div>
 
-              <div className="bg-zinc-900/90 p-5 rounded-2xl border border-zinc-700 hover:border-[#FF0055] transition-colors">
+              <div className="bg-black/50 p-6 rounded-2xl border border-white/10 hover:border-[#FF0055]/40 transition-colors">
                 <span className="font-mono font-bold text-xs uppercase text-[#FF0055] block mb-2">
                   02 / CREATIVE VELOCITY
                 </span>
-                <p className="font-sans text-xs text-zinc-300 font-medium leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-zinc-300 font-normal leading-relaxed">
                   Data-backed visual hooks, rapid thumbnail A/B testing, and generative AI production workflows.
                 </p>
               </div>
 
-              <div className="bg-zinc-900/90 p-5 rounded-2xl border border-zinc-700 hover:border-[#F59E0B] transition-colors">
+              <div className="bg-black/50 p-6 rounded-2xl border border-white/10 hover:border-[#F59E0B]/40 transition-colors">
                 <span className="font-mono font-bold text-xs uppercase text-[#F59E0B] block mb-2">
                   03 / COMMERCIAL VALUE
                 </span>
-                <p className="font-sans text-xs text-zinc-300 font-medium leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-zinc-300 font-normal leading-relaxed">
                   Converting raw attention into high-stakes corporate sponsorships and measurable pipeline growth.
                 </p>
               </div>

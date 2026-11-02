@@ -22,13 +22,10 @@ export default function App() {
     try {
       const saved = localStorage.getItem('portfolio_theme');
       if (saved === 'dark' || saved === 'light') return saved;
-      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-      }
     } catch (e) {}
-    return 'light';
+    return 'dark'; // Updated luxury dark editorial theme as default
   });
-  const [darkViewMode, setDarkViewMode] = useState('dashboard'); // 'dashboard' | 'portfolio'
+  const [darkViewMode, setDarkViewMode] = useState('portfolio'); // Default to full luxury portfolio
   const [isMuted, setIsMuted] = useState(false);
   const [realm, setRealm] = useState(() => {
     return window.location.hash === '#ancient-codex' || window.location.hash === '#mythology' 
@@ -46,12 +43,12 @@ export default function App() {
         root.classList.add('dark');
         if (body) body.classList.add('dark');
         localStorage.setItem('portfolio_theme', 'dark');
-        if (metaThemeColor) metaThemeColor.setAttribute('content', '#050608');
+        if (metaThemeColor) metaThemeColor.setAttribute('content', '#07090E');
       } else {
         root.classList.remove('dark');
         if (body) body.classList.remove('dark');
         localStorage.setItem('portfolio_theme', 'light');
-        if (metaThemeColor) metaThemeColor.setAttribute('content', '#FAFCFF');
+        if (metaThemeColor) metaThemeColor.setAttribute('content', '#07090E');
       }
     } catch (e) {
       if (theme === 'dark') {
@@ -115,8 +112,8 @@ export default function App() {
 
   return (
     <>
-      {/* Universal Antigravity Stardust Particle Cursor / Arabian Sand Cursor (Silenced in dark executive mode) */}
-      {theme !== 'dark' && <CursorDustTrail isAncient={realm === 'mythology'} />}
+      {/* Universal Stardust Particle Cursor / Arabian Sand Cursor */}
+      <CursorDustTrail isAncient={realm === 'mythology'} />
 
       {/* Subtle Ambient Background Music Engine & Floating Controller */}
       <AmbientAudio isMuted={isMuted} onToggleMute={toggleMute} theme={theme} />
@@ -132,34 +129,23 @@ export default function App() {
           onToggleMute={toggleMute}
         />
       ) : (
-        <div className={`relative min-h-screen ${
-          theme === 'dark'
-            ? 'bg-[#050608] text-zinc-100 selection:bg-white selection:text-black'
-            : 'bg-[#FAFCFF] text-[#0B0E14] selection:bg-[#FF0055] selection:text-white'
-        } flex flex-col font-sans overflow-x-hidden transition-colors duration-300`}>
-          {/* Floating Antigravity Starlight & Micro-Sparks (Active only in creative light mode) */}
-          {theme !== 'dark' && <GoldenParticles />}
-
-          {/* Spider-Verse & Genshin Ambient Color Glows */}
-          <div className="fixed top-0 right-10 w-[550px] h-[550px] bg-[#00F0FF]/5 rounded-full blur-[140px] pointer-events-none -z-10" />
-          <div className="fixed top-1/3 left-0 w-[500px] h-[500px] bg-[#FF0055]/5 rounded-full blur-[160px] pointer-events-none -z-10" />
+        <div className="relative min-h-screen bg-[#07090E] text-zinc-100 selection:bg-[#F59E0B] selection:text-black flex flex-col font-sans overflow-x-hidden">
+          {/* Subtle Ambient Glows */}
+          <div className="fixed top-0 right-10 w-[550px] h-[550px] bg-[#F59E0B]/5 rounded-full blur-[160px] pointer-events-none -z-10" />
+          <div className="fixed top-1/3 left-0 w-[500px] h-[500px] bg-[#00F0FF]/4 rounded-full blur-[170px] pointer-events-none -z-10" />
           <div className="fixed bottom-1/4 right-0 w-[500px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-[150px] pointer-events-none -z-10" />
 
           {/* Accessible Skip Link */}
           <a 
             href="#main-content" 
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#0B0E14] text-white border-2 border-[#0B0E14] rounded-md shadow-spider text-xs uppercase tracking-wider font-mono font-bold"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-5 py-2.5 bg-[#F59E0B] text-black font-mono font-bold text-xs uppercase tracking-wider rounded-full shadow-lg"
           >
             Skip directly to main content
           </a>
 
-          {/* Progress Indicator (Monochrome in dark mode, chromatic gradient in light mode) */}
+          {/* Progress Indicator */}
           <div 
-            className={`fixed top-0 left-0 h-[3px] z-50 transition-all duration-75 ease-out ${
-              theme === 'dark' 
-                ? 'bg-gradient-to-r from-white via-zinc-400 to-white shadow-[0_0_8px_rgba(255,255,255,0.4)]' 
-                : 'bg-gradient-to-r from-[#FF0055] via-[#00F0FF] to-[#F59E0B] shadow-sm'
-            }`}
+            className="fixed top-0 left-0 h-[3px] z-50 transition-all duration-75 ease-out bg-gradient-to-r from-[#F59E0B] via-[#EAB308] to-[#00F0FF] shadow-[0_0_8px_rgba(245,158,11,0.5)]"
             style={{ width: `${scrollProgress}%` }}
             role="progressbar"
             aria-valuenow={Math.round(scrollProgress)}

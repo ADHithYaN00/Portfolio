@@ -10,7 +10,7 @@ export default function ChibiCompanion({ onOpenMythology }) {
     {
       id: "mythology",
       category: "𓆣 ARABIAN DESERT & MUMMY CODEX",
-      badgeColor: "bg-[#D4AF37] text-black font-black",
+      badgeColor: "bg-[#F59E0B]/20 text-[#F59E0B] border-[#F59E0B]/40",
       shortLabel: "Arabian Codex",
       question: "What is the Arabian Desert & Mummy Neuromarketing Codex?",
       answer: "A high-graphics Arabian desert sanctuary with flickering torches, golden sand dunes, and pharaonic mummy sarcophagi unveiling 6 landmark case studies (Coca-Cola fMRI, Cheetos EEG, Red Bull Stratos, Campbell's Biometrics, Hyundai EEG, and ₹36L+ Conclave Architecture) where brands generated billions adapting subconscious neuro-principles.",
@@ -20,7 +20,7 @@ export default function ChibiCompanion({ onOpenMythology }) {
     {
       id: "superpower",
       category: "🧠 SECRET SUPERPOWER",
-      badgeColor: "bg-[#00F0FF] text-[#0B0E14]",
+      badgeColor: "bg-[#00F0FF]/15 text-[#00F0FF] border-[#00F0FF]/30",
       shortLabel: "Superpower",
       question: "What's Adhi's unfair advantage in marketing?",
       answer: "He doesn't guess what consumers want — he investigates how EEG-based frontal asymmetry and eye-tracking gaze fixations reveal subconscious preference before conscious bias kicks in. Combining consumer neuroscience with generative AI storytelling turns creative ideas into measurable commercial outcomes.",
@@ -30,7 +30,7 @@ export default function ChibiCompanion({ onOpenMythology }) {
     {
       id: "growth",
       category: "⚡ +137.5% VIRAL SURGE",
-      badgeColor: "bg-[#FF0055] text-white",
+      badgeColor: "bg-[#FF0055]/15 text-[#FF0055] border-[#FF0055]/30",
       shortLabel: "+137.5% Growth",
       question: "How did he spike YouTube views by 137.5% at Zenrises?",
       answer: "Relentless visual hook and narrative experimentation! At Zenrises Creatives, Adhithyan spearheaded AI-assisted video scripting, thumbnail A/B testing, and search metadata strategies to scale YouTube reach by +137.5% views and +79.5% subscriber expansion.",
@@ -40,17 +40,17 @@ export default function ChibiCompanion({ onOpenMythology }) {
     {
       id: "deals",
       category: "💰 ₹36L+ SPONSORSHIPS",
-      badgeColor: "bg-[#F59E0B] text-[#0B0E14]",
+      badgeColor: "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/30",
       shortLabel: "₹36L+ Deals",
       question: "How on earth did he close ₹36+ Lakh in sponsorships?",
-      answer: "By abandoning generic banner logos! Adhithyan pitched experiential demographic access, creator activations, and measurable digital ROI to corporate marketing leads for Incident NITK (₹25L+) and Bizwaves NITK (₹8L+), leading teams of up to 120+ students.",
+      answer: "By abandoning generic banner logos! Adhithyan pitched experiential demographic access, creator activations, and measurable digital ROI to corporate marketing leads for Incident NITK (₹25L+) and Bizwaves NITK (₹11L+), leading teams of up to 120+ students.",
       actionLabel: "Examine Track Record",
       actionHref: "#experience"
     },
     {
       id: "ethos",
       category: "💡 BRAND PHILOSOPHY",
-      badgeColor: "bg-[#7928CA] text-white",
+      badgeColor: "bg-white/10 text-white border-white/20",
       shortLabel: "Brand Ethos",
       question: "What is his core belief about branding?",
       answer: "“Great marketing goes beyond mere visibility — it shapes perception, creates meaning, and builds lasting emotional connections.” He is fascinated by what makes people notice, trust, and ultimately fall in love with a brand.",
@@ -60,7 +60,7 @@ export default function ChibiCompanion({ onOpenMythology }) {
     {
       id: "roles",
       category: "🎯 CAREER FOCUS",
-      badgeColor: "bg-[#00F0FF] text-[#0B0E14]",
+      badgeColor: "bg-[#00F0FF]/15 text-[#00F0FF] border-[#00F0FF]/30",
       shortLabel: "Target Roles",
       question: "What kind of opportunities is Adhi seeking?",
       answer: "Full-time Brand Strategy, Creative Marketing, Growth, or Management Trainee roles. With an MBA in Marketing & Operations from NITK (Class of '26), he is equipped to take full ownership of campaigns from strategic concept to commercial delivery.",
@@ -70,7 +70,7 @@ export default function ChibiCompanion({ onOpenMythology }) {
     {
       id: "location",
       category: "📍 BANGALORE & CONTACT",
-      badgeColor: "bg-[#FF0055] text-white",
+      badgeColor: "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/30",
       shortLabel: "Location & Links",
       question: "Where is he based and how do I connect?",
       answer: "Based in Bangalore, Karnataka, and open to full-time roles (on-site, hybrid, or remote). Reach him directly at adhithyan2242@gmail.com, or connect on LinkedIn and Instagram with 1-click below!",
@@ -94,45 +94,45 @@ export default function ChibiCompanion({ onOpenMythology }) {
 
   return (
     <aside 
-      className="fixed bottom-5 right-5 z-40 flex flex-col items-end select-none pointer-events-auto"
+      className="fixed bottom-6 right-6 z-40 flex flex-col items-end select-none pointer-events-auto"
       aria-label="Interactive portfolio FAQ companion"
     >
       {/* FAQ Speech Panel */}
       {isOpen && (
         <div 
-          className="mb-3 w-[310px] sm:w-[380px] bg-white dark:bg-[#0E1015] border-2.5 border-[#0B0E14] dark:border-zinc-700 rounded-3xl p-4 sm:p-5 shadow-spider-md relative group animate-fadeIn"
+          className="mb-4 w-[320px] sm:w-[390px] bg-[#0E121B]/95 backdrop-blur-2xl border border-white/15 rounded-3xl p-5 sm:p-6 shadow-[0_25px_60px_rgba(0,0,0,0.85)] relative group animate-fadeIn text-zinc-100"
           role="region"
           aria-live="polite"
         >
           {/* Header Strip */}
-          <div className="flex items-center justify-between pb-2 mb-3 border-b-2 border-zinc-100 dark:border-zinc-800">
-            <div className="flex items-center gap-1.5 font-mono font-bold text-[11px] text-[#0B0E14] dark:text-zinc-200">
-              <HelpCircle className="w-4 h-4 text-[#FF0055]" />
-              <span>CHIBI FAQ // ABOUT ADHI</span>
-              <span className="bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 px-1.5 py-0.5 rounded text-[10px]">
+          <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+            <div className="flex items-center gap-2 font-mono font-bold text-[11px] text-[#F59E0B]">
+              <HelpCircle className="w-4 h-4 text-[#F59E0B]" />
+              <span>FAQ COMPANION // ADHITHYAN</span>
+              <span className="bg-white/10 text-zinc-300 px-2 py-0.5 rounded-full text-[10px]">
                 {currentIndex + 1}/{faqs.length}
               </span>
             </div>
 
             <button
               onClick={() => setIsOpen(false)}
-              className="w-6 h-6 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-[#FF0055] hover:text-white rounded-full flex items-center justify-center transition-colors focus:outline-none"
+              className="w-7 h-7 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/15 rounded-full flex items-center justify-center transition-colors focus:outline-none"
               aria-label="Minimize FAQ companion"
             >
               <X className="w-3.5 h-3.5 stroke-[2.5]" />
             </button>
           </div>
 
-          {/* Quick FAQ Question Pills (1-Click Selector) */}
-          <div className="flex flex-wrap gap-1.5 mb-3">
+          {/* Quick FAQ Question Pills */}
+          <div className="flex flex-wrap gap-1.5 mb-3.5">
             {faqs.map((f, idx) => (
               <button
                 key={f.id}
                 onClick={() => setCurrentIndex(idx)}
-                className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-md border transition-all ${
+                className={`text-[10px] font-mono px-2.5 py-1 rounded-full border transition-all ${
                   currentIndex === idx
-                    ? 'bg-[#0B0E14] dark:bg-white text-white dark:text-[#0B0E14] border-[#0B0E14] dark:border-white shadow-sm'
-                    : 'bg-zinc-50 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-750 hover:border-[#0B0E14] dark:hover:border-zinc-500'
+                    ? 'bg-[#F59E0B] text-black border-[#F59E0B] font-bold shadow-[0_0_10px_rgba(245,158,11,0.3)]'
+                    : 'bg-white/5 text-zinc-300 border-white/10 hover:border-white/20 hover:text-white'
                 }`}
               >
                 {f.shortLabel}
@@ -142,62 +142,58 @@ export default function ChibiCompanion({ onOpenMythology }) {
 
           {/* Active Question & Category */}
           <div className="space-y-2 mb-3">
-            <span className={`inline-block font-mono font-bold text-[9px] px-2 py-0.5 rounded uppercase tracking-wider ${currentFaq.badgeColor}`}>
+            <span className={`inline-block font-mono font-bold text-[9px] px-2.5 py-0.5 rounded-full uppercase tracking-wider border ${currentFaq.badgeColor}`}>
               {currentFaq.category}
             </span>
-            <h4 className="font-syne font-bold text-sm sm:text-base text-[#0B0E14] dark:text-white leading-snug">
+            <h4 className="font-serif font-bold text-base sm:text-lg text-white leading-snug">
               {currentFaq.question}
             </h4>
           </div>
 
           {/* Active Answer */}
-          <p className="font-sans text-xs text-zinc-700 dark:text-zinc-300 font-medium leading-relaxed mb-4 bg-zinc-50/90 dark:bg-zinc-900/90 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800">
+          <p className="font-sans text-xs text-zinc-300 font-normal leading-relaxed mb-4 bg-black/40 p-3.5 rounded-2xl border border-white/10">
             {currentFaq.answer}
           </p>
 
           {/* Footer Controls & Direct Action Link */}
-          <div className="flex items-center justify-between pt-2 border-t border-zinc-100 dark:border-zinc-800">
-            <div className="flex items-center gap-1">
+          <div className="flex items-center justify-between pt-3 border-t border-white/10">
+            <div className="flex items-center gap-1.5">
               <button
                 onClick={handlePrev}
-                className="w-7 h-7 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[#0B0E14] dark:text-zinc-200 border border-zinc-300 dark:border-zinc-700 rounded-lg flex items-center justify-center transition-colors"
+                className="w-7 h-7 bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-white border border-white/10 rounded-full flex items-center justify-center transition-colors"
                 aria-label="Previous question"
               >
-                <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={handleNext}
-                className="w-7 h-7 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[#0B0E14] dark:text-zinc-200 border border-zinc-300 dark:border-zinc-700 rounded-lg flex items-center justify-center transition-colors"
+                className="w-7 h-7 bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-white border border-white/10 rounded-full flex items-center justify-center transition-colors"
                 aria-label="Next question"
               >
-                <ChevronRight className="w-4 h-4 stroke-[2.5]" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
 
             {currentFaq.actionCallback ? (
               <button
                 onClick={currentFaq.actionCallback}
-                className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#D4AF37] hover:underline transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#F59E0B] hover:underline transition-colors"
               >
                 <span>{currentFaq.actionLabel}</span>
-                <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
             ) : (
               <a
                 href={currentFaq.actionHref}
                 target={currentFaq.isExternal ? "_blank" : undefined}
                 rel={currentFaq.isExternal ? "noopener noreferrer" : undefined}
-                className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#FF0055] hover:underline transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#F59E0B] hover:underline transition-colors"
               >
                 <span>{currentFaq.actionLabel}</span>
-                <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             )}
           </div>
-
-          {/* Speech Bubble Tail */}
-          <div className="absolute -bottom-2.5 right-8 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-[#0B0E14] dark:border-t-zinc-700" />
-          <div className="absolute -bottom-2 right-8 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-white dark:border-t-[#0E1015]" />
         </div>
       )}
 
@@ -210,11 +206,11 @@ export default function ChibiCompanion({ onOpenMythology }) {
         aria-expanded={isOpen}
         aria-label={isOpen ? "Close FAQ menu" : "Open FAQ menu"}
       >
-        {/* Glow Ring */}
-        <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#00F0FF] via-[#FF0055] to-[#F59E0B] opacity-75 blur-sm group-hover:opacity-100 transition-opacity animate-pulse" />
+        {/* Amber Glow Ring */}
+        <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#F59E0B] via-[#00F0FF] to-[#F59E0B] opacity-75 blur-md group-hover:opacity-100 transition-opacity animate-pulse" />
 
         {/* Chibi Avatar Circle */}
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full border-3 border-[#0B0E14] dark:border-white bg-white dark:bg-[#0E1015] shadow-spider-md overflow-hidden transform group-hover:scale-105 group-hover:-translate-y-1 transition-all">
+        <div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-full border-2 border-[#F59E0B] bg-[#0E121B] shadow-[0_0_20px_rgba(245,158,11,0.4)] overflow-hidden transform group-hover:scale-105 group-hover:-translate-y-1 transition-all">
           <img 
             src="/images/chibi-marketer.jpg" 
             alt="Adhithyan Chibi Digital Marketer FAQ Guide"
@@ -223,8 +219,8 @@ export default function ChibiCompanion({ onOpenMythology }) {
         </div>
 
         {/* Interactive FAQ Badge */}
-        <div className="absolute -top-1 -right-1 bg-[#0B0E14] text-[#00F0FF] text-[9px] font-mono font-black px-2 py-0.5 rounded-full border border-white shadow-sm flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#FF0055] animate-ping" />
+        <div className="absolute -top-1 -right-1 bg-[#F59E0B] text-black text-[9px] font-mono font-black px-2 py-0.5 rounded-full border border-black shadow-sm flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-black animate-ping" />
           <span>FAQ</span>
         </div>
       </button>

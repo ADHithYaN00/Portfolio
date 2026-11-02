@@ -53,8 +53,8 @@ export default function NeuromarketingMap() {
       title: "Approach vs. Avoidance",
       subtitle: "The Emotional Gatekeeper",
       icon: Brain,
-      color: "#FF0055",
-      accentBg: "bg-[#FF0055]/15 text-[#FF0055] border-[#FF0055]/40",
+      color: "#F59E0B",
+      accentBg: "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/40",
       neuroMechanism: "Frontal EEG Asymmetry (FAA)",
       brainAction: "The Left Frontal Alpha band activates for desire & curiosity ('Approach'), while Right Frontal activation triggers skepticism ('Avoidance').",
       d2cStory: {
@@ -75,8 +75,8 @@ export default function NeuromarketingMap() {
       title: "Narrative Transportation",
       subtitle: "Mirror Neurons & Meaning",
       icon: HeartHandshake,
-      color: "#F59E0B",
-      accentBg: "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/40",
+      color: "#FF0055",
+      accentBg: "bg-[#FF0055]/15 text-[#FF0055] border-[#FF0055]/40",
       neuroMechanism: "Mirror Neurons & Oxytocin Release",
       brainAction: "The brain synchronizes with relatable storytellers. Cortisol (stress) drops while oxytocin (empathy and brand trust) floods the neural pathways.",
       d2cStory: {
@@ -119,8 +119,8 @@ export default function NeuromarketingMap() {
       title: "Peak-End Memory Encoding",
       subtitle: "The Brand Evangelist Loop",
       icon: Repeat,
-      color: "#7928CA",
-      accentBg: "bg-[#7928CA]/20 text-[#00F0FF] border-[#7928CA]/50",
+      color: "#A855F7",
+      accentBg: "bg-[#A855F7]/20 text-[#A855F7] border-[#A855F7]/50",
       neuroMechanism: "Hippocampus & Dopaminergic Habit",
       brainAction: "Memories aren't stored as averages—the brain imprints the most emotionally intense moment ('Peak') and the final impression ('End').",
       d2cStory: {
@@ -142,47 +142,51 @@ export default function NeuromarketingMap() {
   return (
     <section 
       id="neuromarketing-map" 
-      className="py-24 bg-[#FAFCFF] border-b-3 border-[#0B0E14] relative halftone-spider overflow-hidden"
+      className="py-28 bg-[#090C12] border-b border-white/10 relative overflow-hidden"
       aria-label="Neuromarketing and Consumer Psychology Route Map"
     >
+      {/* Ambient Lighting */}
+      <div className="absolute top-1/4 -right-20 w-96 h-96 bg-[#F59E0B]/5 rounded-full blur-[140px] pointer-events-none -z-0" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[#00F0FF]/5 rounded-full blur-[160px] pointer-events-none -z-0" />
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-14 pb-6 border-b-2.5 border-[#0B0E14] gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/10 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#0B0E14] text-[#00F0FF] font-mono font-bold text-xs uppercase px-3 py-1 rounded-md border border-[#0B0E14] shadow-spider-sm mb-3">
-              <Activity className="w-3.5 h-3.5 text-[#00F0FF] animate-pulse" />
-              <span>// CHAPTER 06 • THE COGNITIVE ROUTE MAP</span>
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-[#F59E0B] font-bold mb-3">
+              <Activity className="w-3.5 h-3.5 text-[#F59E0B] animate-pulse" />
+              <span>CHAPTER 06 // THE COGNITIVE ROUTE MAP</span>
             </div>
-            <h2 className="spider-glitch font-syne font-black text-4xl sm:text-5xl text-[#0B0E14] tracking-tight uppercase">
-              HOW NEUROMARKETING WORKS IN REAL LIFE
+            <h2 className="font-serif font-black text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
+              How Neuromarketing <span className="italic font-normal text-[#F59E0B]">Works in Real Life</span>
             </h2>
-            <p className="font-sans text-sm sm:text-base text-zinc-600 font-medium max-w-2xl mt-2 leading-relaxed">
+            <p className="font-sans text-sm sm:text-base text-zinc-300 font-normal max-w-2xl mt-2 leading-relaxed">
               Decoding the journey inside a consumer’s mind from casual 50-millisecond glance to high-trust commercial action and lifelong brand devotion.
             </p>
           </div>
 
           {/* Real-Life Scenario Selector */}
-          <div className="flex items-center gap-2 bg-white p-1.5 rounded-2xl border-2 border-[#0B0E14] shadow-spider-sm shrink-0">
-            <span className="text-[11px] font-mono font-bold text-zinc-500 uppercase px-2">
+          <div className="flex items-center gap-2 bg-white/5 p-1.5 rounded-full border border-white/10 backdrop-blur-md shrink-0">
+            <span className="text-[11px] font-mono font-medium text-zinc-400 uppercase px-3">
               REAL-WORLD LENS:
             </span>
             <button
               onClick={() => setActiveScenario('d2c')}
-              className={`px-3 py-1.5 rounded-xl font-mono text-xs font-bold uppercase transition-all ${
+              className={`px-4 py-1.5 rounded-full font-mono text-xs font-bold uppercase transition-all duration-200 ${
                 activeScenario === 'd2c'
-                  ? 'bg-[#0B0E14] text-[#00F0FF] shadow-sm'
-                  : 'bg-transparent text-zinc-600 hover:text-black'
+                  ? 'bg-[#F59E0B] text-black shadow-[0_0_15px_rgba(245,158,11,0.3)]'
+                  : 'bg-transparent text-zinc-400 hover:text-white'
               }`}
             >
               📱 D2C Viral Video
             </button>
             <button
               onClick={() => setActiveScenario('b2b')}
-              className={`px-3 py-1.5 rounded-xl font-mono text-xs font-bold uppercase transition-all ${
+              className={`px-4 py-1.5 rounded-full font-mono text-xs font-bold uppercase transition-all duration-200 ${
                 activeScenario === 'b2b'
-                  ? 'bg-[#0B0E14] text-[#FF0055] shadow-sm'
-                  : 'bg-transparent text-zinc-600 hover:text-black'
+                  ? 'bg-[#F59E0B] text-black shadow-[0_0_15px_rgba(245,158,11,0.3)]'
+                  : 'bg-transparent text-zinc-400 hover:text-white'
               }`}
             >
               🤝 ₹36L+ Sponsorship
@@ -194,15 +198,15 @@ export default function NeuromarketingMap() {
             ROUTE MAP PROGRESSION PIPELINE (Interactive Stepper)
             ========================================================================= */}
         <div className="relative mb-12">
-          {/* Subtle Pipeline Track */}
-          <div className="hidden lg:block absolute top-1/2 left-6 right-6 h-1 bg-zinc-200 -translate-y-1/2 z-0 rounded-full" />
+          {/* Pipeline Track */}
+          <div className="hidden lg:block absolute top-1/2 left-6 right-6 h-0.5 bg-white/10 -translate-y-1/2 z-0 rounded-full" />
           <div 
-            className="hidden lg:block absolute top-1/2 left-6 h-1 bg-gradient-to-r from-[#00F0FF] via-[#FF0055] to-[#7928CA] -translate-y-1/2 z-0 rounded-full transition-all duration-500"
+            className="hidden lg:block absolute top-1/2 left-6 h-0.5 bg-gradient-to-r from-[#F59E0B] via-[#00F0FF] to-[#A855F7] -translate-y-1/2 z-0 rounded-full transition-all duration-500 shadow-[0_0_10px_#F59E0B]"
             style={{ width: `${(activeStep / (stages.length - 1)) * 92}%` }}
           />
 
           {/* Stepper Buttons */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 relative z-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 relative z-10">
             {stages.map((stage, idx) => {
               const Icon = stage.icon;
               const isActive = activeStep === idx;
@@ -211,32 +215,32 @@ export default function NeuromarketingMap() {
                 <button
                   key={stage.id}
                   onClick={() => setActiveStep(idx)}
-                  className={`text-left p-3.5 sm:p-4 rounded-2xl border-2 transition-all duration-200 flex flex-col justify-between group ${
+                  className={`text-left p-4 rounded-2xl border transition-all duration-300 flex flex-col justify-between group ${
                     isActive
-                      ? 'bg-[#0B0E14] text-white border-[#0B0E14] shadow-spider transform -translate-y-1'
-                      : 'bg-white text-[#0B0E14] border-zinc-200 hover:border-[#0B0E14] hover:bg-zinc-50'
+                      ? 'bg-gradient-to-b from-[#171D2A] to-[#0E121B] text-white border-[#F59E0B] shadow-[0_0_25px_rgba(245,158,11,0.25)] transform -translate-y-1'
+                      : 'bg-[#0E121B]/70 text-zinc-300 border-white/10 hover:border-white/20 hover:bg-[#0E121B]'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <span className={`w-8 h-8 rounded-xl flex items-center justify-center font-syne font-black text-xs border ${
+                    <span className={`w-8 h-8 rounded-xl flex items-center justify-center font-serif font-black text-xs border ${
                       isActive 
-                        ? 'bg-white text-black border-white' 
-                        : 'bg-zinc-100 text-zinc-600 border-zinc-300 group-hover:bg-[#00F0FF]/20 group-hover:text-black'
+                        ? 'bg-[#F59E0B] text-black border-[#F59E0B]' 
+                        : 'bg-white/5 text-zinc-400 border-white/10 group-hover:text-white'
                     }`}>
                       {stage.number}
                     </span>
-                    <span className={`font-mono text-[10px] font-bold px-2 py-0.5 rounded ${
-                      isActive ? 'bg-white/15 text-[#00F0FF]' : 'bg-zinc-100 text-zinc-500'
+                    <span className={`font-mono text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                      isActive ? 'bg-[#F59E0B]/20 text-[#F59E0B]' : 'bg-white/5 text-zinc-500'
                     }`}>
                       {stage.timeframe}
                     </span>
                   </div>
 
                   <div>
-                    <div className="font-syne font-black text-sm sm:text-base leading-tight mb-0.5">
+                    <div className="font-serif font-bold text-sm sm:text-base leading-tight mb-1 text-white">
                       {stage.title}
                     </div>
-                    <div className={`font-mono text-[10px] truncate ${isActive ? 'text-zinc-300' : 'text-zinc-500'}`}>
+                    <div className={`font-mono text-[10px] truncate ${isActive ? 'text-[#F59E0B]' : 'text-zinc-500'}`}>
                       {stage.neuroMechanism}
                     </div>
                   </div>
@@ -253,19 +257,19 @@ export default function NeuromarketingMap() {
           
           {/* Left Column: The Subconscious Brain State */}
           <div className="lg:col-span-6 flex flex-col">
-            <AppleGlassCard glowColor={current.color} className="h-full flex flex-col justify-between">
+            <AppleGlassCard glowColor={current.color} className="h-full flex flex-col justify-between border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
               <div>
                 <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-xs">
-                  <span className="flex items-center gap-1.5 font-bold uppercase tracking-wider" style={{ color: current.color }}>
-                    <Brain className="w-4 h-4 drop-shadow-sm" />
-                    STAGE {current.number} // NEURAL SUBCONSCIOUS TELEMETRY
+                  <span className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#F59E0B]">
+                    <Brain className="w-4 h-4" />
+                    STAGE {current.number} // NEURAL TELEMETRY
                   </span>
-                  <span className={`px-2.5 py-0.5 rounded-md text-[10px] font-black border backdrop-blur-md ${current.accentBg}`}>
+                  <span className="px-3 py-0.5 rounded-full text-[10px] font-mono font-bold border border-[#F59E0B]/30 bg-[#F59E0B]/15 text-[#F59E0B]">
                     {current.timeframe}
                   </span>
                 </div>
 
-                <h3 className="font-syne font-black text-2xl sm:text-3xl text-white mb-2 leading-tight">
+                <h3 className="font-serif font-black text-2xl sm:text-3xl text-white mb-2 leading-tight">
                   {current.title}
                 </h3>
                 <div className="font-mono text-xs uppercase tracking-wider text-zinc-400 mb-6">
@@ -273,29 +277,29 @@ export default function NeuromarketingMap() {
                 </div>
 
                 {/* Brain Mechanism Badge */}
-                <div className="glass-telemetry-tile p-4 rounded-xl mb-4">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: current.color }} />
-                    <span className="font-mono font-bold text-xs uppercase text-white">
+                <div className="glass-telemetry-tile p-5 rounded-2xl mb-4 bg-black/40 border border-white/10">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse" />
+                    <span className="font-mono font-bold text-xs uppercase text-[#F59E0B]">
                       Targeted Neural Circuit:
                     </span>
-                    <span className="font-mono font-bold text-xs text-zinc-300">
+                    <span className="font-mono font-medium text-xs text-zinc-200">
                       {current.neuroMechanism}
                     </span>
                   </div>
-                  <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed font-medium">
+                  <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
                     {current.brainAction}
                   </p>
                 </div>
               </div>
 
               {/* Bottom Quick Indicator */}
-              <div className="glass-telemetry-tile p-3 rounded-xl flex items-center justify-between text-xs text-zinc-300">
+              <div className="glass-telemetry-tile p-3.5 rounded-xl flex items-center justify-between text-xs text-zinc-300 bg-black/40 border border-white/10">
                 <span className="flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5" style={{ color: current.color }} />
+                  <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
                   <span>Cognitive Speed:</span>
                 </span>
-                <span className="font-mono font-bold tracking-wider" style={{ color: current.color }}>
+                <span className="font-mono font-bold tracking-wider text-[#F59E0B]">
                   {current.timeframe.toUpperCase()}
                 </span>
               </div>
@@ -304,62 +308,62 @@ export default function NeuromarketingMap() {
 
           {/* Right Column: Real-World Execution Playbook */}
           <div className="lg:col-span-6 flex flex-col">
-            <div className="spider-card p-6 sm:p-8 rounded-3xl h-full flex flex-col justify-between">
+            <div className="bg-[#0E121B]/90 backdrop-blur-xl border border-white/10 rounded-3xl p-7 sm:p-9 h-full flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
               <div>
-                <div className="flex items-center justify-between pb-3 mb-6 border-b border-zinc-200">
+                <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
                   <div className="flex items-center gap-2">
-                    <Target className="w-4 h-4 text-[#FF0055]" />
-                    <span className="font-mono font-bold text-xs uppercase text-[#0B0E14]">
+                    <Target className="w-4 h-4 text-[#F59E0B]" />
+                    <span className="font-mono font-bold text-xs uppercase text-zinc-300 tracking-wider">
                       REAL-WORLD EXECUTION PLAYBOOK
                     </span>
                   </div>
-                  <span className="font-mono text-[10px] font-bold bg-[#0B0E14] text-white px-2 py-0.5 rounded uppercase">
+                  <span className="font-mono text-[10px] font-bold bg-[#F59E0B]/15 text-[#F59E0B] px-3 py-1 rounded-full border border-[#F59E0B]/30 uppercase">
                     {activeScenario === 'd2c' ? '📱 D2C Video' : '🤝 B2B Sponsorship'}
                   </span>
                 </div>
 
                 {/* Scenario Context */}
-                <div className="mb-5">
-                  <span className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-wider block mb-1">
+                <div className="mb-6">
+                  <span className="text-[11px] font-mono font-medium text-zinc-500 uppercase tracking-widest block mb-1">
                     The Consumer Scenario:
                   </span>
-                  <div className="font-display font-bold text-base sm:text-lg text-[#0B0E14] leading-snug">
+                  <div className="font-serif italic text-base sm:text-lg text-white leading-snug">
                     "{currentScenarioData.scenario}"
                   </div>
                 </div>
 
                 {/* Marketer Strategic Action */}
-                <div className="p-4 rounded-2xl bg-zinc-50 border-2 border-zinc-200 mb-5">
-                  <span className="text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-wider flex items-center gap-1.5 mb-1.5">
+                <div className="p-5 rounded-2xl bg-black/40 border border-white/10 mb-5">
+                  <span className="text-[11px] font-mono font-bold text-[#F59E0B] uppercase tracking-wider flex items-center gap-1.5 mb-2">
                     <Zap className="w-3.5 h-3.5 text-[#F59E0B]" />
                     What Adhithyan Executes:
                   </span>
-                  <p className="font-sans text-xs sm:text-sm text-zinc-800 font-semibold leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-zinc-300 font-normal leading-relaxed">
                     {currentScenarioData.marketerAction}
                   </p>
                 </div>
 
                 {/* Measurable Business Outcome */}
-                <div className="p-4 rounded-2xl bg-[#00F0FF]/10 border-2 border-[#00F0FF]/30 mb-6">
-                  <span className="text-[11px] font-mono font-bold text-[#008B99] uppercase tracking-wider flex items-center gap-1.5 mb-1">
-                    <TrendingUp className="w-3.5 h-3.5 text-[#00F0FF]" />
+                <div className="p-5 rounded-2xl bg-[#F59E0B]/5 border border-[#F59E0B]/30 mb-6">
+                  <span className="text-[11px] font-mono font-bold text-[#F59E0B] uppercase tracking-wider flex items-center gap-1.5 mb-1.5">
+                    <TrendingUp className="w-3.5 h-3.5 text-[#F59E0B]" />
                     Commercial Outcome:
                   </span>
-                  <div className="font-syne font-bold text-sm sm:text-base text-[#0B0E14]">
+                  <div className="font-serif font-bold text-sm sm:text-base text-zinc-100">
                     {currentScenarioData.outcome}
                   </div>
                 </div>
               </div>
 
               {/* Next Step Controller */}
-              <div className="pt-4 border-t border-zinc-200 flex items-center justify-between">
-                <span className="font-mono text-xs text-zinc-500 font-medium">
+              <div className="pt-5 border-t border-white/10 flex items-center justify-between">
+                <span className="font-mono text-xs text-zinc-400 font-medium">
                   Step {activeStep + 1} of {stages.length}
                 </span>
 
                 <button
                   onClick={() => setActiveStep((prev) => (prev + 1) % stages.length)}
-                  className="spider-btn px-4 py-2 bg-[#0B0E14] text-white hover:bg-[#FF0055] font-display font-black text-xs uppercase tracking-wider rounded-xl inline-flex items-center gap-1.5 transition-colors"
+                  className="px-6 py-2.5 bg-[#F59E0B] hover:bg-[#d98206] text-black font-mono font-bold text-xs uppercase tracking-wider rounded-full inline-flex items-center gap-1.5 transition-all duration-200 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
                 >
                   <span>
                     {activeStep === stages.length - 1 ? 'Replay Route Map ↺' : 'Next Stage ➔'}
