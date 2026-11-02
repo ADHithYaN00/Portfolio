@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Zap, Sparkles, FileText, Download, Sun, Moon, Volume2, VolumeX } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Zap, Sparkles, FileText, Download, Sun, Moon, Volume2, VolumeX, Eye } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
 export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme, isMuted = false, onToggleMute }) {
@@ -189,17 +189,15 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
               )}
             </button>
 
-            {/* Ancient Realm Portal Button */}
+            {/* Ancient Realm Mystery Portal Button: WHAT */}
             <button
               onClick={onOpenMythology}
-              className={`px-3 py-1.5 rounded-xl font-cinzel font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 transition-transform ${
-                isDark
-                  ? 'bg-zinc-900 text-[#D4AF37] border border-[#D4AF37]/50 hover:border-[#D4AF37]'
-                  : 'bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#D4AF37] text-black border-2 border-[#0B0E14] shadow-spider-sm hover:scale-105'
-              }`}
-              title="Enter Ancient Mythological Realm & Neuromarketing Codex"
+              className="matte-sand-btn animate-matte-sand-pulse px-3.5 py-1.5 rounded-xl text-xs uppercase tracking-wider inline-flex items-center gap-1.5"
+              title="Unlock the Ancient Neuromarketing Codex"
             >
-              <span>🏛️ Ancient Codex</span>
+              <Eye className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>WHAT</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#5A4832] animate-ping" />
             </button>
 
             <a
@@ -262,13 +260,11 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
 
             <button
               onClick={onOpenMythology}
-              className={`sm:hidden text-[11px] font-cinzel font-black uppercase px-2 py-1.5 rounded-lg ${
-                isDark
-                  ? 'bg-zinc-900 text-[#D4AF37] border border-[#D4AF37]/50'
-                  : 'bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] text-black border-2 border-[#0B0E14] shadow-spider-sm'
-              }`}
+              className="matte-sand-btn animate-matte-sand-pulse sm:hidden text-[11px] uppercase px-2.5 py-1.5 rounded-lg inline-flex items-center gap-1"
+              title="Unlock the Ancient Neuromarketing Codex"
             >
-              🏛️ Codex
+              <Eye className="w-3 h-3 stroke-[2.5]" />
+              <span>WHAT</span>
             </button>
 
             <button
@@ -368,13 +364,10 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
                   setIsOpen(false);
                   if (onOpenMythology) onOpenMythology();
                 }}
-                className={`w-full py-3.5 rounded-xl font-cinzel font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 ${
-                  isDark
-                    ? 'bg-zinc-900 text-[#D4AF37] border border-[#D4AF37]/50'
-                    : 'bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] text-black border-2 border-[#0B0E14] shadow-spider-sm'
-                }`}
+                className="matte-sand-btn animate-matte-sand-pulse w-full py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2"
               >
-                <span>🏛️ Enter Ancient Neuromarketing Codex</span>
+                <Eye className="w-4 h-4 stroke-[2.5]" />
+                <span>WHAT // ANCIENT CODEX REALM</span>
               </button>
 
               <a

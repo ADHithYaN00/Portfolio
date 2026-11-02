@@ -86,11 +86,11 @@ export default function MythologicalSanctum({ onReturnToModern }) {
             {/* Portal Return Button (Switches back to modern view) */}
             <button
               onClick={onReturnToModern}
-              className="group relative px-4 sm:px-5 py-2 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#D4AF37] text-black font-cinzel font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.7)] transition-all flex items-center gap-2 transform hover:-translate-y-0.5 active:translate-y-0"
+              className="matte-sand-btn px-4 sm:px-5 py-2 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 transform hover:-translate-y-0.5 active:translate-y-0"
               title="Return to the Spider-Verse Modern Portfolio"
             >
               <ArrowLeft className="w-4 h-4 stroke-[3] group-hover:-translate-x-1 transition-transform" />
-              <span>Return to Multiverse</span>
+              <span>WHAT // RETURN</span>
             </button>
           </div>
 
@@ -359,10 +359,10 @@ export default function MythologicalSanctum({ onReturnToModern }) {
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={onReturnToModern}
-          className="group px-4 py-2.5 rounded-full bg-[#0B0E14]/90 backdrop-blur-md border-2 border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black font-cinzel font-black text-xs uppercase tracking-widest shadow-[0_0_25px_rgba(212,175,55,0.4)] flex items-center gap-2 transition-all transform hover:scale-105"
+          className="matte-sand-btn px-4 py-2.5 rounded-full text-xs uppercase tracking-widest flex items-center gap-2 transition-all transform hover:scale-105"
         >
           <ArrowLeft className="w-4 h-4 stroke-[3] group-hover:-translate-x-1 transition-transform" />
-          <span>Exit Sanctum</span>
+          <span>WHAT // EXIT SANCTUM</span>
         </button>
       </div>
 

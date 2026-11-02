@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowDown, ArrowUpRight, Sparkles, Zap, TrendingUp, DollarSign, Users, Award, FileText, Download } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Sparkles, Zap, TrendingUp, DollarSign, Users, Award, FileText, Download, Eye } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
 // Dynamic Counter: Rapidly rolls numbers on page load and smoothly decelerates to final value
@@ -215,14 +215,15 @@ export default function Hero({ onOpenMythology }) {
 
         {/* Centered Spider-Verse Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-          {/* Ancient Mythological Codex Portal Button */}
+          {/* Ancient Mythological Codex Portal Button: "WHAT" in Matte Sand with Slow Breathing */}
           <button
             onClick={onOpenMythology}
-            className="spider-btn px-6 py-3.5 rounded-xl font-cinzel font-black text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2 bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#D4AF37] text-black border-2 border-[#0B0E14] shadow-[4px_4px_0px_#0B0E14] hover:scale-105 transition-all"
-            title="Enter Ancient Mythological Theme: Neuromarketing & Experiential Case Studies"
+            className="matte-sand-btn animate-matte-sand-pulse px-7 py-3.5 rounded-xl text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2.5"
+            title="Unlock the Ancient Neuromarketing Codex Realm"
           >
-            <span>🏛️ Ancient Mythological Realm</span>
-            <Sparkles className="w-4 h-4 fill-black" />
+            <Eye className="w-4 h-4 stroke-[2.5]" />
+            <span>WHAT</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#5A4832] animate-ping" />
           </button>
 
           <a

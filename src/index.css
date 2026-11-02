@@ -509,6 +509,71 @@ body.custom-dust-cursor .spider-btn {
   box-shadow: inset 0 0 12px rgba(212, 175, 55, 0.1);
 }
 
+/* Matte Sand Codex Button & Slow Ethereal Appear/Disappear Animation */
+@keyframes matteSandSlowBreath {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 14px rgba(216, 202, 176, 0.45));
+  }
+  30% {
+    opacity: 0.95;
+    transform: scale(1.02);
+  }
+  50% {
+    opacity: 0.08;
+    transform: scale(0.95);
+    filter: drop-shadow(0 0 0px rgba(216, 202, 176, 0));
+  }
+  70% {
+    opacity: 0.16;
+    transform: scale(0.96);
+  }
+}
+
+.animate-matte-sand-pulse {
+  animation: matteSandSlowBreath 6.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  will-change: opacity, transform, filter;
+}
+
+.animate-matte-sand-pulse:hover {
+  animation-play-state: paused !important;
+  opacity: 1 !important;
+  transform: scale(1.06) !important;
+  filter: drop-shadow(0 0 20px rgba(216, 202, 176, 0.75)) !important;
+}
+
+/* Authentic Tactile Matte Sandstone Styling */
+.matte-sand-btn {
+  background-color: #D8CAB0 !important;
+  color: #241E16 !important;
+  border: 2px solid #9E8B6E !important;
+  box-shadow: 
+    0 4px 14px 0 rgba(70, 56, 38, 0.25),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px 0 rgba(80, 65, 45, 0.2) !important;
+  font-family: "Cinzel", Georgia, serif !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.14em !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.matte-sand-btn:hover {
+  background-color: #E4D9C5 !important;
+  border-color: #7D6B50 !important;
+  color: #17120C !important;
+  box-shadow: 
+    0 8px 24px 0 rgba(70, 56, 38, 0.35),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.7) !important;
+}
+
+.dark .matte-sand-btn {
+  background-color: #C8B79B !important;
+  color: #1E1912 !important;
+  border-color: #8C785C !important;
+}
+
 /* ==========================================================================
    MINIMALIST BLACK & WHITE EXECUTIVE DARK THEME
    Strictly adheres to:
