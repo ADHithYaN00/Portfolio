@@ -127,7 +127,7 @@ export default function Hero({ onOpenMythology }) {
             </span>{' '}
             into{' '}
             <span className="bg-[#0B0E14] text-white font-black px-2.5 py-0.5 rounded shadow-spider-sm inline-block -rotate-1 mx-1">
-              ₹36L+ in Commercial Revenue
+              Measurable Business Outcomes
             </span>.
           </p>
 
