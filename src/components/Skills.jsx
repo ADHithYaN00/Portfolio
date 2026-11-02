@@ -1,6 +1,7 @@
 import React from 'react';
 import { Palette, Video, Brain, Megaphone, Sparkles, TrendingUp, Compass, Award, Zap, CheckCircle2, ArrowRight, Layers, Wrench } from 'lucide-react';
 import { skillsData } from '../data/portfolioData';
+import { TOOLKIT_LOGOS } from './ToolLogos';
 
 export default function Skills() {
   const sectorAccents = [
@@ -170,7 +171,7 @@ export default function Skills() {
               </div>
             </div>
 
-            {/* Toolkit Grid */}
+            {/* Toolkit Grid with Software Logos */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
               {(skillsData.toolkit || [
                 { name: "Figma", category: "Design & UX" },
@@ -185,29 +186,43 @@ export default function Skills() {
                 { name: "Google Ads", category: "Paid Media" },
                 { name: "Google Search Console", category: "Search SEO" }
               ]).map((tool, tIdx) => {
-                const borderAccents = [
-                  "hover:border-[#00F0FF] hover:shadow-[3px_3px_0px_#00F0FF]",
-                  "hover:border-[#FF0055] hover:shadow-[3px_3px_0px_#FF0055]",
-                  "hover:border-[#F59E0B] hover:shadow-[3px_3px_0px_#F59E0B]",
-                  "hover:border-[#7928CA] hover:shadow-[3px_3px_0px_#7928CA]"
-                ];
-                const acc = borderAccents[tIdx % borderAccents.length];
+                const logoInfo = TOOLKIT_LOGOS[tool.name];
+                const LogoComponent = logoInfo?.component;
+                const borderAcc = logoInfo?.border || "hover:border-[#00F0FF] hover:shadow-[3px_3px_0px_#00F0FF]";
 
                 return (
                   <div
                     key={tIdx}
-                    className={`bg-zinc-50 hover:bg-white p-4 rounded-2xl border-2 border-zinc-200 transition-all transform hover:-translate-y-1 cursor-default ${acc}`}
+                    className={`group bg-zinc-50 hover:bg-white p-4 rounded-2xl border-2 border-zinc-200 transition-all duration-200 transform hover:-translate-y-1.5 cursor-default flex flex-col justify-between ${borderAcc}`}
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-mono font-black text-[10px] text-zinc-400">
-                        #{String(tIdx + 1).padStart(2, '0')}
-                      </span>
-                      <Sparkles className="w-3.5 h-3.5 text-zinc-400" />
+                    <div>
+                      {/* Top Row: Software Logo & Slot Number */}
+                      <div className="flex items-center justify-between mb-3">
+                        <div 
+                          className="w-11 h-11 rounded-xl p-2.5 flex items-center justify-center transition-transform duration-200 group-hover:scale-110 shadow-sm border border-black/5 bg-white"
+                          style={{
+                            boxShadow: `0 4px 12px ${logoInfo?.bg || 'rgba(0,0,0,0.05)'}`
+                          }}
+                        >
+                          {LogoComponent ? (
+                            <LogoComponent className="w-6 h-6 object-contain" />
+                          ) : (
+                            <Sparkles className="w-5 h-5 text-zinc-400" />
+                          )}
+                        </div>
+                        <span className="font-mono font-black text-[10px] text-zinc-400 group-hover:text-zinc-600 transition-colors">
+                          #{String(tIdx + 1).padStart(2, '0')}
+                        </span>
+                      </div>
+
+                      {/* Tool Name */}
+                      <div className="font-syne font-black text-base sm:text-lg text-[#0B0E14] tracking-tight group-hover:text-[#FF0055] transition-colors leading-tight">
+                        {tool.name}
+                      </div>
                     </div>
-                    <div className="font-syne font-black text-base sm:text-lg text-[#0B0E14] tracking-tight">
-                      {tool.name}
-                    </div>
-                    <div className="font-mono text-[10px] uppercase font-bold text-zinc-500 mt-1">
+
+                    {/* Category Label */}
+                    <div className="font-mono text-[10px] uppercase font-bold text-zinc-500 mt-2.5 pt-2 border-t border-zinc-200/60">
                       {tool.category}
                     </div>
                   </div>
