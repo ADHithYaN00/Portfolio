@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Zap, Sparkles, FileText, Download, Sun, Moon } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Zap, Sparkles, FileText, Download, Sun, Moon, Volume2, VolumeX } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
-export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme }) {
+export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme, isMuted = false, onToggleMute }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -146,8 +146,30 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
             })}
           </div>
 
-          {/* CTA & Theme Controls */}
+          {/* CTA & Controls (Audio, Theme, Ancient Portal, Resume, Collaborate) */}
           <div className="hidden sm:flex items-center space-x-2">
+            {/* Ambient Music Mute/Unmute Button */}
+            <button
+              onClick={onToggleMute}
+              className={`p-2 rounded-xl border transition-all flex items-center justify-center ${
+                isDark
+                  ? isMuted
+                    ? 'bg-white/5 text-zinc-500 border-white/10 hover:border-white/30 hover:text-white'
+                    : 'bg-white/15 text-white border-white/25 hover:bg-white/20 shadow-[0_0_12px_rgba(255,255,255,0.15)]'
+                  : isMuted
+                    ? 'bg-white text-zinc-400 border-2 border-zinc-300 hover:border-[#0B0E14] hover:text-[#0B0E14]'
+                    : 'bg-white text-[#FF0055] border-2 border-[#0B0E14] shadow-spider-sm hover:bg-zinc-50'
+              }`}
+              title={isMuted ? "Unmute Subtle Background Music" : "Mute Subtle Background Music"}
+              aria-label={isMuted ? "Unmute Ambient Music" : "Mute Ambient Music"}
+            >
+              {isMuted ? (
+                <VolumeX className="w-4 h-4 text-zinc-400" />
+              ) : (
+                <Volume2 className="w-4 h-4 animate-pulse text-current" />
+              )}
+            </button>
+
             {/* Minimalist Theme Toggle Button */}
             <button
               onClick={onToggleTheme}
@@ -208,7 +230,21 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
           </div>
 
           {/* Mobile Navigation Controls */}
-          <div className="lg:hidden flex items-center space-x-2">
+          <div className="lg:hidden flex items-center space-x-1.5">
+            {/* Mobile Mute/Unmute Button */}
+            <button
+              onClick={onToggleMute}
+              className={`p-1.5 rounded-lg border transition-all flex items-center justify-center ${
+                isDark
+                  ? isMuted ? 'bg-white/5 text-zinc-500 border-white/10' : 'bg-white/15 text-white border-white/20'
+                  : isMuted ? 'bg-white text-zinc-400 border border-zinc-300' : 'bg-white text-[#FF0055] border-2 border-[#0B0E14]'
+              }`}
+              title={isMuted ? "Unmute Ambient Music" : "Mute Ambient Music"}
+              aria-label="Toggle ambient music"
+            >
+              {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 animate-pulse" />}
+            </button>
+
             {/* Mobile Theme Toggle Button */}
             <button
               onClick={onToggleTheme}
@@ -225,7 +261,7 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
 
             <button
               onClick={onOpenMythology}
-              className={`sm:hidden text-[11px] font-cinzel font-black uppercase px-2.5 py-1.5 rounded-lg ${
+              className={`sm:hidden text-[11px] font-cinzel font-black uppercase px-2 py-1.5 rounded-lg ${
                 isDark
                   ? 'bg-zinc-900 text-[#D4AF37] border border-[#D4AF37]/50'
                   : 'bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] text-black border-2 border-[#0B0E14] shadow-spider-sm'
@@ -234,24 +270,9 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
               🏛️ Codex
             </button>
 
-            <a
-              href="/Adhithyan_M_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              download="Adhithyan_M_Resume.pdf"
-              className={`sm:hidden text-[11px] font-display font-black uppercase px-2.5 py-1.5 rounded-lg inline-flex items-center gap-1 ${
-                isDark
-                  ? 'bg-transparent text-white border border-white/20'
-                  : 'bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm'
-              }`}
-            >
-              <FileText className="w-3 h-3" />
-              <span>CV</span>
-            </a>
-
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-lg transition-colors ${
+              className={`p-1.5 rounded-lg transition-colors ${
                 isDark
                   ? 'bg-[#121620] border border-white/20 text-white hover:bg-[#1A202E]'
                   : 'bg-white border-2 border-[#0B0E14] shadow-spider-sm text-[#0B0E14] hover:bg-zinc-100'
@@ -283,6 +304,24 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
                 NITK '26
               </span>
             </div>
+
+            {/* Quick Audio Mute / Unmute Switch Row */}
+            <button
+              onClick={onToggleMute}
+              className={`w-full py-2.5 px-3 rounded-lg border flex items-center justify-between font-mono text-xs font-bold uppercase transition-colors ${
+                isDark
+                  ? 'bg-white/5 text-zinc-200 border-white/15 hover:bg-white/10'
+                  : 'bg-zinc-50 text-[#0B0E14] border-2 border-[#0B0E14]'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                {isMuted ? <VolumeX className="w-4 h-4 text-zinc-400" /> : <Volume2 className="w-4 h-4 text-[#00F0FF] animate-pulse" />}
+                <span>{isMuted ? 'Ambient Audio: Muted' : 'Ambient Audio: Playing 🎵'}</span>
+              </span>
+              <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded">
+                {isMuted ? 'Tap to Play' : 'Tap to Mute'}
+              </span>
+            </button>
 
             {/* Quick Theme Switch Row */}
             <button

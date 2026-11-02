@@ -12,11 +12,16 @@ import GoldenParticles from './components/GoldenParticles';
 import ChibiCompanion from './components/ChibiCompanion';
 import MythologicalSanctum from './components/MythologicalSanctum';
 import CursorDustTrail from './components/CursorDustTrail';
+import AmbientAudio from './components/AmbientAudio';
 
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('portfolio_theme') || 'light';
+  });
+  const [isMuted, setIsMuted] = useState(() => {
+    const saved = localStorage.getItem('portfolio_music_muted');
+    return saved !== null ? saved === 'true' : false;
   });
   const [realm, setRealm] = useState(() => {
     return window.location.hash === '#ancient-codex' || window.location.hash === '#mythology' 
@@ -36,6 +41,14 @@ export default function App() {
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
+
+  const toggleMute = () => {
+    setIsMuted(prev => {
+      const next = !prev;
+      localStorage.setItem('portfolio_music_muted', String(next));
+      return next;
+    });
   };
 
   useEffect(() => {
@@ -80,6 +93,9 @@ export default function App() {
       {/* Universal Antigravity Stardust Particle Cursor */}
       <CursorDustTrail />
 
+      {/* Subtle Ambient Background Music Engine & Floating Controller */}
+      <AmbientAudio isMuted={isMuted} onToggleMute={toggleMute} theme={theme} />
+
       {realm === 'mythology' ? (
         <MythologicalSanctum onReturnToModern={returnToModernRealm} />
       ) : (
@@ -120,7 +136,13 @@ export default function App() {
           />
 
           {/* Navigation */}
-          <Navbar onOpenMythology={openMythologyRealm} theme={theme} onToggleTheme={toggleTheme} />
+          <Navbar 
+            onOpenMythology={openMythologyRealm} 
+            theme={theme} 
+            onToggleTheme={toggleTheme}
+            isMuted={isMuted}
+            onToggleMute={toggleMute}
+          />
 
           {/* Main Content Area */}
           <main id="main-content" className="flex-grow relative z-10">
