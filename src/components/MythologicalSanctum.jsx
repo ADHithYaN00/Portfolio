@@ -20,8 +20,8 @@ export default function MythologicalSanctum({ onReturnToModern }) {
   return (
     <div className="relative min-h-screen bg-[#070503] text-[#EDE4D3] font-sans selection:bg-[#D4AF37] selection:text-black overflow-x-hidden">
       
-      {/* Antigravity Floating Desert Gold & Stardust Particles */}
-      <GoldenParticles />
+      {/* Arabian Desert Sand Wind & Drifting Dunes Particles */}
+      <GoldenParticles mode="desert-sand" />
 
       {/* ========================================================
           HIGH GRAPHICS ARABIAN DESERT & MUMMY TOMB ATMOSPHERE

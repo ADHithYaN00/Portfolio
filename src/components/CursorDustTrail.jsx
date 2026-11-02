@@ -49,19 +49,71 @@ export default function CursorDustTrail({ isAncient = false }) {
       'rgba(255, 255, 255, '   // Pure Stardust
     ];
 
-    // Palette 2: Arabian Desert Sand Grains (Pharaoh Gold, Dune Sand, Amber Torch, Terracotta, Quartz)
+    // Palette 2: Authentic Arabian Desert Sand Grains (Pharaoh Gold, Dune Silt, Amber Quartz, Terracotta)
     const arabianSandColors = [
       'rgba(212, 175, 55, ',   // Pharaonic Royal Gold
-      'rgba(235, 196, 120, ',  // Sunlit Arabian Dune Sand
-      'rgba(255, 224, 130, ',  // Glistening Desert Quartz
+      'rgba(235, 198, 130, ',  // Sunlit Arabian Dune Sand
+      'rgba(255, 226, 145, ',  // Glistening Desert Quartz
       'rgba(245, 158, 11, ',   // Amber Torchfire
       'rgba(196, 140, 75, ',   // Weathered Sandstone Terracotta
-      'rgba(255, 248, 220, '   // Bright Desert Sand Sparkle
+      'rgba(255, 248, 225, '   // White-Gold Sand Sparkle
     ];
 
     const particles = [];
     let orbitAngle = 0;
     let windTime = 0;
+    let idleCounter = 0;
+
+    const spawnSandGrain = (originX, originY, isClickBurst = false) => {
+      const ancient = isAncientRef.current;
+      const activeColors = ancient ? arabianSandColors : modernColors;
+      const colorBase = activeColors[Math.floor(Math.random() * activeColors.length)];
+      const spread = ancient ? 10 : 6;
+
+      if (ancient) {
+        // Authentic Desert Sand Physics
+        const angle = isClickBurst ? Math.random() * Math.PI * 2 : (Math.random() - 0.5) * Math.PI;
+        const speed = isClickBurst ? Math.random() * 3.8 + 1.2 : Math.random() * 1.4 + 0.3;
+
+        particles.push({
+          x: originX + (Math.random() - 0.5) * spread,
+          y: originY + (Math.random() - 0.5) * spread,
+          // Natural ballistic gravity: sand grains shower downwards with side desert wind drift
+          vx: Math.cos(angle) * speed + (Math.random() * 0.8 + 0.3), // desert wind pushing right
+          vy: Math.sin(angle) * speed + (isClickBurst ? 0.8 : Math.random() * 1.8 + 0.8), // gravity fall
+          size: Math.random() * 1.8 + 0.7, // fine granular sand scale (0.7px to 2.5px)
+          alpha: 1.0,
+          decay: isClickBurst ? Math.random() * 0.025 + 0.016 : Math.random() * 0.02 + 0.012,
+          colorBase,
+          phase: Math.random() * Math.PI * 2,
+          isSand: true,
+          isFaceted: Math.random() > 0.28, // 72% crystalline faceted sand granules
+          isSparkle: Math.random() > 0.8, // 20% sunlit crystal sparkles
+          rotation: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.22,
+          gravity: 0.045
+        });
+      } else {
+        // Modern Antigravity Upward Levitation
+        particles.push({
+          x: originX + (Math.random() - 0.5) * spread,
+          y: originY + (Math.random() - 0.5) * spread,
+          vx: (Math.random() - 0.5) * 1.2,
+          vy: -Math.random() * 1.8 - 0.4,
+          size: Math.random() * 2.8 + 1.2,
+          alpha: 1.0,
+          decay: Math.random() * 0.025 + 0.015,
+          colorBase,
+          phase: Math.random() * Math.PI * 2,
+          isSand: false,
+          isFaceted: false,
+          isSparkle: false,
+          rotation: 0,
+          rotSpeed: 0,
+          gravity: -0.012
+        });
+      }
+    };
 
     const handleMouseMove = (e) => {
       mouse.visible = true;
@@ -91,71 +143,24 @@ export default function CursorDustTrail({ isAncient = false }) {
       );
 
       const ancient = isAncientRef.current;
-      const activeColors = ancient ? arabianSandColors : modernColors;
-
-      // Spawn particles along motion trajectory
+      // Spawn particles along motion trajectory: sand kicks up in rich granular wake
       const count = ancient 
-        ? Math.min(Math.floor(mouse.speed / 3) + 2, 7) // Richer sand flurry in ancient desert
+        ? Math.min(Math.floor(mouse.speed / 2.5) + 3, 9) 
         : Math.min(Math.floor(mouse.speed / 4) + 1, 4);
 
       for (let i = 0; i < count; i++) {
-        const spread = ancient ? 9 : 6;
-        const colorBase = activeColors[Math.floor(Math.random() * activeColors.length)];
-        
-        particles.push({
-          x: mouse.x + (Math.random() - 0.5) * spread,
-          y: mouse.y + (Math.random() - 0.5) * spread,
-          // Arabian sand has natural desert wind physics (side drift + gentle gravity settlement)
-          vx: ancient 
-            ? (Math.random() - 0.45) * 1.6 + 0.4 // gentle wind drift to the right
-            : (Math.random() - 0.5) * 1.2,
-          vy: ancient 
-            ? Math.random() * 1.4 - 0.3 // sand grains drift and settle downwards
-            : -Math.random() * 1.8 - 0.4, // modern antigravity floats upwards
-          size: ancient 
-            ? Math.random() * 2.2 + 0.8 // faceted sand specks
-            : Math.random() * 2.8 + 1.2,
-          alpha: 1.0,
-          decay: ancient 
-            ? Math.random() * 0.028 + 0.016 
-            : Math.random() * 0.025 + 0.015,
-          colorBase,
-          phase: Math.random() * Math.PI * 2,
-          isSand: ancient,
-          isFaceted: ancient && Math.random() > 0.45, // some grains render as faceted crystal specks
-          rotation: Math.random() * Math.PI * 2,
-          rotSpeed: (Math.random() - 0.5) * 0.15
-        });
+        spawnSandGrain(mouse.x, mouse.y, false);
       }
     };
 
     const handleMouseDown = () => {
       mouse.isDown = true;
       const ancient = isAncientRef.current;
-      const activeColors = ancient ? arabianSandColors : modernColors;
-      const burstCount = ancient ? 22 : 14;
+      const burstCount = ancient ? 26 : 14;
 
-      // Burst of sand/dust particles on click
+      // Sand splash burst on click
       for (let i = 0; i < burstCount; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const velocity = ancient ? Math.random() * 4.2 + 1.4 : Math.random() * 3.5 + 1.2;
-        const colorBase = activeColors[Math.floor(Math.random() * activeColors.length)];
-
-        particles.push({
-          x: mouse.x,
-          y: mouse.y,
-          vx: Math.cos(angle) * velocity + (ancient ? 0.3 : 0),
-          vy: Math.sin(angle) * velocity + (ancient ? 0.4 : -1.2),
-          size: ancient ? Math.random() * 2.6 + 0.8 : Math.random() * 3.2 + 1.4,
-          alpha: 1.0,
-          decay: ancient ? Math.random() * 0.035 + 0.018 : Math.random() * 0.03 + 0.02,
-          colorBase,
-          phase: Math.random() * Math.PI * 2,
-          isSand: ancient,
-          isFaceted: ancient && Math.random() > 0.4,
-          rotation: Math.random() * Math.PI * 2,
-          rotSpeed: (Math.random() - 0.5) * 0.2
-        });
+        spawnSandGrain(mouse.x, mouse.y, true);
       }
     };
 
@@ -175,9 +180,15 @@ export default function CursorDustTrail({ isAncient = false }) {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
       const ancient = isAncientRef.current;
-      windTime += 0.03;
+      windTime += 0.035;
+      idleCounter++;
 
-      // 1. Render Floating Sand & Dust Grains
+      // In ancient mode, release an occasional gentle sand grain trickle even when idle
+      if (ancient && mouse.visible && mouse.x > 0 && idleCounter % 4 === 0) {
+        spawnSandGrain(mouse.x, mouse.y + 8, false);
+      }
+
+      // 1. Render Sand Grains / Dust Trail
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
 
@@ -185,20 +196,20 @@ export default function CursorDustTrail({ isAncient = false }) {
         p.y += p.vy;
 
         if (p.isSand) {
-          // Arabian Sand Physics: gentle desert wind oscillation & soft gravitational settle
-          p.vx += Math.sin(windTime + p.phase) * 0.03;
-          p.vy += 0.025; // gravity pulling sand grains down
+          // Desert sand physics: ballistic gravity pulling down + gentle desert wind oscillation
+          p.vy += p.gravity;
+          p.vx += Math.sin(windTime + p.phase) * 0.035;
           p.rotation += p.rotSpeed;
         } else {
-          // Modern Antigravity float
-          p.vy -= 0.012;
+          // Modern upward levitation
+          p.vy += p.gravity;
           p.vx += Math.sin(p.phase) * 0.04;
           p.phase += 0.08;
         }
 
         p.alpha -= p.decay;
 
-        if (p.alpha <= 0) {
+        if (p.alpha <= 0 || p.y > height + 20) {
           particles.splice(i, 1);
           continue;
         }
@@ -206,67 +217,85 @@ export default function CursorDustTrail({ isAncient = false }) {
         ctx.save();
         ctx.translate(p.x, p.y);
 
-        if (p.isFaceted) {
-          // Render faceted diamond sand grain with golden desert glint
-          ctx.rotate(p.rotation);
-          ctx.beginPath();
-          ctx.moveTo(0, -p.size);
-          ctx.lineTo(p.size * 0.8, 0);
-          ctx.lineTo(0, p.size);
-          ctx.lineTo(-p.size * 0.8, 0);
-          ctx.closePath();
-          ctx.fillStyle = `${p.colorBase}${p.alpha})`;
-          ctx.shadowBlur = 6;
-          ctx.shadowColor = 'rgba(212, 175, 55, 0.6)';
-          ctx.fill();
+        if (p.isSand) {
+          if (p.isFaceted) {
+            // Render sharp faceted crystalline sand grain (diamond/rhomboid)
+            ctx.rotate(p.rotation);
+            ctx.beginPath();
+            ctx.moveTo(0, -p.size);
+            ctx.lineTo(p.size * 0.75, 0);
+            ctx.lineTo(0, p.size * 1.15);
+            ctx.lineTo(-p.size * 0.75, 0);
+            ctx.closePath();
+            ctx.fillStyle = `${p.colorBase}${Math.max(0, p.alpha)})`;
+            ctx.shadowBlur = 3;
+            ctx.shadowColor = 'rgba(212, 175, 55, 0.65)';
+            ctx.fill();
+
+            // Sunlit sparkle glint on rotating facet
+            if (p.isSparkle && Math.sin(p.rotation * 2) > 0.5) {
+              ctx.beginPath();
+              ctx.arc(0, 0, p.size * 0.45, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(1, p.alpha * 1.2)})`;
+              ctx.shadowBlur = 6;
+              ctx.shadowColor = '#FFE082';
+              ctx.fill();
+            }
+          } else {
+            // Fine round sand silt speck
+            ctx.beginPath();
+            ctx.arc(0, 0, p.size * 0.85, 0, Math.PI * 2);
+            ctx.fillStyle = `${p.colorBase}${Math.max(0, p.alpha)})`;
+            ctx.shadowBlur = 2;
+            ctx.shadowColor = 'rgba(212, 175, 55, 0.5)';
+            ctx.fill();
+          }
         } else {
-          // Render soft glowing sand / stardust mote
+          // Modern glowing circular dust mote
           ctx.beginPath();
           ctx.arc(0, 0, p.size, 0, Math.PI * 2);
           ctx.fillStyle = `${p.colorBase}${p.alpha})`;
-          ctx.shadowBlur = p.isSand ? 6 : 8;
-          ctx.shadowColor = p.isSand 
-            ? 'rgba(212, 175, 55, 0.8)' 
-            : (p.colorBase.includes('240') ? 'rgba(0, 240, 255, 0.7)' : 'rgba(245, 158, 11, 0.7)');
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = p.colorBase.includes('240') ? 'rgba(0, 240, 255, 0.7)' : 'rgba(245, 158, 11, 0.7)';
           ctx.fill();
         }
 
         ctx.restore();
       }
 
-      // 2. Render Main Particle Cursor (when inside window)
+      // 2. Render Main Cursor Reticle
       if (mouse.visible && mouse.x > 0 && mouse.y > 0) {
         orbitAngle += ancient ? 0.045 : 0.06;
 
         if (ancient) {
           // ========================================================
-          // ARABIAN SAND CURSOR: THE PHARAOH'S SOLAR ASTROLABE
+          // ANCIENT ARABIAN CURSOR: THE SUN SCARAB & COMPASS
           // ========================================================
           const coreSize = mouse.isDown ? 3 : mouse.isHovering ? 5 : 4;
           const ringRadius = mouse.isHovering ? 20 : 13;
 
-          // Outer Weathered Gold Solar Ring
+          // Weathered Brass & Gold Solar Ring
           ctx.beginPath();
           ctx.arc(mouse.x, mouse.y, ringRadius, 0, Math.PI * 2);
           ctx.strokeStyle = mouse.isHovering 
-            ? 'rgba(255, 224, 130, 0.85)' 
-            : 'rgba(212, 175, 55, 0.6)';
+            ? 'rgba(255, 224, 130, 0.9)' 
+            : 'rgba(212, 175, 55, 0.65)';
           ctx.lineWidth = mouse.isHovering ? 2 : 1.3;
           ctx.stroke();
 
-          // 4 Pharaonic Solar Cardinal Ray Notches
+          // 4 Pharaonic Solar Cardinal Notches
           for (let ray = 0; ray < 4; ray++) {
-            const rayAngle = orbitAngle * 0.4 + (ray * Math.PI / 2);
+            const rayAngle = orbitAngle * 0.35 + (ray * Math.PI / 2);
             const innerX = mouse.x + Math.cos(rayAngle) * (ringRadius - 2);
             const innerY = mouse.y + Math.sin(rayAngle) * (ringRadius - 2);
-            const outerX = mouse.x + Math.cos(rayAngle) * (ringRadius + 3);
-            const outerY = mouse.y + Math.sin(rayAngle) * (ringRadius + 3);
+            const outerX = mouse.x + Math.cos(rayAngle) * (ringRadius + 3.5);
+            const outerY = mouse.y + Math.sin(rayAngle) * (ringRadius + 3.5);
 
             ctx.beginPath();
             ctx.moveTo(innerX, innerY);
             ctx.lineTo(outerX, outerY);
             ctx.strokeStyle = '#D4AF37';
-            ctx.lineWidth = 1.2;
+            ctx.lineWidth = 1.3;
             ctx.stroke();
           }
 
@@ -303,7 +332,7 @@ export default function CursorDustTrail({ isAncient = false }) {
 
         } else {
           // ========================================================
-          // MODERN CURSOR: ANTIGRAVITY SPIDER-VERSE STARDUST
+          // MODERN CURSOR: ANTIGRAVITY STARDUST
           // ========================================================
           const coreSize = mouse.isDown ? 2.5 : mouse.isHovering ? 4.5 : 3.5;
           const ringRadius = mouse.isHovering ? 18 : 12;
