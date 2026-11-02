@@ -41,12 +41,10 @@ export default function Navbar({
   }, []);
 
   const navLinks = [
+    { name: 'Home', href: '#hero', id: 'hero' },
     { name: 'About', href: '#about', id: 'about' },
-    { name: 'Track Record', href: '#experience', id: 'experience' },
-    { name: 'Campaigns & Works', href: '#projects', id: 'projects' },
-    { name: 'Arsenal', href: '#skills', id: 'skills' },
-    { name: 'Dispatches', href: '#insights', id: 'insights' },
-    { name: 'Neuro Map', href: '#neuromarketing-map', id: 'neuromarketing-map' },
+    { name: 'Work', href: '#projects', id: 'projects' },
+    { name: 'Playbook', href: '#neuromarketing-map', id: 'neuromarketing-map' },
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
@@ -96,169 +94,119 @@ export default function Navbar({
       {/* Main Navigation Bar */}
       <nav 
         className={`w-full transition-all duration-200 ${
-          isDark 
-            ? scrolled 
-              ? 'bg-[#07080A]/95 backdrop-blur-md border-b border-white/15 py-2.5' 
-              : 'bg-[#07080A]/90 backdrop-blur-sm border-b border-white/10 py-3.5'
-            : scrolled 
-              ? 'bg-white/95 backdrop-blur-md border-b-2.5 border-[#0B0E14] shadow-spider py-2.5' 
-              : 'bg-white/90 backdrop-blur-sm border-b-2 border-[#0B0E14] py-3.5'
+          scrolled 
+            ? 'bg-[#07090D]/95 backdrop-blur-md border-b border-white/10 py-3' 
+            : 'bg-[#07090D]/80 backdrop-blur-sm border-b border-white/5 py-4'
         }`}
         aria-label="Main Navigation"
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Monogram / Brand */}
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
+          {/* Monogram / Brand Identity matching Editorial Mockup */}
           <a 
             href="#hero" 
-            className="group flex items-center gap-2.5 focus:outline-none"
+            className="group flex items-center gap-3 focus:outline-none"
           >
-            <div className={`font-syne font-black text-xl px-2.5 py-0.5 rounded-lg border-2 transition-colors ${
-              isDark 
-                ? 'bg-white text-black border-white group-hover:bg-zinc-200' 
-                : 'bg-[#0B0E14] text-white border-[#0B0E14] shadow-spider-sm group-hover:bg-[#FF0055]'
-            }`}>
+            <div className="font-mono font-black text-sm px-2.5 py-1.5 rounded-lg bg-[#141822] text-white border border-white/20 shadow-sm group-hover:border-[#F59E0B] transition-colors shrink-0">
               AM
             </div>
             <div>
-              <span className={`spider-glitch font-syne font-black text-xl sm:text-2xl tracking-tight block leading-none ${
-                isDark ? 'text-white' : 'text-[#0B0E14]'
-              }`}>
-                ADHITHYAN M.
+              <span className="font-serif font-black text-base sm:text-lg tracking-tight block leading-tight text-white group-hover:text-[#F59E0B] transition-colors">
+                Adhithyan M.
               </span>
-              <span className="font-mono font-bold text-[10px] text-zinc-400 uppercase tracking-wider block mt-0.5">
-                Brand Strategist • NITK
+              <span className="font-sans text-[11px] text-zinc-400 block -mt-0.5 font-normal tracking-normal">
+                Brand Strategist · Marketing &amp; Ops
               </span>
             </div>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Navigation Links matching Mockup */}
+          <div className="hidden lg:flex items-center space-x-7">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
-              if (isDark) {
-                return (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className={`text-xs font-display uppercase tracking-wider font-bold transition-all px-3 py-1.5 rounded-lg border ${
-                      isActive
-                        ? 'bg-white text-black border-white font-black shadow-sm'
-                        : 'bg-transparent text-zinc-300 border-transparent hover:text-white hover:bg-white/5'
-                    }`}
-                  >
-                    {link.name}
-                  </a>
-                );
-              }
-
               return (
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`text-xs font-display uppercase tracking-wider font-bold transition-all px-3 py-1.5 rounded-lg border-2 ${
+                  className={`text-xs font-sans uppercase tracking-wider font-semibold transition-all relative py-1 ${
                     isActive
-                      ? 'bg-[#0B0E14] text-white border-[#0B0E14] shadow-spider-sm font-black'
-                      : 'bg-transparent text-zinc-800 border-transparent hover:bg-zinc-100 hover:border-[#0B0E14]'
+                      ? 'text-white'
+                      : 'text-zinc-400 hover:text-white'
                   }`}
                 >
-                  {link.name}
+                  <span>{link.name}</span>
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#F59E0B] rounded-full shadow-[0_0_8px_#F59E0B]" />
+                  )}
                 </a>
               );
             })}
           </div>
 
-          {/* CTA & Controls (Audio, Theme, Ancient Portal, Resume, Collaborate) */}
-          <div className="hidden sm:flex items-center space-x-2">
-            {/* Ambient Music Mute/Unmute Button */}
-            <button
-              onClick={handleToggleMute}
-              className={`p-2 rounded-xl border transition-all flex items-center justify-center ${
-                isDark
-                  ? isMuted
-                    ? 'bg-white/5 text-zinc-500 border-white/10 hover:border-white/30 hover:text-white'
-                    : 'bg-white/15 text-white border-white/25 hover:bg-white/20 shadow-[0_0_12px_rgba(255,255,255,0.15)]'
-                  : isMuted
-                    ? 'bg-white text-zinc-400 border-2 border-zinc-300 hover:border-[#0B0E14] hover:text-[#0B0E14]'
-                    : 'bg-white text-[#FF0055] border-2 border-[#0B0E14] shadow-spider-sm hover:bg-zinc-50'
-              }`}
-              title={isMuted ? "Unmute Subtle Background Music" : "Mute Subtle Background Music"}
-              aria-label={isMuted ? "Unmute Ambient Music" : "Mute Ambient Music"}
-            >
-              {isMuted ? (
-                <VolumeX className="w-4 h-4 text-zinc-400" />
-              ) : (
-                <Volume2 className="w-4 h-4 animate-pulse text-current" />
-              )}
-            </button>
+          {/* CTA & Controls matching Editorial Mockup */}
+          <div className="hidden sm:flex items-center space-x-3">
+            {/* Portfolio '26 Status Indicator */}
+            <div className="hidden xl:inline-flex items-center gap-2 font-mono text-xs text-zinc-300 font-medium px-2 py-1">
+              <span className="w-2 h-2 rounded-full bg-[#F59E0B] shadow-[0_0_8px_#F59E0B]" />
+              <span>Portfolio '26</span>
+            </div>
 
-            {/* Minimalist Theme Toggle Button (Optimized for Web & iOS touch) */}
-            <button
-              type="button"
-              onClick={onToggleTheme}
-              className={`p-2 rounded-xl border transition-all flex items-center justify-center cursor-pointer select-none touch-manipulation active:scale-95 ${
-                isDark
-                  ? 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/40'
-                  : 'bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm hover:bg-zinc-100'
-              }`}
-              title={isDark ? "Switch to Vibrant Light Mode" : "Switch to Minimalist B&W Dark Mode"}
-              aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              {isDark ? (
-                <Sun className="w-4 h-4 text-amber-300 transition-transform hover:rotate-45" />
-              ) : (
-                <Moon className="w-4 h-4 text-zinc-900 transition-transform hover:-rotate-12" />
-              )}
-            </button>
-
-            {/* Optional Dossier View Pill in Dark Mode */}
-            {isDark && onToggleDarkViewMode && (
-              <button
-                type="button"
-                onClick={onToggleDarkViewMode}
-                className="px-2.5 py-1.5 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 text-white font-mono text-[10px] uppercase tracking-wider flex items-center gap-1 cursor-pointer select-none touch-manipulation transition-colors"
-                title="Switch to Minimal Executive Dossier"
-              >
-                <span>{darkViewMode === 'portfolio' ? 'Dossier View' : 'Full Portfolio'}</span>
-              </button>
-            )}
-
-            {/* Ancient Realm Mystery Portal Button */}
-            <button
-              onClick={onOpenMythology}
-              className="matte-sand-btn animate-matte-sand-pulse px-3.5 py-1.5 rounded-xl text-xs uppercase tracking-wider inline-flex items-center gap-1.5"
-              title="Unlock the Ancient Arabian Neuromarketing Codex"
-            >
-              <Eye className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>ARABIAN CODEX</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#5A4832] animate-ping" />
-            </button>
-
+            {/* Resume Button */}
             <a
               href="/Adhithyan_M_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download="Adhithyan_M_Resume.pdf"
-              className={`px-3 py-1.5 rounded-xl font-display font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 transition-colors ${
-                isDark
-                  ? 'bg-transparent text-white border border-white/25 hover:bg-white/10'
-                  : 'bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm hover:bg-[#00F0FF]'
-              }`}
+              className="px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-white font-sans text-xs border border-white/20 inline-flex items-center gap-1.5 transition-all hover:border-white/40 cursor-pointer"
             >
-              <FileText className="w-3.5 h-3.5 stroke-[2.5]" />
+              <Download className="w-3.5 h-3.5" />
               <span>Resume</span>
             </a>
 
+            {/* Let's Build Button (Golden Yellow) */}
             <a
               href="#contact"
-              className={`px-3.5 py-1.5 rounded-xl font-display font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 transition-colors ${
-                isDark
-                  ? 'bg-white text-black hover:bg-zinc-200 border border-white'
-                  : 'spider-btn-pink'
-              }`}
+              className="px-5 py-2 rounded-full bg-[#F59E0B] hover:bg-[#EAB308] text-black font-sans font-bold text-xs uppercase tracking-wider inline-flex items-center gap-1.5 transition-all transform hover:scale-105 shadow-[0_4px_14px_rgba(245,158,11,0.35)] cursor-pointer"
             >
-              <span>Collaborate</span>
+              <span>Let's Build</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-[3]" />
             </a>
+
+            {/* Ambient Music Mute/Unmute Button */}
+            <button
+              type="button"
+              onClick={handleToggleMute}
+              className="p-2 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-zinc-300 flex items-center justify-center cursor-pointer transition-colors"
+              title={isMuted ? "Unmute Ambient Music" : "Mute Ambient Music"}
+              aria-label="Toggle ambient music"
+            >
+              {isMuted ? <VolumeX className="w-4 h-4 text-zinc-500" /> : <Volume2 className="w-4 h-4 text-[#F59E0B]" />}
+            </button>
+
+            {/* Minimalist Theme Toggle Button (Touch & iOS optimized) */}
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="p-2 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-zinc-300 flex items-center justify-center cursor-pointer select-none touch-manipulation active:scale-95 transition-all"
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {isDark ? (
+                <Sun className="w-4 h-4 text-amber-300 transition-transform hover:rotate-45" />
+              ) : (
+                <Moon className="w-4 h-4 text-zinc-300 transition-transform hover:-rotate-12" />
+              )}
+            </button>
+
+            {/* Ancient Realm Mystery Portal Button */}
+            <button
+              type="button"
+              onClick={onOpenMythology}
+              className="matte-sand-btn px-3 py-1.5 rounded-xl text-xs uppercase tracking-wider inline-flex items-center gap-1.5"
+              title="Unlock the Ancient Arabian Neuromarketing Codex"
+            >
+              <Eye className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>CODEX</span>
+            </button>
           </div>
 
           {/* Mobile Navigation Controls */}

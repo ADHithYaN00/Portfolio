@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowDown, ArrowUpRight, Sparkles, Zap, TrendingUp, DollarSign, Users, Award, FileText, Download, Eye } from 'lucide-react';
-import { personalInfo } from '../data/portfolioData';
+import { ArrowUpRight, Download } from 'lucide-react';
 
 // Dynamic Counter: Rapidly rolls numbers on page load and smoothly decelerates to final value
-function AnimatedCounter({ targetValue, prefix = "", suffix = "", decimals = 0, duration = 1900, delay = 150, hoverColor = "" }) {
+function AnimatedCounter({ targetValue, prefix = "", suffix = "", decimals = 0, duration = 1800, delay = 150 }) {
   const [displayValue, setDisplayValue] = useState(0);
-  const [isFinished, setIsFinished] = useState(false);
-  const [key, setKey] = useState(0);
 
   useEffect(() => {
     let startTimestamp = null;
@@ -17,17 +14,13 @@ function AnimatedCounter({ targetValue, prefix = "", suffix = "", decimals = 0, 
         if (!startTimestamp) startTimestamp = now;
         const elapsed = now - startTimestamp;
         const progress = Math.min(elapsed / duration, 1);
-
-        // Smooth cubic ease-out deceleration
         const ease = 1 - Math.pow(1 - progress, 3);
-        const current = ease * targetValue;
-        setDisplayValue(current);
+        setDisplayValue(ease * targetValue);
 
         if (progress < 1) {
           animId = requestAnimationFrame(step);
         } else {
           setDisplayValue(targetValue);
-          setIsFinished(true);
         }
       };
 
@@ -38,31 +31,18 @@ function AnimatedCounter({ targetValue, prefix = "", suffix = "", decimals = 0, 
       clearTimeout(timer);
       cancelAnimationFrame(animId);
     };
-  }, [targetValue, duration, delay, key]);
-
-  const handleReplay = () => {
-    setIsFinished(false);
-    setDisplayValue(0);
-    setKey((prev) => prev + 1);
-  };
+  }, [targetValue, duration, delay]);
 
   const formattedNumber = decimals > 0 
     ? displayValue.toFixed(decimals) 
     : Math.floor(displayValue);
 
   return (
-    <div 
-      onMouseEnter={handleReplay}
-      className={`font-syne font-black text-3xl sm:text-4xl lg:text-[2.75rem] text-[#0B0E14] leading-none mb-1.5 transition-colors cursor-pointer select-none inline-flex items-baseline ${hoverColor}`}
-      title="Hover to re-roll metric counter"
-    >
+    <span className="font-sans font-bold text-3xl sm:text-4xl text-white tracking-tight inline-flex items-baseline">
       <span>{prefix}</span>
       <span>{formattedNumber}</span>
       <span>{suffix}</span>
-      {!isFinished && (
-        <span className="w-1.5 h-6 bg-[#00F0FF] ml-1.5 animate-pulse inline-block self-center rounded-sm" />
-      )}
-    </div>
+    </span>
   );
 }
 
@@ -70,202 +50,285 @@ export default function Hero({ onOpenMythology }) {
   return (
     <section 
       id="hero" 
-      className="relative pt-28 pb-16 md:pt-36 md:pb-24 bg-[#FAFCFF] halftone-spider border-b-3 border-[#0B0E14] overflow-hidden"
+      className="relative min-h-screen bg-[#07090E] text-white pt-28 pb-14 md:pt-36 md:pb-16 overflow-hidden flex flex-col justify-between select-none"
     >
-      {/* Genshin Impact Anime Atmosphere Layer (Soft Celestial Horizon Blend) */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 opacity-10">
-        <div 
-          className="w-full h-full bg-cover bg-center filter blur-[1px] brightness-110 contrast-105"
-          style={{ backgroundImage: `url('/images/genshin-scenery.jpg')` }}
-        />
-        {/* Soft atmospheric horizon blend */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#FAFCFF] via-[#FAFCFF]/60 to-[#FAFCFF]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FAFCFF] via-transparent to-[#FAFCFF]" />
+      {/* Background Ambience: Subtle warm dark radial gradients */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[#F59E0B]/5 rounded-full blur-[160px]" />
+        <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-[#7928CA]/8 rounded-full blur-[180px]" />
+        <div className="absolute bottom-0 right-0 w-[550px] h-[550px] bg-[#00F0FF]/5 rounded-full blur-[170px]" />
       </div>
 
-      {/* Spider-Verse Ambient Neon Glows */}
-      <div className="absolute top-10 left-10 w-48 h-48 rounded-full bg-[#00F0FF]/10 blur-[80px] pointer-events-none -z-10" />
-      <div className="absolute top-20 right-10 w-56 h-56 rounded-full bg-[#FF0055]/10 blur-[90px] pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-1/3 w-64 h-64 rounded-full bg-[#F59E0B]/10 blur-[100px] pointer-events-none -z-10" />
+      {/* Bottom Right: Ancient Temple Ruins Silhouette bathed in Sunset Gold */}
+      <div 
+        aria-hidden="true"
+        className="absolute bottom-0 right-0 w-[380px] sm:w-[460px] md:w-[540px] h-[260px] sm:h-[300px] pointer-events-none z-0 opacity-40 mix-blend-screen bg-no-repeat bg-bottom bg-contain"
+        style={{
+          backgroundImage: `url('/images/hero-temple-ruins.jpg')`,
+          maskImage: 'radial-gradient(circle at bottom right, black 40%, transparent 85%)',
+          WebkitMaskImage: 'radial-gradient(circle at bottom right, black 40%, transparent 85%)'
+        }}
+      />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
-        {/* Top Multiverse Issue Pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border-2 border-[#0B0E14] shadow-spider-sm mb-6 transform -rotate-1 hover:rotate-0 transition-transform">
-          <span className="w-2 h-2 rounded-full bg-[#FF0055] animate-ping" />
-          <span className="font-mono font-bold text-[11px] sm:text-xs text-[#0B0E14] uppercase tracking-wider">
-            MULTIVERSE ISSUE '26 // BANGALORE • MBA (MARKETING & OPERATIONS) • NITK
-          </span>
-          <span className="bg-[#00F0FF] text-[#0B0E14] text-[9px] font-mono font-black px-1.5 py-0.5 rounded border border-[#0B0E14] uppercase">
-            ACTIVE
-          </span>
-        </div>
-
-        {/* Sub-Header Sticker */}
-        <div className="flex justify-center mb-3">
-          <div className="inline-block bg-[#0B0E14] text-[#00F0FF] font-display font-black text-xs sm:text-sm px-4 py-1 rounded-md border-2 border-white shadow-spider-sm uppercase tracking-widest transform rotate-1">
-            ★ CREATIVE BRAND STRATEGIST & MARKETING LEADER ★
-          </div>
-        </div>
-
-        {/* MAIN HEADING: "ADHITHYAN M." IN ULTRA-BOLD WITH SPIDER-VERSE GLITCH EFFECT */}
-        <div className="relative py-2 my-1 max-w-full overflow-hidden">
-          <h1 className="spider-glitch font-syne font-black text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.8rem] leading-[0.95] text-[#0B0E14] tracking-tight uppercase select-none cursor-default drop-shadow-[4px_4px_0px_#00F0FF] whitespace-nowrap inline-block">
-            ADHITHYAN M.
-          </h1>
-        </div>
-
-        {/* Structured Editorial Tagline */}
-        <div className="max-w-3xl mx-auto mt-6 mb-10 space-y-4">
-          <p className="font-display text-lg sm:text-xl md:text-2xl text-zinc-900 font-bold leading-snug">
-            Bridging{' '}
-            <span className="bg-[#00F0FF]/25 text-[#0B0E14] font-black px-2 py-0.5 border border-[#0B0E14] rounded shadow-sm inline-block -rotate-1 mx-1">
-              Subconscious Consumer Neuroscience
-            </span>{' '}
-            and{' '}
-            <span className="bg-[#FF0055]/15 text-[#FF0055] font-black px-2 py-0.5 border border-[#0B0E14] rounded shadow-sm inline-block rotate-1 mx-1">
-              High-Velocity AI Video Storytelling
-            </span>{' '}
-            into{' '}
-            <span className="bg-[#0B0E14] text-white font-black px-2.5 py-0.5 rounded shadow-spider-sm inline-block -rotate-1 mx-1">
-              Measurable Business Outcomes
-            </span>.
-          </p>
-
-          <p className="font-sans text-sm sm:text-base text-zinc-600 font-medium max-w-2xl mx-auto leading-relaxed">
-            {personalInfo.shortBio}
-          </p>
-        </div>
-
-        {/* 3 Spider-Verse Impact Dossiers (Clean, High-Tech, Crisp) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12 text-left">
+      {/* Main Hero Grid: Left Collage | Center Typography & Bio | Right 3D Perspective Cards */}
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10 w-full flex-grow flex flex-col justify-center">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center my-auto">
           
-          {/* Panel 1: Video Growth Engine */}
-          <div className="spider-card p-6 rounded-2xl relative overflow-hidden group">
-            <div className="absolute top-3 right-3 bg-[#00F0FF] text-[#0B0E14] font-mono font-black text-[10px] px-2 py-0.5 border border-[#0B0E14] rounded uppercase tracking-wider">
-              GROWTH
+          {/* =========================================================================
+              LEFT COLUMN: ARTISTIC EDITORIAL PHOTO COLLAGE
+              ========================================================================= */}
+          <div className="lg:col-span-4 flex justify-center lg:justify-start relative order-2 lg:order-1">
+            <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px] group">
+              
+              {/* Subtle Golden Halo Glow behind Collage */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-[#F59E0B]/20 to-transparent rounded-3xl blur-2xl opacity-60 group-hover:opacity-90 transition-opacity pointer-events-none" />
+
+              {/* The Masterpiece Portrait Collage Image */}
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] bg-gradient-to-b from-[#161B26] to-[#0A0D14]">
+                <img 
+                  src="/images/hero-portrait-collage.jpg" 
+                  alt="Adhithyan M. - Brand Strategist & Marketing Leader" 
+                  className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+                  loading="eager"
+                />
+
+                {/* Subtle Refraction Border Glow */}
+                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/15 pointer-events-none" />
+              </div>
+
             </div>
-            <div className="text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-wider mb-2">
-              AUDIENCE VIRALITY // ZENRISES
-            </div>
-            <AnimatedCounter 
-              targetValue={137.5} 
-              prefix="+" 
-              suffix="%" 
-              decimals={1} 
-              delay={150} 
-              hoverColor="group-hover:text-[#00F0FF]" 
-            />
-            <div className="font-display font-bold text-sm text-[#0B0E14]">
-              YouTube View Surge
-            </div>
-            <p className="font-sans text-xs text-zinc-600 mt-1 font-medium">
-              Achieved alongside <strong className="text-[#0B0E14]">+79.5% subscribers</strong> through AI video scripting & visual hook testing.
-            </p>
           </div>
 
-          {/* Panel 2: Corporate Sponsorship Capital */}
-          <div className="spider-card p-6 rounded-2xl relative overflow-hidden group">
-            <div className="absolute top-3 right-3 bg-[#FF0055] text-white font-mono font-black text-[10px] px-2 py-0.5 border border-[#0B0E14] rounded uppercase tracking-wider">
-              REVENUE
+          {/* =========================================================================
+              CENTER COLUMN: TYPOGRAPHY, HEADLINE & EDITORIAL CTAs
+              ========================================================================= */}
+          <div className="lg:col-span-5 text-left space-y-5 sm:space-y-6 order-1 lg:order-2">
+            
+            {/* Top Eyebrow */}
+            <div className="inline-flex items-center gap-2 sm:gap-2.5 font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-zinc-300 font-bold flex-wrap">
+              <span>CREATIVE STRATEGIST</span>
+              <span className="text-[#F59E0B] font-black">×</span>
+              <span>MARKETING BUILDER</span>
+              <span className="text-[#F59E0B] font-black">×</span>
+              <span>BRAND STORYTELLER</span>
             </div>
-            <div className="text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-wider mb-2">
-              SPONSORSHIPS CLOSED // NITK
-            </div>
-            <AnimatedCounter 
-              targetValue={36} 
-              prefix="₹" 
-              suffix="L+" 
-              decimals={0} 
-              delay={300} 
-              hoverColor="group-hover:text-[#FF0055]" 
-            />
-            <div className="font-display font-bold text-sm text-[#0B0E14]">
-              Corporate Capital Acquired
-            </div>
-            <p className="font-sans text-xs text-zinc-600 mt-1 font-medium">
-              Closed marquee national brand alliances across <strong className="text-[#0B0E14]">Incident (₹25L+)</strong> and <strong className="text-[#0B0E14]">Bizwaves (₹8L+)</strong>.
+
+            {/* Main Hero Headline */}
+            <h1 className="font-serif font-black text-4xl sm:text-5xl md:text-6xl xl:text-[5rem] text-white leading-[1.05] tracking-tight">
+              I Build <br />
+              Brands People <br />
+              <span className="font-serif italic font-normal text-[#F59E0B] relative inline-block drop-shadow-[0_0_35px_rgba(245,158,11,0.35)]">
+                Remember.
+                {/* Hand-drawn Golden Curve Underline */}
+                <svg 
+                  className="absolute -bottom-2.5 left-0 w-full h-4 text-[#F59E0B] opacity-90 overflow-visible" 
+                  viewBox="0 0 160 16" 
+                  fill="none" 
+                  preserveAspectRatio="none"
+                >
+                  <path 
+                    d="M3 12 C 45 3, 115 2, 157 9" 
+                    stroke="currentColor" 
+                    strokeWidth="3.5" 
+                    strokeLinecap="round" 
+                  />
+                </svg>
+              </span>
+            </h1>
+
+            {/* Editorial Bio Paragraph */}
+            <p className="font-sans text-sm sm:text-base text-zinc-300 leading-relaxed font-normal max-w-lg pt-1">
+              At the intersection of marketing, consumer psychology and creative storytelling, I turn ideas into brands that earn attention, trust and long-term relevance.
             </p>
+
+            {/* Action CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-3">
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#F59E0B] hover:bg-[#EAB308] text-black font-sans font-bold text-xs sm:text-sm uppercase tracking-wider transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-[0_12px_28px_rgba(245,158,11,0.35)] cursor-pointer"
+              >
+                <ArrowUpRight className="w-4 h-4 stroke-[3]" />
+                <span>Explore My Work</span>
+              </a>
+
+              <a
+                href="/Adhithyan_M_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Adhithyan_M_Resume.pdf"
+                className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white/5 hover:bg-white/10 text-white font-sans font-medium text-xs sm:text-sm border border-white/20 hover:border-white/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download Resume</span>
+              </a>
+            </div>
+
           </div>
 
-          {/* Panel 3: Creative & Marketing Scale */}
-          <div className="spider-card p-6 rounded-2xl relative overflow-hidden group">
-            <div className="absolute top-3 right-3 bg-[#F59E0B] text-black font-mono font-black text-[10px] px-2 py-0.5 border border-[#0B0E14] rounded uppercase tracking-wider">
-              SCALE
-            </div>
-            <div className="text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-wider mb-2">
-              CREW LEADERSHIP // INCIDENT
-            </div>
-            <AnimatedCounter 
-              targetValue={120} 
-              prefix="" 
-              suffix="+" 
-              decimals={0} 
-              delay={450} 
-              hoverColor="group-hover:text-[#F59E0B]" 
-            />
-            <div className="font-display font-bold text-sm text-[#0B0E14]">
-              Marketing & Creative Volunteers
-            </div>
-            <p className="font-sans text-xs text-zinc-600 mt-1 font-medium">
-              Spearheaded 360° promotional buzz, influencer alliances, and experiential activations.
-            </p>
+          {/* =========================================================================
+              RIGHT COLUMN: 3 ANGLED PERSPECTIVE 3D FLOATING CARDS
+              ========================================================================= */}
+          <div className="lg:col-span-3 flex flex-col space-y-4 sm:space-y-5 order-3 w-full">
+            
+            {/* Card 1: Bizwaves (Events & Branding) */}
+            <a 
+              href="#projects"
+              className="group relative rounded-2xl p-4 sm:p-5 border border-white/15 bg-gradient-to-br from-[#161327]/90 via-[#0E0C1C]/90 to-[#070610]/95 backdrop-blur-xl shadow-[0_15px_35px_-8px_rgba(0,0,0,0.7)] hover:border-pink-500/50 hover:shadow-[0_20px_45px_rgba(236,72,153,0.25)] transition-all transform hover:-translate-y-1 block overflow-hidden"
+            >
+              {/* Concert stage purple glow backdrop */}
+              <div 
+                className="absolute inset-0 opacity-25 group-hover:opacity-40 transition-opacity bg-cover bg-center"
+                style={{ backgroundImage: `url('/images/card-bizwaves-bg.jpg')` }}
+              />
+              <div className="absolute -top-10 -right-10 w-28 h-28 bg-pink-500/20 rounded-full blur-2xl" />
+
+              <div className="relative z-10 flex items-start justify-between">
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-pink-300 font-bold block mb-1">
+                    EVENTS & BRANDING
+                  </span>
+                  <h3 className="font-serif font-black text-2xl text-white tracking-tight group-hover:text-pink-200 transition-colors">
+                    Bizwaves
+                  </h3>
+                  <p className="font-sans text-[11px] text-zinc-300 mt-1 font-medium">
+                    Marketing Head (2025 & 2026)
+                  </p>
+                </div>
+                <div className="w-8 h-8 rounded-full border border-white/20 bg-white/10 group-hover:bg-pink-500 group-hover:text-white group-hover:border-pink-400 flex items-center justify-center transition-all shrink-0">
+                  <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+                </div>
+              </div>
+            </a>
+
+            {/* Card 2: Audience Scale (Content & Video) */}
+            <a 
+              href="#projects"
+              className="group relative rounded-2xl p-4 sm:p-5 border border-white/15 bg-gradient-to-br from-[#0B1A24]/90 via-[#07131B]/90 to-[#050D13]/95 backdrop-blur-xl shadow-[0_15px_35px_-8px_rgba(0,0,0,0.7)] hover:border-cyan-400/50 hover:shadow-[0_20px_45px_rgba(6,182,212,0.25)] transition-all transform hover:-translate-y-1 block overflow-hidden"
+            >
+              {/* Cyan aurora wave backdrop */}
+              <div className="absolute inset-0 opacity-20 group-hover:opacity-35 transition-opacity bg-gradient-to-r from-teal-500/30 via-cyan-500/20 to-transparent" />
+              <div className="absolute -top-10 -right-10 w-28 h-28 bg-cyan-400/20 rounded-full blur-2xl" />
+
+              <div className="relative z-10 flex items-start justify-between">
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-cyan-300 font-bold block mb-1">
+                    AUDIENCE & VIDEO
+                  </span>
+                  <h3 className="font-serif font-black text-2xl text-white tracking-tight group-hover:text-cyan-200 transition-colors">
+                    Zenrises
+                  </h3>
+                  <p className="font-sans text-[11px] text-zinc-300 mt-1 font-medium">
+                    +137.5% YouTube View Surge & AI Hooks
+                  </p>
+                </div>
+                <div className="w-8 h-8 rounded-full border border-white/20 bg-white/10 group-hover:bg-cyan-400 group-hover:text-black group-hover:border-cyan-300 flex items-center justify-center transition-all shrink-0">
+                  <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+                </div>
+              </div>
+            </a>
+
+            {/* Card 3: Capital Portfolio (Commercial Alliances) */}
+            <a 
+              href="#projects"
+              className="group relative rounded-2xl p-4 sm:p-5 border border-white/15 bg-gradient-to-br from-[#1E170A]/90 via-[#140F05]/90 to-[#0B0802]/95 backdrop-blur-xl shadow-[0_15px_35px_-8px_rgba(0,0,0,0.7)] hover:border-amber-400/50 hover:shadow-[0_20px_45px_rgba(245,158,11,0.25)] transition-all transform hover:-translate-y-1 block overflow-hidden"
+            >
+              {/* Golden amber wave backdrop */}
+              <div className="absolute inset-0 opacity-20 group-hover:opacity-35 transition-opacity bg-gradient-to-r from-amber-500/30 via-yellow-500/20 to-transparent" />
+              <div className="absolute -top-10 -right-10 w-28 h-28 bg-amber-400/20 rounded-full blur-2xl" />
+
+              <div className="relative z-10 flex items-start justify-between">
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-amber-300 font-bold block mb-1">
+                    COMMERCIAL ALLIANCES
+                  </span>
+                  <h3 className="font-serif font-black text-2xl text-white tracking-tight group-hover:text-amber-200 transition-colors">
+                    ₹36L+ Raised
+                  </h3>
+                  <p className="font-sans text-[11px] text-zinc-300 mt-1 font-medium">
+                    Incident & Bizwaves NITK Surathkal
+                  </p>
+                </div>
+                <div className="w-8 h-8 rounded-full border border-white/20 bg-white/10 group-hover:bg-[#F59E0B] group-hover:text-black group-hover:border-amber-300 flex items-center justify-center transition-all shrink-0">
+                  <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+                </div>
+              </div>
+            </a>
+
           </div>
 
-        </div>
-
-        {/* Centered Spider-Verse Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-          {/* Ancient Mythological Codex Portal Button */}
-          <button
-            onClick={onOpenMythology}
-            className="matte-sand-btn animate-matte-sand-pulse px-7 py-3.5 rounded-xl text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2.5"
-            title="Unlock the Ancient Arabian Neuromarketing Codex Realm"
-          >
-            <Eye className="w-4 h-4 stroke-[2.5]" />
-            <span>ENTER ARABIAN CODEX</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#5A4832] animate-ping" />
-          </button>
-
-          <a
-            href="/Adhithyan_M_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            download="Adhithyan_M_Resume.pdf"
-            className="spider-btn-pink px-7 py-3.5 rounded-xl font-display font-black text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2 hover:scale-105 transition-transform"
-          >
-            <FileText className="w-4 h-4 stroke-[2.5]" />
-            <span>Download Strategic CV (PDF)</span>
-            <Download className="w-4 h-4 stroke-[2.5]" />
-          </a>
-
-          <a
-            href="#projects"
-            className="spider-btn bg-[#0B0E14] text-white hover:bg-zinc-800 px-6 py-3.5 rounded-xl font-display font-black text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2"
-          >
-            <span>Explore Creative Campaigns</span>
-            <ArrowDown className="w-4 h-4 stroke-[3]" />
-          </a>
-
-          <a
-            href="#experience"
-            className="spider-btn bg-white text-[#0B0E14] hover:bg-zinc-50 px-6 py-3.5 rounded-xl font-display font-black text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2"
-          >
-            <span>Track Record & Leadership</span>
-            <ArrowUpRight className="w-4 h-4 stroke-[3]" />
-          </a>
-
-          <a
-            href={personalInfo.socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="spider-btn-cyan px-6 py-3.5 rounded-xl font-display font-black text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2"
-          >
-            <span>Connect on LinkedIn</span>
-            <ArrowUpRight className="w-4 h-4 stroke-[3]" />
-          </a>
         </div>
 
       </div>
+
+      {/* =========================================================================
+          BOTTOM HUD: 3 METRIC COLUMNS & SCROLL TO EXPLORE
+          ========================================================================= */}
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 w-full relative z-10 pt-8 sm:pt-10 border-t border-white/10 mt-6 sm:mt-10">
+        
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          
+          {/* 3 Metric Columns */}
+          <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+            
+            {/* Metric 1 */}
+            <div>
+              <div className="flex items-baseline">
+                <AnimatedCounter targetValue={36} prefix="₹" suffix="L+" decimals={0} delay={150} />
+              </div>
+              <div className="font-sans font-bold text-xs sm:text-sm text-zinc-200 mt-0.5">
+                Sponsorships Raised
+              </div>
+              <div className="font-sans text-[11px] text-zinc-400">
+                (Bizwaves, Incident & more)
+              </div>
+            </div>
+
+            {/* Metric 2 */}
+            <div>
+              <div className="flex items-baseline">
+                <AnimatedCounter targetValue={137.5} prefix="" suffix="%" decimals={1} delay={300} />
+              </div>
+              <div className="font-sans font-bold text-xs sm:text-sm text-zinc-200 mt-0.5">
+                YouTube View Growth
+              </div>
+              <div className="font-sans text-[11px] text-zinc-400">
+                (AI video storytelling & scripting)
+              </div>
+            </div>
+
+            {/* Metric 3 */}
+            <div>
+              <div className="flex items-baseline">
+                <AnimatedCounter targetValue={120} prefix="" suffix="+" decimals={0} delay={450} />
+              </div>
+              <div className="font-sans font-bold text-xs sm:text-sm text-zinc-200 mt-0.5">
+                Volunteers Led
+              </div>
+              <div className="font-sans text-[11px] text-zinc-400">
+                (Marketing & Creative Teams)
+              </div>
+            </div>
+
+          </div>
+
+          {/* Centered Scroll Indicator */}
+          <div className="md:col-span-4 flex items-center justify-start md:justify-end">
+            <a 
+              href="#about"
+              className="inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-zinc-400 hover:text-white transition-colors group cursor-pointer"
+            >
+              <span>SCROLL TO EXPLORE</span>
+              <div className="w-4 h-7 rounded-full border border-zinc-500 group-hover:border-white flex items-start justify-center p-1 transition-colors">
+                <div className="w-1 h-2 rounded-full bg-[#F59E0B] animate-bounce" />
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
     </section>
   );
 }
