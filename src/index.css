@@ -242,43 +242,45 @@ body.custom-dust-cursor .spider-btn {
   box-shadow: 6px 6px 0px 0px #FF0055;
 }
 
-/* Glassmorphism Telemetry Cards (Glass Effect) */
+/* Glassmorphism Telemetry Cards (Enhanced Real Glass Effect) */
 .glass-telemetry-card {
-  background: rgba(11, 14, 20, 0.78);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(135deg, rgba(14, 18, 26, 0.75) 0%, rgba(9, 12, 19, 0.88) 100%);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
   box-shadow: 
-    0 16px 36px 0 rgba(0, 0, 0, 0.35),
-    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.35),
-    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.5);
+    0 20px 45px -8px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-telemetry-card:hover {
-  background: rgba(11, 14, 20, 0.86);
+  background: linear-gradient(135deg, rgba(18, 24, 36, 0.82) 0%, rgba(11, 15, 24, 0.92) 100%);
+  border-color: rgba(255, 255, 255, 0.32);
   box-shadow: 
-    0 20px 45px 0 rgba(0, 0, 0, 0.45),
+    0 26px 52px -10px rgba(0, 0, 0, 0.6),
     inset 0 1px 2px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
 }
 
 /* Glass Inner Tile */
 .glass-telemetry-tile {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.18),
-    0 4px 14px 0 rgba(0, 0, 0, 0.2);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.16),
+    0 4px 14px 0 rgba(0, 0, 0, 0.25);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-telemetry-tile:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.26);
   transform: translateY(-1px);
 }
 
@@ -288,8 +290,8 @@ body.custom-dust-cursor .spider-btn {
   top: 0;
   left: 0;
   right: 0;
-  height: 45%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.02) 80%, rgba(255, 255, 255, 0) 100%);
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 70%, rgba(255, 255, 255, 0) 100%);
   pointer-events: none;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
@@ -480,4 +482,196 @@ body.custom-dust-cursor .spider-btn {
   border: 1px solid rgba(212, 175, 55, 0.3);
   box-shadow: inset 0 0 12px rgba(212, 175, 55, 0.1);
 }
+
+/* ==========================================================================
+   MINIMALIST BLACK & WHITE EXECUTIVE DARK THEME
+   Strictly adheres to:
+   - Ultra-clean, spacious, professional Swiss/Apple design studio aesthetic
+   - Only outlines essential, high-value information needed
+   - Zero crowding, pure monochrome contrast, no halftone clutter
+   ========================================================================== */
+
+html.dark,
+html.dark body {
+  background-color: #07080A !important;
+  color: #F4F4F5 !important;
+}
+
+/* Strip halftone pattern in dark mode for pure clean silence */
+.dark .halftone-spider {
+  background-color: #07080A !important;
+  background-image: none !important;
+}
+
+/* Sections in dark mode */
+.dark section {
+  background-color: #07080A !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Monochrome Executive Cards: sleek charcoal background with subtle 1px hairline border */
+.dark .spider-card {
+  background: #0B0D12 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 10px 30px -6px rgba(0, 0, 0, 0.6) !important;
+  color: #FFFFFF !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.dark .spider-card:hover {
+  background: #0F1218 !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.8) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Headings in stark white with crisp legibility */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark .font-syne,
+.dark .spider-glitch {
+  color: #FFFFFF !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Clean, subdued body text */
+.dark p,
+.dark .text-zinc-600,
+.dark .text-zinc-700,
+.dark .text-zinc-800,
+.dark .text-zinc-900 {
+  color: #A1A1AA !important;
+}
+
+.dark strong,
+.dark [class*="text-[#0B0E14]"] {
+  color: #FFFFFF !important;
+}
+
+/* Remove comic tilt rotations in dark mode to keep it perfectly aligned & executive */
+.dark .rotate-1,
+.dark .-rotate-1 {
+  transform: none !important;
+}
+
+/* Clean up borders and drop-shadows across all components in dark mode */
+.dark [class*="border-[#0B0E14]"] {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.dark .shadow-spider,
+.dark .shadow-spider-sm,
+.dark .shadow-spider-lg {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Minimalist Outlined Pills & Badges (Only outlining the essential highlights) */
+.dark .bg-white {
+  background-color: #0E1117 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #F4F4F5 !important;
+}
+
+.dark .border-zinc-300 {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Highlight tags transformed to sleek monochrome outline badges */
+.dark [class*="bg-[#00F0FF]/25"],
+.dark [class*="bg-[#FF0055]/15"],
+.dark [class*="bg-[#F59E0B]/15"],
+.dark [class*="bg-[#7928CA]/15"] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #FFFFFF !important;
+}
+
+/* Minimalist Executive Buttons */
+.dark .spider-btn-pink {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1px solid #FFFFFF !important;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15) !important;
+  font-weight: 700 !important;
+}
+
+.dark .spider-btn-pink:hover {
+  background: #E4E4E7 !important;
+  color: #000000 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25) !important;
+}
+
+.dark .spider-btn {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+}
+
+.dark .spider-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+
+.dark .spider-btn-cyan {
+  background: transparent !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: none !important;
+}
+
+.dark .spider-btn-cyan:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: #FFFFFF !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Glass Telemetry in Dark Mode: Pristine translucent cockpit styling */
+.dark .glass-telemetry-card {
+  background: linear-gradient(135deg, rgba(16, 20, 28, 0.85) 0%, rgba(9, 11, 16, 0.95) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 
+    0 20px 45px -8px rgba(0, 0, 0, 0.7),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+.dark .glass-telemetry-tile {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .glass-telemetry-tile:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Form Inputs in Contact Section */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #0E1117 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #FFFFFF !important;
+  border-radius: 12px !important;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: #FFFFFF !important;
+  outline: none !important;
+  box-shadow: 0 0 0 1px #FFFFFF !important;
+}
+
+/* Animated Counter in Dark Mode */
+.dark [data-metric-counter],
+.dark .font-syne.text-5xl {
+  color: #FFFFFF !important;
+}
+
 

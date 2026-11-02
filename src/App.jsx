@@ -15,11 +15,28 @@ import CursorDustTrail from './components/CursorDustTrail';
 
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('portfolio_theme') || 'light';
+  });
   const [realm, setRealm] = useState(() => {
     return window.location.hash === '#ancient-codex' || window.location.hash === '#mythology' 
       ? 'mythology' 
       : 'modern';
   });
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('portfolio_theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('portfolio_theme', 'light');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -66,14 +83,18 @@ export default function App() {
       {realm === 'mythology' ? (
         <MythologicalSanctum onReturnToModern={returnToModernRealm} />
       ) : (
-        <div className="relative min-h-screen bg-[#FAFCFF] text-[#0B0E14] selection:bg-[#FF0055] selection:text-white flex flex-col font-sans overflow-x-hidden">
+        <div className={`relative min-h-screen ${theme === 'dark' ? 'bg-[#07080A] text-zinc-100' : 'bg-[#FAFCFF] text-[#0B0E14]'} selection:bg-[#FF0055] selection:text-white flex flex-col font-sans overflow-x-hidden transition-colors duration-300`}>
           {/* Floating Antigravity Starlight & Micro-Sparks */}
           <GoldenParticles />
 
-          {/* Spider-Verse & Genshin Ambient Color Glows */}
-          <div className="fixed top-0 right-10 w-[550px] h-[550px] bg-[#00F0FF]/5 rounded-full blur-[140px] pointer-events-none -z-10" />
-          <div className="fixed top-1/3 left-0 w-[500px] h-[500px] bg-[#FF0055]/5 rounded-full blur-[160px] pointer-events-none -z-10" />
-          <div className="fixed bottom-1/4 right-0 w-[500px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-[150px] pointer-events-none -z-10" />
+          {/* Spider-Verse & Genshin Ambient Color Glows (Muted in dark mode for clean focus) */}
+          {theme !== 'dark' && (
+            <>
+              <div className="fixed top-0 right-10 w-[550px] h-[550px] bg-[#00F0FF]/5 rounded-full blur-[140px] pointer-events-none -z-10" />
+              <div className="fixed top-1/3 left-0 w-[500px] h-[500px] bg-[#FF0055]/5 rounded-full blur-[160px] pointer-events-none -z-10" />
+              <div className="fixed bottom-1/4 right-0 w-[500px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-[150px] pointer-events-none -z-10" />
+            </>
+          )}
 
           {/* Accessible Skip Link */}
           <a 
@@ -83,9 +104,13 @@ export default function App() {
             Skip directly to main content
           </a>
 
-          {/* Spider-Verse Gradient Progress Indicator */}
+          {/* Progress Indicator (Monochrome in dark mode, chromatic gradient in light mode) */}
           <div 
-            className="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-[#FF0055] via-[#00F0FF] to-[#F59E0B] shadow-sm z-50 transition-all duration-75 ease-out"
+            className={`fixed top-0 left-0 h-[3px] z-50 transition-all duration-75 ease-out ${
+              theme === 'dark' 
+                ? 'bg-gradient-to-r from-white via-zinc-400 to-white shadow-[0_0_8px_rgba(255,255,255,0.4)]' 
+                : 'bg-gradient-to-r from-[#FF0055] via-[#00F0FF] to-[#F59E0B] shadow-sm'
+            }`}
             style={{ width: `${scrollProgress}%` }}
             role="progressbar"
             aria-valuenow={Math.round(scrollProgress)}
@@ -95,7 +120,7 @@ export default function App() {
           />
 
           {/* Navigation */}
-          <Navbar onOpenMythology={openMythologyRealm} />
+          <Navbar onOpenMythology={openMythologyRealm} theme={theme} onToggleTheme={toggleTheme} />
 
           {/* Main Content Area */}
           <main id="main-content" className="flex-grow relative z-10">
@@ -112,7 +137,7 @@ export default function App() {
           <ChibiCompanion onOpenMythology={openMythologyRealm} />
 
           {/* Colophon & Footer */}
-          <Footer onOpenMythology={openMythologyRealm} />
+          <Footer onOpenMythology={openMythologyRealm} theme={theme} onToggleTheme={toggleTheme} />
         </div>
       )}
     </>

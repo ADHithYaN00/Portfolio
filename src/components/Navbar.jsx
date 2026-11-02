@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Zap, Sparkles, FileText, Download } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Zap, Sparkles, FileText, Download, Sun, Moon } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
-export default function Navbar({ onOpenMythology }) {
+export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -40,24 +40,32 @@ export default function Navbar({ onOpenMythology }) {
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
+  const isDark = theme === 'dark';
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      {/* Top Spider-Verse Editorial Strip */}
-      <div className={`hidden md:block bg-[#0B0E14] text-white border-b border-zinc-800 transition-all duration-300 ${scrolled ? 'h-0 opacity-0 overflow-hidden' : 'py-1.5 opacity-100'}`}>
+      {/* Top Editorial Strip */}
+      <div className={`hidden md:block border-b transition-all duration-300 ${
+        isDark ? 'bg-black text-zinc-300 border-white/10' : 'bg-[#0B0E14] text-white border-zinc-800'
+      } ${scrolled ? 'h-0 opacity-0 overflow-hidden' : 'py-1.5 opacity-100'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between text-xs font-mono">
           <div className="flex items-center space-x-4">
-            <span className="flex items-center gap-1.5 text-[#00F0FF] font-bold">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-pulse" />
+            <span className={`flex items-center gap-1.5 font-bold ${isDark ? 'text-white' : 'text-[#00F0FF]'}`}>
+              <span className={`w-1.5 h-1.5 rounded-full ${isDark ? 'bg-white' : 'bg-[#00F0FF]'} animate-pulse`} />
               ADHITHYAN M. // PORTFOLIO '26
             </span>
             <span className="text-zinc-600">/</span>
-            <span className="text-zinc-300 font-sans text-[11px]">MBA (Marketing & Ops) • NITK</span>
+            <span className="text-zinc-400 font-sans text-[11px]">MBA (Marketing & Ops) • NITK</span>
             <span className="text-zinc-600">/</span>
-            <span className="text-[#FF0055] font-sans font-bold text-[11px]">₹36L+ Sponsorships Raised</span>
+            <span className={`font-sans font-bold text-[11px] ${isDark ? 'text-zinc-200' : 'text-[#FF0055]'}`}>
+              ₹36L+ Sponsorships Raised
+            </span>
           </div>
           <div className="flex items-center space-x-3 text-[11px]">
             <span className="text-zinc-400">BASE: BANGALORE, KARNATAKA</span>
-            <span className="bg-[#FF0055] text-white font-mono font-bold px-2 py-0.5 rounded text-[10px]">
+            <span className={`${
+              isDark ? 'bg-white text-black' : 'bg-[#FF0055] text-white'
+            } font-mono font-bold px-2 py-0.5 rounded text-[10px]`}>
               OPEN FOR ROLES
             </span>
           </div>
@@ -67,9 +75,13 @@ export default function Navbar({ onOpenMythology }) {
       {/* Main Navigation Bar */}
       <nav 
         className={`w-full transition-all duration-200 ${
-          scrolled 
-            ? 'bg-white/95 backdrop-blur-md border-b-2.5 border-[#0B0E14] shadow-spider py-2.5' 
-            : 'bg-white/90 backdrop-blur-sm border-b-2 border-[#0B0E14] py-3.5'
+          isDark 
+            ? scrolled 
+              ? 'bg-[#07080A]/95 backdrop-blur-md border-b border-white/15 py-2.5' 
+              : 'bg-[#07080A]/90 backdrop-blur-sm border-b border-white/10 py-3.5'
+            : scrolled 
+              ? 'bg-white/95 backdrop-blur-md border-b-2.5 border-[#0B0E14] shadow-spider py-2.5' 
+              : 'bg-white/90 backdrop-blur-sm border-b-2 border-[#0B0E14] py-3.5'
         }`}
         aria-label="Main Navigation"
       >
@@ -79,14 +91,20 @@ export default function Navbar({ onOpenMythology }) {
             href="#hero" 
             className="group flex items-center gap-2.5 focus:outline-none"
           >
-            <div className="bg-[#0B0E14] text-white font-syne font-black text-xl px-2.5 py-0.5 rounded-lg border-2 border-[#0B0E14] shadow-spider-sm group-hover:bg-[#FF0055] transition-colors">
+            <div className={`font-syne font-black text-xl px-2.5 py-0.5 rounded-lg border-2 transition-colors ${
+              isDark 
+                ? 'bg-white text-black border-white group-hover:bg-zinc-200' 
+                : 'bg-[#0B0E14] text-white border-[#0B0E14] shadow-spider-sm group-hover:bg-[#FF0055]'
+            }`}>
               AM
             </div>
             <div>
-              <span className="spider-glitch font-syne font-black text-xl sm:text-2xl tracking-tight text-[#0B0E14] block leading-none">
+              <span className={`spider-glitch font-syne font-black text-xl sm:text-2xl tracking-tight block leading-none ${
+                isDark ? 'text-white' : 'text-[#0B0E14]'
+              }`}>
                 ADHITHYAN M.
               </span>
-              <span className="font-mono font-bold text-[10px] text-zinc-500 uppercase tracking-wider block mt-0.5">
+              <span className="font-mono font-bold text-[10px] text-zinc-400 uppercase tracking-wider block mt-0.5">
                 Brand Strategist • NITK
               </span>
             </div>
@@ -96,6 +114,22 @@ export default function Navbar({ onOpenMythology }) {
           <div className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
+              if (isDark) {
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className={`text-xs font-display uppercase tracking-wider font-bold transition-all px-3 py-1.5 rounded-lg border ${
+                      isActive
+                        ? 'bg-white text-black border-white font-black shadow-sm'
+                        : 'bg-transparent text-zinc-300 border-transparent hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    {link.name}
+                  </a>
+                );
+              }
+
               return (
                 <a
                   key={link.name}
@@ -112,12 +146,34 @@ export default function Navbar({ onOpenMythology }) {
             })}
           </div>
 
-          {/* CTA Buttons */}
+          {/* CTA & Theme Controls */}
           <div className="hidden sm:flex items-center space-x-2">
+            {/* Minimalist Theme Toggle Button */}
+            <button
+              onClick={onToggleTheme}
+              className={`p-2 rounded-xl border transition-all flex items-center justify-center ${
+                isDark
+                  ? 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/40'
+                  : 'bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm hover:bg-zinc-100'
+              }`}
+              title={isDark ? "Switch to Vibrant Light Mode" : "Switch to Minimalist B&W Dark Mode"}
+              aria-label="Toggle theme"
+            >
+              {isDark ? (
+                <Sun className="w-4 h-4 text-amber-300 transition-transform hover:rotate-45" />
+              ) : (
+                <Moon className="w-4 h-4 text-zinc-900 transition-transform hover:-rotate-12" />
+              )}
+            </button>
+
             {/* Ancient Realm Portal Button */}
             <button
               onClick={onOpenMythology}
-              className="px-3 py-1.5 rounded-xl font-cinzel font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#D4AF37] text-black border-2 border-[#0B0E14] shadow-spider-sm hover:scale-105 transition-transform"
+              className={`px-3 py-1.5 rounded-xl font-cinzel font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 transition-transform ${
+                isDark
+                  ? 'bg-zinc-900 text-[#D4AF37] border border-[#D4AF37]/50 hover:border-[#D4AF37]'
+                  : 'bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#D4AF37] text-black border-2 border-[#0B0E14] shadow-spider-sm hover:scale-105'
+              }`}
               title="Enter Ancient Mythological Realm & Neuromarketing Codex"
             >
               <span>🏛️ Ancient Codex</span>
@@ -128,7 +184,11 @@ export default function Navbar({ onOpenMythology }) {
               target="_blank"
               rel="noopener noreferrer"
               download="Adhithyan_M_Resume.pdf"
-              className="px-3 py-1.5 rounded-xl font-display font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm hover:bg-[#00F0FF] transition-colors"
+              className={`px-3 py-1.5 rounded-xl font-display font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 transition-colors ${
+                isDark
+                  ? 'bg-transparent text-white border border-white/25 hover:bg-white/10'
+                  : 'bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm hover:bg-[#00F0FF]'
+              }`}
             >
               <FileText className="w-3.5 h-3.5 stroke-[2.5]" />
               <span>Resume</span>
@@ -136,40 +196,66 @@ export default function Navbar({ onOpenMythology }) {
 
             <a
               href="#contact"
-              className="spider-btn-pink px-3.5 py-1.5 rounded-xl font-display font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5"
+              className={`px-3.5 py-1.5 rounded-xl font-display font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 transition-colors ${
+                isDark
+                  ? 'bg-white text-black hover:bg-zinc-200 border border-white'
+                  : 'spider-btn-pink'
+              }`}
             >
               <span>Collaborate</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-[3]" />
             </a>
           </div>
 
-          {/* Mobile Menu Trigger */}
+          {/* Mobile Navigation Controls */}
           <div className="lg:hidden flex items-center space-x-2">
+            {/* Mobile Theme Toggle Button */}
+            <button
+              onClick={onToggleTheme}
+              className={`p-1.5 rounded-lg border transition-all flex items-center justify-center ${
+                isDark
+                  ? 'bg-white/10 text-white border-white/20'
+                  : 'bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm'
+              }`}
+              title="Toggle theme"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-zinc-900" />}
+            </button>
+
             <button
               onClick={onOpenMythology}
-              className="sm:hidden text-[11px] font-cinzel font-black uppercase px-2.5 py-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] text-black border-2 border-[#0B0E14] shadow-spider-sm rounded-lg"
+              className={`sm:hidden text-[11px] font-cinzel font-black uppercase px-2.5 py-1.5 rounded-lg ${
+                isDark
+                  ? 'bg-zinc-900 text-[#D4AF37] border border-[#D4AF37]/50'
+                  : 'bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] text-black border-2 border-[#0B0E14] shadow-spider-sm'
+              }`}
             >
               🏛️ Codex
             </button>
+
             <a
               href="/Adhithyan_M_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download="Adhithyan_M_Resume.pdf"
-              className="sm:hidden text-[11px] font-display font-black uppercase px-2.5 py-1.5 bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm rounded-lg inline-flex items-center gap-1"
+              className={`sm:hidden text-[11px] font-display font-black uppercase px-2.5 py-1.5 rounded-lg inline-flex items-center gap-1 ${
+                isDark
+                  ? 'bg-transparent text-white border border-white/20'
+                  : 'bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm'
+              }`}
             >
               <FileText className="w-3 h-3" />
               <span>CV</span>
             </a>
-            <a
-              href="#contact"
-              className="sm:hidden text-xs font-display font-black uppercase px-3 py-1.5 bg-[#FF0055] text-white border-2 border-[#0B0E14] shadow-spider-sm rounded-lg"
-            >
-              Connect
-            </a>
+
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 bg-white border-2 border-[#0B0E14] shadow-spider-sm rounded-lg text-[#0B0E14] hover:bg-zinc-100 focus:outline-none"
+              className={`p-2 rounded-lg transition-colors ${
+                isDark
+                  ? 'bg-[#121620] border border-white/20 text-white hover:bg-[#1A202E]'
+                  : 'bg-white border-2 border-[#0B0E14] shadow-spider-sm text-[#0B0E14] hover:bg-zinc-100'
+              }`}
               aria-expanded={isOpen}
               aria-label="Toggle navigation menu"
             >
@@ -181,34 +267,72 @@ export default function Navbar({ onOpenMythology }) {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="lg:hidden bg-white border-b-3 border-[#0B0E14] px-6 py-6 shadow-spider-lg animate-fadeIn">
+        <div className={`lg:hidden px-6 py-6 shadow-2xl animate-fadeIn border-b ${
+          isDark 
+            ? 'bg-[#0B0D12] border-white/15 text-white' 
+            : 'bg-white border-b-3 border-[#0B0E14] shadow-spider-lg'
+        }`}>
           <div className="flex flex-col space-y-3">
-            <div className="text-xs font-mono font-bold uppercase pb-2 border-b border-zinc-200 flex items-center justify-between text-zinc-600">
+            <div className={`text-xs font-mono font-bold uppercase pb-2 border-b flex items-center justify-between ${
+              isDark ? 'border-zinc-800 text-zinc-400' : 'border-zinc-200 text-zinc-600'
+            }`}>
               <span>// DIRECT PORTFOLIO NAVIGATION</span>
-              <span className="bg-[#00F0FF] text-black font-mono font-black text-[10px] px-2 py-0.5 rounded border border-[#0B0E14]">
+              <span className={`font-mono font-black text-[10px] px-2 py-0.5 rounded ${
+                isDark ? 'bg-white text-black' : 'bg-[#00F0FF] text-black border border-[#0B0E14]'
+              }`}>
                 NITK '26
               </span>
             </div>
+
+            {/* Quick Theme Switch Row */}
+            <button
+              onClick={onToggleTheme}
+              className={`w-full py-2.5 px-3 rounded-lg border flex items-center justify-between font-mono text-xs font-bold uppercase transition-colors ${
+                isDark
+                  ? 'bg-white/5 text-zinc-200 border-white/15 hover:bg-white/10'
+                  : 'bg-zinc-50 text-[#0B0E14] border-2 border-[#0B0E14]'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                {isDark ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-zinc-900" />}
+                <span>{isDark ? 'Mode: Minimalist B&W' : 'Mode: Vibrant Pop-Art'}</span>
+              </span>
+              <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded">
+                Switch to {isDark ? 'Light' : 'Dark'}
+              </span>
+            </button>
+
             {navLinks.map((link, idx) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-between py-2.5 px-3 text-lg font-syne font-black text-[#0B0E14] hover:bg-zinc-100 border-2 border-transparent hover:border-[#0B0E14] rounded-lg transition-colors"
+                className={`flex items-center justify-between py-2.5 px-3 text-lg font-syne font-black rounded-lg transition-colors ${
+                  isDark
+                    ? 'text-zinc-200 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10'
+                    : 'text-[#0B0E14] hover:bg-zinc-100 border-2 border-transparent hover:border-[#0B0E14]'
+                }`}
               >
                 <span>{link.name}</span>
-                <span className="text-xs font-mono font-bold bg-[#0B0E14] text-white px-2 py-0.5 rounded">
+                <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded ${
+                  isDark ? 'bg-white/10 text-zinc-300' : 'bg-[#0B0E14] text-white'
+                }`}>
                   0{idx + 1}
                 </span>
               </a>
             ))}
+
             <div className="pt-2 space-y-2">
               <button
                 onClick={() => {
                   setIsOpen(false);
                   if (onOpenMythology) onOpenMythology();
                 }}
-                className="w-full py-3.5 rounded-xl font-cinzel font-black text-xs uppercase tracking-wider bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] text-black border-2 border-[#0B0E14] shadow-spider-sm flex items-center justify-center gap-2"
+                className={`w-full py-3.5 rounded-xl font-cinzel font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 ${
+                  isDark
+                    ? 'bg-zinc-900 text-[#D4AF37] border border-[#D4AF37]/50'
+                    : 'bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] text-black border-2 border-[#0B0E14] shadow-spider-sm'
+                }`}
               >
                 <span>🏛️ Enter Ancient Neuromarketing Codex</span>
               </button>
@@ -216,7 +340,11 @@ export default function Navbar({ onOpenMythology }) {
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="spider-btn-pink w-full text-center block py-3.5 rounded-xl font-display font-black text-xs uppercase tracking-wider"
+                className={`w-full text-center block py-3.5 rounded-xl font-display font-black text-xs uppercase tracking-wider ${
+                  isDark
+                    ? 'bg-white text-black hover:bg-zinc-200'
+                    : 'spider-btn-pink'
+                }`}
               >
                 Connect With Adhithyan Direct 🚀
               </a>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Brain, TrendingUp, DollarSign, MapPin, Eye, Zap, Sparkles, CheckCircle2, BarChart3, Layers } from 'lucide-react';
+import { Brain, TrendingUp, DollarSign, MapPin, Eye, Zap, Sparkles, CheckCircle2, BarChart3, Layers, Award, Users } from 'lucide-react';
 
 export default function ProjectProofCard({ projectId }) {
   if (projectId === 'project-1') {
@@ -53,9 +53,12 @@ export default function ProjectProofCard({ projectId }) {
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-2.5 border-t border-white/10 text-[11px] text-zinc-300">
-            <span>Metric: Subconscious Memory Encoding Score</span>
-            <span className="text-[#00F0FF] font-bold font-mono tracking-wider drop-shadow-sm">
+          <div className="glass-telemetry-tile p-2.5 sm:p-3 rounded-xl flex items-center justify-between gap-2 text-[11px] text-zinc-300">
+            <div className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] shrink-0 animate-pulse" />
+              <span>Memory Encoding Score</span>
+            </div>
+            <span className="text-[#00F0FF] font-bold font-mono tracking-wider whitespace-nowrap bg-[#00F0FF]/15 px-2.5 py-0.5 rounded border border-[#00F0FF]/40 text-[10px] sm:text-[11px] shadow-sm">
               92/100 VALIDATED
             </span>
           </div>
@@ -92,32 +95,32 @@ export default function ProjectProofCard({ projectId }) {
                 +137.5%
               </div>
               <span className="text-[10px] text-zinc-300 block mt-1 font-medium">
-                Algorithm SEO & Thumbnails
+                Algorithm SEO & Pacing
               </span>
             </div>
 
             <div className="glass-telemetry-tile p-3 rounded-xl">
               <span className="text-zinc-300 block text-[10px] uppercase font-bold tracking-wider">
-                Subscriber Acquisition
+                Subscriber Lift
               </span>
               <div className="font-syne font-black text-2xl sm:text-3xl text-[#00F0FF] mt-1 drop-shadow-[0_0_10px_rgba(0,240,255,0.4)]">
                 +79.5%
               </div>
               <span className="text-[10px] text-zinc-300 block mt-1 font-medium">
-                Hook Pacing & Retention
+                Retention & Hook Design
               </span>
             </div>
           </div>
 
           {/* Visual Mini Trajectory Bar */}
-          <div className="glass-telemetry-tile p-2.5 sm:p-3 rounded-xl flex items-center justify-between text-xs">
+          <div className="glass-telemetry-tile p-2.5 sm:p-3 rounded-xl flex items-center justify-between gap-2 text-xs">
             <div className="flex items-center gap-2">
-              <span className="text-zinc-300">CTR Surge:</span>
-              <span className="text-white font-bold bg-white/10 px-2 py-0.5 rounded border border-white/15 text-[11px]">
-                2.4x Baseline CTR
+              <span className="text-zinc-300 text-[11px]">CTR Surge:</span>
+              <span className="text-white font-bold bg-white/10 px-2 py-0.5 rounded border border-white/15 text-[10px] sm:text-[11px] whitespace-nowrap">
+                2.4x Baseline
               </span>
             </div>
-            <span className="text-[#FF0055] font-bold text-[11px] tracking-wide">
+            <span className="text-[#FF0055] font-bold text-[10px] sm:text-[11px] tracking-wide whitespace-nowrap">
               ★ High-Retention Funnel
             </span>
           </div>
@@ -127,7 +130,7 @@ export default function ProjectProofCard({ projectId }) {
   }
 
   if (projectId === 'project-3') {
-    // Local Tourism & Artisan Empowerment Platform (Featured in user's image)
+    // Local Tourism & Artisan Empowerment Platform (Value Chain Map)
     return (
       <div className="glass-telemetry-card my-5 p-4 sm:p-5 rounded-2xl text-white font-mono border-[#F59E0B]/40 hover:border-[#F59E0B]/80 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]">
         {/* Ambient Glass Reflections & Glow */}
@@ -146,12 +149,12 @@ export default function ProjectProofCard({ projectId }) {
           </div>
 
           {/* 3-Step Glass Flow */}
-          <div className="grid grid-cols-3 gap-2.5 text-center text-xs mb-3">
-            <div className="glass-telemetry-tile p-3 rounded-xl flex flex-col justify-between">
+          <div className="grid grid-cols-3 gap-2 text-center text-xs mb-3">
+            <div className="glass-telemetry-tile p-2.5 sm:p-3 rounded-xl flex flex-col justify-between">
               <div className="text-[10px] font-black text-[#F59E0B] tracking-wider uppercase">
                 STAGE 01
               </div>
-              <div className="font-sans font-bold text-xs sm:text-sm text-white my-1">
+              <div className="font-sans font-bold text-xs sm:text-sm text-white my-1 leading-tight">
                 Geo Discovery
               </div>
               <div className="text-[10px] text-zinc-300 font-medium">
@@ -159,11 +162,11 @@ export default function ProjectProofCard({ projectId }) {
               </div>
             </div>
 
-            <div className="glass-telemetry-tile p-3 rounded-xl flex flex-col justify-between">
+            <div className="glass-telemetry-tile p-2.5 sm:p-3 rounded-xl flex flex-col justify-between">
               <div className="text-[10px] font-black text-[#F59E0B] tracking-wider uppercase">
                 STAGE 02
               </div>
-              <div className="font-sans font-bold text-xs sm:text-sm text-white my-1">
+              <div className="font-sans font-bold text-xs sm:text-sm text-white my-1 leading-tight">
                 Provenance
               </div>
               <div className="text-[10px] text-zinc-300 font-medium">
@@ -171,11 +174,11 @@ export default function ProjectProofCard({ projectId }) {
               </div>
             </div>
 
-            <div className="glass-telemetry-tile p-3 rounded-xl flex flex-col justify-between">
+            <div className="glass-telemetry-tile p-2.5 sm:p-3 rounded-xl flex flex-col justify-between">
               <div className="text-[10px] font-black text-[#F59E0B] tracking-wider uppercase">
                 STAGE 03
               </div>
-              <div className="font-sans font-bold text-xs sm:text-sm text-white my-1">
+              <div className="font-sans font-bold text-xs sm:text-sm text-white my-1 leading-tight">
                 Fair Commerce
               </div>
               <div className="text-[10px] text-zinc-300 font-medium">
@@ -184,9 +187,13 @@ export default function ProjectProofCard({ projectId }) {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pt-2.5 border-t border-white/10 text-[11px] text-zinc-300">
-            <span>Award: Rural Indian Business Conclave Winner</span>
-            <span className="text-[#F59E0B] font-bold tracking-wider drop-shadow-sm">
+          {/* Award Footer - Clean, Non-wrapping Grid */}
+          <div className="glass-telemetry-tile p-2.5 sm:p-3 rounded-xl flex items-center justify-between gap-2 text-[11px]">
+            <div className="flex items-center gap-1.5 text-zinc-300 min-w-0">
+              <Award className="w-3.5 h-3.5 text-[#F59E0B] shrink-0" />
+              <span className="truncate">Rural Indian Conclave Winner</span>
+            </div>
+            <span className="text-[#F59E0B] font-bold text-[10px] sm:text-[11px] tracking-wider whitespace-nowrap bg-[#F59E0B]/15 px-2 py-0.5 rounded border border-[#F59E0B]/40 shrink-0 shadow-sm">
               100% ETHICAL TRACEABILITY
             </span>
           </div>
@@ -196,7 +203,7 @@ export default function ProjectProofCard({ projectId }) {
   }
 
   if (projectId === 'project-4') {
-    // ₹36L+ Corporate Sponsorship Architecture (Featured in user's image)
+    // ₹36L+ Corporate Sponsorship Architecture (Capital Portfolio)
     return (
       <div className="glass-telemetry-card my-5 p-4 sm:p-5 rounded-2xl text-white font-mono border-[#00F0FF]/40 hover:border-[#00F0FF]/80 hover:shadow-[0_0_30px_rgba(0,240,255,0.25)]">
         {/* Ambient Glass Reflections & Glow */}
@@ -241,16 +248,24 @@ export default function ProjectProofCard({ projectId }) {
             </div>
           </div>
 
-          <div className="glass-telemetry-tile p-2.5 sm:p-3 rounded-xl flex flex-wrap items-center justify-between gap-2 text-xs">
-            <div className="flex items-center gap-2">
-              <span className="text-zinc-300">Team Mobilized:</span>
-              <span className="text-white font-bold bg-white/10 px-2.5 py-0.5 rounded border border-white/15 text-[11px] shadow-sm">
+          {/* Clean 2-Row Structured Telemetry Tile: Eliminates Any Overlap or Text Breaking */}
+          <div className="glass-telemetry-tile p-3 rounded-xl text-xs space-y-2">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-1.5 text-zinc-300">
+                <Users className="w-3.5 h-3.5 text-[#00F0FF] shrink-0" />
+                <span className="font-medium text-[11px]">Team Mobilized:</span>
+              </div>
+              <span className="text-white font-bold bg-white/10 px-2.5 py-0.5 rounded border border-white/20 text-[11px] shadow-sm whitespace-nowrap">
                 120+ Crew Members
               </span>
             </div>
-            <span className="text-[#00F0FF] font-bold text-[11px] tracking-wide drop-shadow-sm">
-              ₹36L+ Cumulative Closed
-            </span>
+
+            <div className="flex items-center justify-between gap-2 pt-2 border-t border-white/10">
+              <span className="text-zinc-400 text-[11px]">Cumulative Sponsorship:</span>
+              <span className="text-[#00F0FF] font-bold text-xs tracking-wide drop-shadow-sm whitespace-nowrap bg-[#00F0FF]/10 px-2 py-0.5 rounded border border-[#00F0FF]/30">
+                ₹36L+ Closed
+              </span>
+            </div>
           </div>
         </div>
       </div>
