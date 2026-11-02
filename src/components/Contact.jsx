@@ -53,7 +53,7 @@ export default function Contact() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b-2.5 border-[#0B0E14]">
           <div>
             <div className="inline-flex items-center gap-2 bg-[#0B0E14] text-[#FF0055] font-mono font-bold text-xs uppercase px-3 py-1 rounded-md border border-[#0B0E14] shadow-spider-sm mb-3">
-              <span>// CHAPTER 06 • TRANSMISSION DECK</span>
+              <span>// CHAPTER 07 • TRANSMISSION DECK</span>
             </div>
             <h2 className="spider-glitch font-syne font-black text-4xl sm:text-5xl text-[#0B0E14] tracking-tight uppercase">
               INITIATE A CONVERSATION

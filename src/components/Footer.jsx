@@ -58,6 +58,7 @@ export default function Footer({ onOpenMythology, theme = 'light', onToggleTheme
                 <li><a href="#projects" className="hover:text-white transition-colors">03 // Creative Works</a></li>
                 <li><a href="#skills" className="hover:text-white transition-colors">04 // Arsenal</a></li>
                 <li><a href="#insights" className="hover:text-white transition-colors">05 // Dispatches</a></li>
+                <li><a href="#neuromarketing-map" className="hover:text-white transition-colors">06 // Cognitive Route Map</a></li>
               </ul>
             </div>
 
@@ -68,7 +69,7 @@ export default function Footer({ onOpenMythology, theme = 'light', onToggleTheme
                 DIRECT CHANNELS
               </span>
               <ul className="space-y-2 text-zinc-400 font-mono">
-                <li><a href="#contact" className="hover:text-white transition-colors">06 // Collaborate</a></li>
+                <li><a href="#contact" className="hover:text-white transition-colors">07 // Collaborate</a></li>
                 <li>
                   <a 
                     href={`mailto:${personalInfo.email}`}

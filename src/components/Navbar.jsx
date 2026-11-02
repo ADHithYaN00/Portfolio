@@ -11,7 +11,7 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'insights', 'contact'];
+      const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'insights', 'neuromarketing-map', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -37,6 +37,7 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
     { name: 'Campaigns & Works', href: '#projects', id: 'projects' },
     { name: 'Arsenal', href: '#skills', id: 'skills' },
     { name: 'Dispatches', href: '#insights', id: 'insights' },
+    { name: 'Neuro Map', href: '#neuromarketing-map', id: 'neuromarketing-map' },
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 

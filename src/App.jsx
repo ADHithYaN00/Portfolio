@@ -13,6 +13,7 @@ import ChibiCompanion from './components/ChibiCompanion';
 import MythologicalSanctum from './components/MythologicalSanctum';
 import CursorDustTrail from './components/CursorDustTrail';
 import AmbientAudio from './components/AmbientAudio';
+import NeuromarketingMap from './components/NeuromarketingMap';
 
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -152,6 +153,7 @@ export default function App() {
             <Projects />
             <Skills />
             <Insights />
+            <NeuromarketingMap />
             <Contact />
           </main>
 
