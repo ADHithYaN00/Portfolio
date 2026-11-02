@@ -3,7 +3,15 @@ import { Menu, X, ArrowUpRight, Zap, Sparkles, FileText, Download, Sun, Moon, Vo
 import { personalInfo } from '../data/portfolioData';
 import { getAudioEngine } from './AmbientAudio';
 
-export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme, isMuted = false, onToggleMute }) {
+export default function Navbar({ 
+  onOpenMythology, 
+  theme = 'light', 
+  onToggleTheme, 
+  darkViewMode = 'dashboard', 
+  onToggleDarkViewMode, 
+  isMuted = false, 
+  onToggleMute 
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -183,16 +191,17 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
               )}
             </button>
 
-            {/* Minimalist Theme Toggle Button */}
+            {/* Minimalist Theme Toggle Button (Optimized for Web & iOS touch) */}
             <button
+              type="button"
               onClick={onToggleTheme}
-              className={`p-2 rounded-xl border transition-all flex items-center justify-center ${
+              className={`p-2 rounded-xl border transition-all flex items-center justify-center cursor-pointer select-none touch-manipulation active:scale-95 ${
                 isDark
                   ? 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/40'
                   : 'bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm hover:bg-zinc-100'
               }`}
               title={isDark ? "Switch to Vibrant Light Mode" : "Switch to Minimalist B&W Dark Mode"}
-              aria-label="Toggle theme"
+              aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
               {isDark ? (
                 <Sun className="w-4 h-4 text-amber-300 transition-transform hover:rotate-45" />
@@ -200,6 +209,18 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
                 <Moon className="w-4 h-4 text-zinc-900 transition-transform hover:-rotate-12" />
               )}
             </button>
+
+            {/* Optional Dossier View Pill in Dark Mode */}
+            {isDark && onToggleDarkViewMode && (
+              <button
+                type="button"
+                onClick={onToggleDarkViewMode}
+                className="px-2.5 py-1.5 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 text-white font-mono text-[10px] uppercase tracking-wider flex items-center gap-1 cursor-pointer select-none touch-manipulation transition-colors"
+                title="Switch to Minimal Executive Dossier"
+              >
+                <span>{darkViewMode === 'portfolio' ? 'Dossier View' : 'Full Portfolio'}</span>
+              </button>
+            )}
 
             {/* Ancient Realm Mystery Portal Button */}
             <button
@@ -256,16 +277,17 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
               {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 animate-pulse" />}
             </button>
 
-            {/* Mobile Theme Toggle Button */}
+            {/* Mobile Theme Toggle Button (Touch-optimized for iOS & Android) */}
             <button
+              type="button"
               onClick={onToggleTheme}
-              className={`p-1.5 rounded-lg border transition-all flex items-center justify-center ${
+              className={`w-9 h-9 rounded-xl border transition-all flex items-center justify-center cursor-pointer select-none touch-manipulation active:scale-95 ${
                 isDark
-                  ? 'bg-white/10 text-white border-white/20'
-                  : 'bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm'
+                  ? 'bg-white/15 text-white border-white/25 active:bg-white/20'
+                  : 'bg-white text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm active:bg-zinc-100'
               }`}
-              title="Toggle theme"
-              aria-label="Toggle theme"
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
               {isDark ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-zinc-900" />}
             </button>
@@ -332,20 +354,21 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
               </span>
             </button>
 
-            {/* Quick Theme Switch Row */}
+            {/* Quick Theme Switch Row (iOS & Web touch-optimized) */}
             <button
+              type="button"
               onClick={onToggleTheme}
-              className={`w-full py-2.5 px-3 rounded-lg border flex items-center justify-between font-mono text-xs font-bold uppercase transition-colors ${
+              className={`w-full py-3 px-4 rounded-xl border flex items-center justify-between font-mono text-xs font-bold uppercase cursor-pointer select-none touch-manipulation active:scale-98 transition-all ${
                 isDark
-                  ? 'bg-white/5 text-zinc-200 border-white/15 hover:bg-white/10'
-                  : 'bg-zinc-50 text-[#0B0E14] border-2 border-[#0B0E14]'
+                  ? 'bg-white/10 text-white border-white/20 active:bg-white/15'
+                  : 'bg-zinc-100 text-[#0B0E14] border-2 border-[#0B0E14] shadow-spider-sm active:bg-zinc-200'
               }`}
             >
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2.5">
                 {isDark ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-zinc-900" />}
-                <span>{isDark ? 'Mode: Minimalist B&W' : 'Mode: Vibrant Pop-Art'}</span>
+                <span>{isDark ? 'Mode: Dark Theme' : 'Mode: Light Theme'}</span>
               </span>
-              <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded">
+              <span className="text-[10px] bg-white/15 px-2.5 py-1 rounded border border-white/10 font-black">
                 Switch to {isDark ? 'Light' : 'Dark'}
               </span>
             </button>

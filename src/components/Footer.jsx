@@ -106,9 +106,11 @@ export default function Footer({ onOpenMythology, theme = 'light', onToggleTheme
           <div className="md:col-span-3 flex flex-col md:items-end justify-between">
             <div className="flex items-center gap-2">
               <button
+                type="button"
                 onClick={onToggleTheme}
-                className="inline-flex items-center space-x-1.5 px-3 py-2 bg-white/5 hover:bg-white/10 text-white font-mono font-bold text-xs uppercase tracking-wider rounded-xl border border-white/15 transition-colors"
+                className="inline-flex items-center space-x-1.5 px-3 py-2 bg-white/5 hover:bg-white/10 text-white font-mono font-bold text-xs uppercase tracking-wider rounded-xl border border-white/15 cursor-pointer select-none touch-manipulation active:scale-95 transition-all"
                 title="Toggle Theme"
+                aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
               >
                 {isDark ? <Sun className="w-3.5 h-3.5 text-amber-300" /> : <Moon className="w-3.5 h-3.5 text-zinc-300" />}
                 <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>

@@ -19,8 +19,16 @@ import ExecutiveDashboard from './components/ExecutiveDashboard';
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('portfolio_theme') || 'light';
+    try {
+      const saved = localStorage.getItem('portfolio_theme');
+      if (saved === 'dark' || saved === 'light') return saved;
+      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+    } catch (e) {}
+    return 'light';
   });
+  const [darkViewMode, setDarkViewMode] = useState('dashboard'); // 'dashboard' | 'portfolio'
   const [isMuted, setIsMuted] = useState(false);
   const [realm, setRealm] = useState(() => {
     return window.location.hash === '#ancient-codex' || window.location.hash === '#mythology' 
@@ -29,23 +37,41 @@ export default function App() {
   });
 
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('portfolio_theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('portfolio_theme', 'light');
+    try {
+      const root = document.documentElement;
+      const body = document.body;
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
+      if (theme === 'dark') {
+        root.classList.add('dark');
+        if (body) body.classList.add('dark');
+        localStorage.setItem('portfolio_theme', 'dark');
+        if (metaThemeColor) metaThemeColor.setAttribute('content', '#050608');
+      } else {
+        root.classList.remove('dark');
+        if (body) body.classList.remove('dark');
+        localStorage.setItem('portfolio_theme', 'light');
+        if (metaThemeColor) metaThemeColor.setAttribute('content', '#FAFCFF');
+      }
+    } catch (e) {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     }
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
   };
 
   const toggleMute = () => {
     setIsMuted(prev => {
       const next = !prev;
-      localStorage.setItem('portfolio_music_muted', String(next));
+      try {
+        localStorage.setItem('portfolio_music_muted', String(next));
+      } catch (e) {}
       return next;
     });
   };
@@ -97,17 +123,22 @@ export default function App() {
 
       {realm === 'mythology' ? (
         <MythologicalSanctum onReturnToModern={returnToModernRealm} />
-      ) : theme === 'dark' ? (
+      ) : theme === 'dark' && darkViewMode === 'dashboard' ? (
         <ExecutiveDashboard 
           onOpenMythology={openMythologyRealm}
           onToggleTheme={toggleTheme}
+          onSwitchToFullPortfolio={() => setDarkViewMode('portfolio')}
           isMuted={isMuted}
           onToggleMute={toggleMute}
         />
       ) : (
-        <div className="relative min-h-screen bg-[#FAFCFF] text-[#0B0E14] selection:bg-[#FF0055] selection:text-white flex flex-col font-sans overflow-x-hidden transition-colors duration-300">
-          {/* Floating Antigravity Starlight & Micro-Sparks */}
-          <GoldenParticles />
+        <div className={`relative min-h-screen ${
+          theme === 'dark'
+            ? 'bg-[#050608] text-zinc-100 selection:bg-white selection:text-black'
+            : 'bg-[#FAFCFF] text-[#0B0E14] selection:bg-[#FF0055] selection:text-white'
+        } flex flex-col font-sans overflow-x-hidden transition-colors duration-300`}>
+          {/* Floating Antigravity Starlight & Micro-Sparks (Active only in creative light mode) */}
+          {theme !== 'dark' && <GoldenParticles />}
 
           {/* Spider-Verse & Genshin Ambient Color Glows */}
           <div className="fixed top-0 right-10 w-[550px] h-[550px] bg-[#00F0FF]/5 rounded-full blur-[140px] pointer-events-none -z-10" />
@@ -142,6 +173,8 @@ export default function App() {
             onOpenMythology={openMythologyRealm} 
             theme={theme} 
             onToggleTheme={toggleTheme}
+            darkViewMode={darkViewMode}
+            onToggleDarkViewMode={() => setDarkViewMode(prev => prev === 'dashboard' ? 'portfolio' : 'dashboard')}
             isMuted={isMuted}
             onToggleMute={toggleMute}
           />

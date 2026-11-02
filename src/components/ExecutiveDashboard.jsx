@@ -38,7 +38,13 @@ import {
 import { TOOLKIT_LOGOS } from './ToolLogos';
 import { getAudioEngine } from './AmbientAudio';
 
-export default function ExecutiveDashboard({ onOpenMythology, onToggleTheme, isMuted, onToggleMute }) {
+export default function ExecutiveDashboard({ 
+  onOpenMythology, 
+  onToggleTheme, 
+  onSwitchToFullPortfolio, 
+  isMuted, 
+  onToggleMute 
+}) {
   const [activeTab, setActiveTab] = useState('overview');
 
   const handleToggleMute = async () => {
@@ -68,16 +74,16 @@ export default function ExecutiveDashboard({ onOpenMythology, onToggleTheme, isM
           EXECUTIVE DASHBOARD HEADER
           ======================================================== */}
       <header className="sticky top-0 z-40 bg-[#07090D]/95 backdrop-blur-md border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2">
           
           {/* Identity & Status */}
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center font-mono font-bold text-xs text-white">
+          <div className="flex items-center space-x-2.5 sm:space-x-3 min-w-0">
+            <div className="w-8 h-8 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center font-mono font-bold text-xs text-white shrink-0">
               AM
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="font-mono font-bold text-sm tracking-wider uppercase text-white">
+                <span className="font-mono font-bold text-xs sm:text-sm tracking-wider uppercase text-white truncate">
                   ADHITHYAN M.
                 </span>
                 <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-emerald-500" />
@@ -85,42 +91,59 @@ export default function ExecutiveDashboard({ onOpenMythology, onToggleTheme, isM
                   Executive Dossier
                 </span>
               </div>
-              <span className="font-sans text-[11px] text-zinc-400 block">
+              <span className="font-sans text-[10px] sm:text-[11px] text-zinc-400 truncate block">
                 MBA (Marketing & Operations) • NITK '26
               </span>
             </div>
           </div>
 
-          {/* Executive Controls */}
-          <div className="flex items-center space-x-2.5">
+          {/* Executive Controls (Touch & iOS optimized) */}
+          <div className="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
             {/* Audio Toggle */}
             <button
+              type="button"
               onClick={handleToggleMute}
-              className="w-9 h-9 rounded-lg border border-zinc-800 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 flex items-center justify-center transition-colors"
+              className="w-9 h-9 rounded-lg border border-zinc-800 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 flex items-center justify-center cursor-pointer select-none touch-manipulation active:scale-95 transition-all"
               title={isMuted ? "Unmute Ambient Audio" : "Mute Ambient Audio"}
               aria-label="Toggle ambient music"
             >
               {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
             </button>
 
+            {/* Toggle Full Portfolio in Dark Mode */}
+            {onSwitchToFullPortfolio && (
+              <button
+                type="button"
+                onClick={onSwitchToFullPortfolio}
+                className="hidden md:inline-flex h-9 px-3 rounded-lg border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-wider items-center gap-1.5 cursor-pointer select-none touch-manipulation transition-colors"
+                title="View Full Portfolio Experience in Dark Mode"
+              >
+                <span>Full Portfolio View</span>
+              </button>
+            )}
+
             {/* Switch to Creative Light Theme */}
             <button
+              type="button"
               onClick={onToggleTheme}
-              className="h-9 px-3 rounded-lg border border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
-              title="Switch to Creative Light View"
+              className="h-9 px-2.5 sm:px-3 rounded-lg border border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 cursor-pointer select-none touch-manipulation active:scale-95 transition-all"
+              title="Switch to Vibrant Light Mode"
+              aria-label="Switch to Vibrant Light Mode"
             >
               <Sun className="w-3.5 h-3.5 text-amber-400" />
-              <span className="hidden sm:inline">Light Theme</span>
+              <span className="hidden sm:inline">Light Mode</span>
             </button>
 
             {/* Ancient Codex Mystery Portal */}
             <button
+              type="button"
               onClick={onOpenMythology}
-              className="matte-sand-btn h-9 px-3.5 rounded-lg text-xs uppercase tracking-wider flex items-center gap-1.5"
+              className="matte-sand-btn h-9 px-2.5 sm:px-3.5 rounded-lg text-xs uppercase tracking-wider flex items-center gap-1.5 cursor-pointer select-none touch-manipulation active:scale-95"
               title="Enter the Ancient Desert Codex"
             >
               <Eye className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>ARABIAN CODEX</span>
+              <span className="hidden sm:inline">ARABIAN CODEX</span>
+              <span className="sm:hidden">CODEX</span>
             </button>
 
             {/* Download CV */}
@@ -129,7 +152,7 @@ export default function ExecutiveDashboard({ onOpenMythology, onToggleTheme, isM
               target="_blank"
               rel="noopener noreferrer"
               download="Adhithyan_M_Resume.pdf"
-              className="hidden md:inline-flex items-center gap-1.5 h-9 px-3.5 rounded-lg bg-white text-black hover:bg-zinc-200 text-xs font-mono font-bold uppercase tracking-wider transition-colors"
+              className="hidden lg:inline-flex items-center gap-1.5 h-9 px-3.5 rounded-lg bg-white text-black hover:bg-zinc-200 text-xs font-mono font-bold uppercase tracking-wider transition-colors"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Resume PDF</span>

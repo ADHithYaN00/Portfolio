@@ -26,8 +26,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Cinzel:wght@500;700;900&family=Cinzel+Decorative:wght@700;900&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@500;700;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
+    <!-- Inline Theme Bootstrap to eliminate white flash and initialize dark mode on iOS/Web -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('portfolio_theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-[#FAFCFF] text-[#0B0E14] font-sans antialiased selection:bg-[#FF0055] selection:text-white overflow-x-hidden min-h-screen">
+  <body class="bg-[#FAFCFF] dark:bg-[#050608] text-[#0B0E14] dark:text-zinc-100 font-sans antialiased selection:bg-[#FF0055] selection:text-white overflow-x-hidden min-h-screen">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
