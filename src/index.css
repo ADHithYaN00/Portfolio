@@ -674,8 +674,33 @@ body.custom-dust-cursor .spider-btn {
 
 html.dark,
 html.dark body {
-  background-color: #07080A !important;
+  background-color: #050608 !important;
   color: #F4F4F5 !important;
+}
+
+/* Complete animation & particle effect shutdown in dark executive mode */
+html.dark *,
+html.dark *::before,
+html.dark *::after {
+  animation: none !important;
+  transition-property: color, background-color, border-color !important;
+  transition-duration: 0.15s !important;
+}
+
+/* Standard professional pointer cursor in dark mode (no dust/particle cursor) */
+html.dark,
+html.dark body,
+html.dark * {
+  cursor: auto !important;
+}
+
+html.dark a,
+html.dark button,
+html.dark [role="button"],
+html.dark input,
+html.dark select,
+html.dark textarea {
+  cursor: pointer !important;
 }
 
 /* Strip halftone pattern in dark mode for pure clean silence */

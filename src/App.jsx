@@ -14,6 +14,7 @@ import MythologicalSanctum from './components/MythologicalSanctum';
 import CursorDustTrail from './components/CursorDustTrail';
 import AmbientAudio from './components/AmbientAudio';
 import NeuromarketingMap from './components/NeuromarketingMap';
+import ExecutiveDashboard from './components/ExecutiveDashboard';
 
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -91,27 +92,30 @@ export default function App() {
 
   return (
     <>
-      {/* Universal Antigravity Stardust Particle Cursor / Arabian Sand Cursor */}
-      <CursorDustTrail isAncient={realm === 'mythology'} />
+      {/* Universal Antigravity Stardust Particle Cursor / Arabian Sand Cursor (Silenced in dark executive mode) */}
+      {theme !== 'dark' && <CursorDustTrail isAncient={realm === 'mythology'} />}
 
       {/* Subtle Ambient Background Music Engine & Floating Controller */}
       <AmbientAudio isMuted={isMuted} onToggleMute={toggleMute} theme={theme} />
 
       {realm === 'mythology' ? (
         <MythologicalSanctum onReturnToModern={returnToModernRealm} />
+      ) : theme === 'dark' ? (
+        <ExecutiveDashboard 
+          onOpenMythology={openMythologyRealm}
+          onToggleTheme={toggleTheme}
+          isMuted={isMuted}
+          onToggleMute={toggleMute}
+        />
       ) : (
-        <div className={`relative min-h-screen ${theme === 'dark' ? 'bg-[#07080A] text-zinc-100' : 'bg-[#FAFCFF] text-[#0B0E14]'} selection:bg-[#FF0055] selection:text-white flex flex-col font-sans overflow-x-hidden transition-colors duration-300`}>
+        <div className="relative min-h-screen bg-[#FAFCFF] text-[#0B0E14] selection:bg-[#FF0055] selection:text-white flex flex-col font-sans overflow-x-hidden transition-colors duration-300">
           {/* Floating Antigravity Starlight & Micro-Sparks */}
           <GoldenParticles />
 
-          {/* Spider-Verse & Genshin Ambient Color Glows (Muted in dark mode for clean focus) */}
-          {theme !== 'dark' && (
-            <>
-              <div className="fixed top-0 right-10 w-[550px] h-[550px] bg-[#00F0FF]/5 rounded-full blur-[140px] pointer-events-none -z-10" />
-              <div className="fixed top-1/3 left-0 w-[500px] h-[500px] bg-[#FF0055]/5 rounded-full blur-[160px] pointer-events-none -z-10" />
-              <div className="fixed bottom-1/4 right-0 w-[500px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-[150px] pointer-events-none -z-10" />
-            </>
-          )}
+          {/* Spider-Verse & Genshin Ambient Color Glows */}
+          <div className="fixed top-0 right-10 w-[550px] h-[550px] bg-[#00F0FF]/5 rounded-full blur-[140px] pointer-events-none -z-10" />
+          <div className="fixed top-1/3 left-0 w-[500px] h-[500px] bg-[#FF0055]/5 rounded-full blur-[160px] pointer-events-none -z-10" />
+          <div className="fixed bottom-1/4 right-0 w-[500px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-[150px] pointer-events-none -z-10" />
 
           {/* Accessible Skip Link */}
           <a 
