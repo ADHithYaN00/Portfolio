@@ -3,7 +3,7 @@ import { HelpCircle, Sparkles, X, ChevronRight, ChevronLeft, Zap, ArrowUpRight, 
 import { personalInfo } from '../data/portfolioData';
 
 export default function ChibiCompanion({ onOpenMythology }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const faqs = [
@@ -100,23 +100,23 @@ export default function ChibiCompanion({ onOpenMythology }) {
       {/* FAQ Speech Panel */}
       {isOpen && (
         <div 
-          className="mb-3 w-[310px] sm:w-[380px] bg-white border-2.5 border-[#0B0E14] rounded-3xl p-4 sm:p-5 shadow-spider-md relative group animate-fadeIn"
+          className="mb-3 w-[310px] sm:w-[380px] bg-white dark:bg-[#0E1015] border-2.5 border-[#0B0E14] dark:border-zinc-700 rounded-3xl p-4 sm:p-5 shadow-spider-md relative group animate-fadeIn"
           role="region"
           aria-live="polite"
         >
           {/* Header Strip */}
-          <div className="flex items-center justify-between pb-2 mb-3 border-b-2 border-zinc-100">
-            <div className="flex items-center gap-1.5 font-mono font-bold text-[11px] text-[#0B0E14]">
+          <div className="flex items-center justify-between pb-2 mb-3 border-b-2 border-zinc-100 dark:border-zinc-800">
+            <div className="flex items-center gap-1.5 font-mono font-bold text-[11px] text-[#0B0E14] dark:text-zinc-200">
               <HelpCircle className="w-4 h-4 text-[#FF0055]" />
               <span>CHIBI FAQ // ABOUT ADHI</span>
-              <span className="bg-zinc-100 text-zinc-600 px-1.5 py-0.5 rounded text-[10px]">
+              <span className="bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 px-1.5 py-0.5 rounded text-[10px]">
                 {currentIndex + 1}/{faqs.length}
               </span>
             </div>
 
             <button
               onClick={() => setIsOpen(false)}
-              className="w-6 h-6 bg-zinc-100 text-zinc-700 hover:bg-[#FF0055] hover:text-white rounded-full flex items-center justify-center transition-colors focus:outline-none"
+              className="w-6 h-6 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-[#FF0055] hover:text-white rounded-full flex items-center justify-center transition-colors focus:outline-none"
               aria-label="Minimize FAQ companion"
             >
               <X className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -131,8 +131,8 @@ export default function ChibiCompanion({ onOpenMythology }) {
                 onClick={() => setCurrentIndex(idx)}
                 className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-md border transition-all ${
                   currentIndex === idx
-                    ? 'bg-[#0B0E14] text-white border-[#0B0E14] shadow-sm'
-                    : 'bg-zinc-50 text-zinc-600 border-zinc-200 hover:border-[#0B0E14]'
+                    ? 'bg-[#0B0E14] dark:bg-white text-white dark:text-[#0B0E14] border-[#0B0E14] dark:border-white shadow-sm'
+                    : 'bg-zinc-50 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-750 hover:border-[#0B0E14] dark:hover:border-zinc-500'
                 }`}
               >
                 {f.shortLabel}
@@ -145,29 +145,29 @@ export default function ChibiCompanion({ onOpenMythology }) {
             <span className={`inline-block font-mono font-bold text-[9px] px-2 py-0.5 rounded uppercase tracking-wider ${currentFaq.badgeColor}`}>
               {currentFaq.category}
             </span>
-            <h4 className="font-syne font-bold text-sm sm:text-base text-[#0B0E14] leading-snug">
+            <h4 className="font-syne font-bold text-sm sm:text-base text-[#0B0E14] dark:text-white leading-snug">
               {currentFaq.question}
             </h4>
           </div>
 
           {/* Active Answer */}
-          <p className="font-sans text-xs text-zinc-700 font-medium leading-relaxed mb-4 bg-zinc-50/90 p-2.5 rounded-xl border border-zinc-200">
+          <p className="font-sans text-xs text-zinc-700 dark:text-zinc-300 font-medium leading-relaxed mb-4 bg-zinc-50/90 dark:bg-zinc-900/90 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800">
             {currentFaq.answer}
           </p>
 
           {/* Footer Controls & Direct Action Link */}
-          <div className="flex items-center justify-between pt-2 border-t border-zinc-100">
+          <div className="flex items-center justify-between pt-2 border-t border-zinc-100 dark:border-zinc-800">
             <div className="flex items-center gap-1">
               <button
                 onClick={handlePrev}
-                className="w-7 h-7 bg-white hover:bg-zinc-100 text-[#0B0E14] border border-zinc-300 rounded-lg flex items-center justify-center transition-colors"
+                className="w-7 h-7 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[#0B0E14] dark:text-zinc-200 border border-zinc-300 dark:border-zinc-700 rounded-lg flex items-center justify-center transition-colors"
                 aria-label="Previous question"
               >
                 <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
               </button>
               <button
                 onClick={handleNext}
-                className="w-7 h-7 bg-white hover:bg-zinc-100 text-[#0B0E14] border border-zinc-300 rounded-lg flex items-center justify-center transition-colors"
+                className="w-7 h-7 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[#0B0E14] dark:text-zinc-200 border border-zinc-300 dark:border-zinc-700 rounded-lg flex items-center justify-center transition-colors"
                 aria-label="Next question"
               >
                 <ChevronRight className="w-4 h-4 stroke-[2.5]" />
@@ -177,7 +177,7 @@ export default function ChibiCompanion({ onOpenMythology }) {
             {currentFaq.actionCallback ? (
               <button
                 onClick={currentFaq.actionCallback}
-                className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#D4AF37] hover:text-[#0B0E14] transition-colors"
+                className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#D4AF37] hover:underline transition-colors"
               >
                 <span>{currentFaq.actionLabel}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -187,7 +187,7 @@ export default function ChibiCompanion({ onOpenMythology }) {
                 href={currentFaq.actionHref}
                 target={currentFaq.isExternal ? "_blank" : undefined}
                 rel={currentFaq.isExternal ? "noopener noreferrer" : undefined}
-                className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#FF0055] hover:text-[#0B0E14] transition-colors"
+                className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#FF0055] hover:underline transition-colors"
               >
                 <span>{currentFaq.actionLabel}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -196,25 +196,25 @@ export default function ChibiCompanion({ onOpenMythology }) {
           </div>
 
           {/* Speech Bubble Tail */}
-          <div className="absolute -bottom-2.5 right-8 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-[#0B0E14]" />
-          <div className="absolute -bottom-2 right-8 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-white" />
+          <div className="absolute -bottom-2.5 right-8 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-[#0B0E14] dark:border-t-zinc-700" />
+          <div className="absolute -bottom-2 right-8 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-white dark:border-t-[#0E1015]" />
         </div>
       )}
 
       {/* Chibi Character Trigger */}
-      <div 
-        onClick={() => {
-          if (!isOpen) setIsOpen(true);
-          else setCurrentIndex((prev) => (prev + 1) % faqs.length);
-        }}
-        className="relative group cursor-pointer"
-        title="Click to explore interactive FAQs about Adhithyan!"
+      <button 
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="relative group cursor-pointer focus:outline-none p-0 bg-transparent border-0"
+        title={isOpen ? "Click to close FAQ companion" : "Click to explore interactive FAQs about Adhithyan!"}
+        aria-expanded={isOpen}
+        aria-label={isOpen ? "Close FAQ menu" : "Open FAQ menu"}
       >
         {/* Glow Ring */}
         <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#00F0FF] via-[#FF0055] to-[#F59E0B] opacity-75 blur-sm group-hover:opacity-100 transition-opacity animate-pulse" />
 
         {/* Chibi Avatar Circle */}
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full border-3 border-[#0B0E14] bg-white shadow-spider-md overflow-hidden transform group-hover:scale-105 group-hover:-translate-y-1 transition-all">
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full border-3 border-[#0B0E14] dark:border-white bg-white dark:bg-[#0E1015] shadow-spider-md overflow-hidden transform group-hover:scale-105 group-hover:-translate-y-1 transition-all">
           <img 
             src="/images/chibi-marketer.jpg" 
             alt="Adhithyan Chibi Digital Marketer FAQ Guide"
@@ -227,7 +227,7 @@ export default function ChibiCompanion({ onOpenMythology }) {
           <span className="w-1.5 h-1.5 rounded-full bg-[#FF0055] animate-ping" />
           <span>FAQ</span>
         </div>
-      </div>
+      </button>
     </aside>
   );
 }
