@@ -129,6 +129,19 @@ export function GoogleSearchConsoleLogo({ className = "w-6 h-6" }) {
   );
 }
 
+export function MicrosoftTeamsLogo({ className = "w-6 h-6" }) {
+  return (
+    <svg viewBox="0 0 48 48" className={className} fill="none">
+      <path d="M31 16.5C31 14.567 32.567 13 34.5 13C36.433 13 38 14.567 38 16.5C38 18.433 36.433 20 34.5 20C32.567 20 31 18.433 31 16.5Z" fill="#505AC9"/>
+      <path d="M29 22.5C29 21.6716 29.6716 21 30.5 21H38.5C40.9853 21 43 23.0147 43 25.5V28C43 28.5523 42.5523 29 42 29H36V34C36 35.1046 35.1046 36 34 36H29V22.5Z" fill="#505AC9"/>
+      <path d="M19 12C19 9.23858 21.2386 7 24 7C26.7614 7 29 9.23858 29 12C29 14.7614 26.7614 17 24 17C21.2386 17 19 14.7614 19 12Z" fill="#7B83EB"/>
+      <path d="M16 19C16 17.8954 16.8954 17 18 17H30C31.1046 17 32 17.8954 32 19V34C32 35.6569 30.6569 37 29 37H19C17.3431 37 16 35.6569 16 34V19Z" fill="#7B83EB"/>
+      <rect x="5" y="15" width="20" height="20" rx="4" fill="#464EB8"/>
+      <path d="M17.8 21.5H12.2V23.5H14.1V30H15.9V23.5H17.8V21.5Z" fill="#FFFFFF"/>
+    </svg>
+  );
+}
+
 // Logo Registry with Theme-Aware Accents
 export const TOOLKIT_LOGOS = {
   "Figma": {
@@ -184,6 +197,12 @@ export const TOOLKIT_LOGOS = {
     accent: "#0B0E14",
     bg: "rgba(11, 14, 20, 0.08)",
     border: "hover:border-[#0B0E14] hover:shadow-[3px_3px_0px_#0B0E14]"
+  },
+  "Microsoft Teams": {
+    component: MicrosoftTeamsLogo,
+    accent: "#505AC9",
+    bg: "rgba(80, 90, 201, 0.08)",
+    border: "hover:border-[#505AC9] hover:shadow-[3px_3px_0px_#505AC9]"
   },
   "Google Ads": {
     component: GoogleAdsLogo,

@@ -54,7 +54,7 @@ export const aboutData = {
     { label: "Audience Growth", value: "+137.5% Views · +79.5% Subscribers — Zenrises Creatives" },
     { label: "Team Leadership", value: "120+ Creative & Marketing Crew" },
     { label: "Areas of Interest", value: "Brand Identity · Brand Reputation · Consumer Psychology · Neuromarketing · Brand Experience" },
-    { label: "Creative Toolkit", value: "Figma · Canva · CapCut · ChatGPT · Gemini · Claude · Perplexity · Google Sheets · Notion · Google Ads · Google Search Console" }
+    { label: "Creative Toolkit", value: "Figma · Canva · CapCut · ChatGPT · Gemini · Claude · Perplexity · Google Sheets · Notion · Microsoft Teams · Google Ads · Google Search Console" }
   ]
 };
 
@@ -347,6 +347,7 @@ export const skillsData = {
     { name: "Perplexity", category: "Deep Research" },
     { name: "Google Sheets", category: "Data & Ops" },
     { name: "Notion", category: "Workflows & Docs" },
+    { name: "Microsoft Teams", category: "Enterprise Collab" },
     { name: "Google Ads", category: "Paid Media" },
     { name: "Google Search Console", category: "Search SEO" }
   ]

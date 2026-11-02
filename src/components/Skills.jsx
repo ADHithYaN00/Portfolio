@@ -167,7 +167,7 @@ export default function Skills() {
 
               <div className="flex items-center gap-2 font-mono text-xs font-bold bg-[#FAFCFF] px-3.5 py-2 rounded-xl border border-zinc-300">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#00F0FF] animate-ping" />
-                <span>11 SPECIALIZED TOOLS</span>
+                <span>{(skillsData.toolkit?.length || 12)} SPECIALIZED TOOLS</span>
               </div>
             </div>
 
@@ -183,6 +183,7 @@ export default function Skills() {
                 { name: "Perplexity", category: "Deep Research" },
                 { name: "Google Sheets", category: "Data & Ops" },
                 { name: "Notion", category: "Workflows & Docs" },
+                { name: "Microsoft Teams", category: "Enterprise Collab" },
                 { name: "Google Ads", category: "Paid Media" },
                 { name: "Google Search Console", category: "Search SEO" }
               ]).map((tool, tIdx) => {
@@ -236,7 +237,7 @@ export default function Skills() {
                 COMPLETE TOOLKIT DIRECTORY:
               </span>
               <span className="font-sans font-bold text-[#0B0E14] text-xs sm:text-sm">
-                Figma · Canva · CapCut · ChatGPT · Gemini · Claude · Perplexity · Google Sheets · Notion · Google Ads · Google Search Console
+                Figma · Canva · CapCut · ChatGPT · Gemini · Claude · Perplexity · Google Sheets · Notion · Microsoft Teams · Google Ads · Google Search Console
               </span>
             </div>
           </div>
