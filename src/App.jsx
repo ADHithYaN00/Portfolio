@@ -91,8 +91,8 @@ export default function App() {
 
   return (
     <>
-      {/* Universal Antigravity Stardust Particle Cursor */}
-      <CursorDustTrail />
+      {/* Universal Antigravity Stardust Particle Cursor / Arabian Sand Cursor */}
+      <CursorDustTrail isAncient={realm === 'mythology'} />
 
       {/* Subtle Ambient Background Music Engine & Floating Controller */}
       <AmbientAudio isMuted={isMuted} onToggleMute={toggleMute} theme={theme} />
