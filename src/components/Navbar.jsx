@@ -201,14 +201,14 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
               )}
             </button>
 
-            {/* Ancient Realm Mystery Portal Button: WHAT */}
+            {/* Ancient Realm Mystery Portal Button */}
             <button
               onClick={onOpenMythology}
               className="matte-sand-btn animate-matte-sand-pulse px-3.5 py-1.5 rounded-xl text-xs uppercase tracking-wider inline-flex items-center gap-1.5"
-              title="Unlock the Ancient Neuromarketing Codex"
+              title="Unlock the Ancient Arabian Neuromarketing Codex"
             >
               <Eye className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>WHAT</span>
+              <span>ARABIAN CODEX</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#5A4832] animate-ping" />
             </button>
 
@@ -273,10 +273,10 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
             <button
               onClick={onOpenMythology}
               className="matte-sand-btn animate-matte-sand-pulse sm:hidden text-[11px] uppercase px-2.5 py-1.5 rounded-lg inline-flex items-center gap-1"
-              title="Unlock the Ancient Neuromarketing Codex"
+              title="Unlock the Ancient Arabian Neuromarketing Codex"
             >
               <Eye className="w-3 h-3 stroke-[2.5]" />
-              <span>WHAT</span>
+              <span>CODEX</span>
             </button>
 
             <button
@@ -379,7 +379,7 @@ export default function Navbar({ onOpenMythology, theme = 'light', onToggleTheme
                 className="matte-sand-btn animate-matte-sand-pulse w-full py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2"
               >
                 <Eye className="w-4 h-4 stroke-[2.5]" />
-                <span>WHAT // ARABIAN DESERT CODEX</span>
+                <span>ARABIAN DESERT CODEX</span>
               </button>
 
               <a

@@ -120,7 +120,7 @@ export default function ExecutiveDashboard({ onOpenMythology, onToggleTheme, isM
               title="Enter the Ancient Desert Codex"
             >
               <Eye className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>WHAT</span>
+              <span>ARABIAN CODEX</span>
             </button>
 
             {/* Download CV */}

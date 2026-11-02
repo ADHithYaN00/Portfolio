@@ -53,7 +53,7 @@ function AnimatedCounter({ targetValue, prefix = "", suffix = "", decimals = 0, 
   return (
     <div 
       onMouseEnter={handleReplay}
-      className={`font-syne font-black text-5xl text-[#0B0E14] leading-none mb-1.5 transition-colors cursor-pointer select-none inline-flex items-baseline ${hoverColor}`}
+      className={`font-syne font-black text-3xl sm:text-4xl lg:text-[2.75rem] text-[#0B0E14] leading-none mb-1.5 transition-colors cursor-pointer select-none inline-flex items-baseline ${hoverColor}`}
       title="Hover to re-roll metric counter"
     >
       <span>{prefix}</span>
@@ -70,16 +70,16 @@ export default function Hero({ onOpenMythology }) {
   return (
     <section 
       id="hero" 
-      className="relative pt-32 pb-24 md:pt-40 md:pb-32 bg-[#FAFCFF] halftone-spider border-b-3 border-[#0B0E14] overflow-hidden"
+      className="relative pt-28 pb-16 md:pt-36 md:pb-24 bg-[#FAFCFF] halftone-spider border-b-3 border-[#0B0E14] overflow-hidden"
     >
-      {/* Genshin Impact Anime Scenery Layer (Floating Islands & Twilight Clouds) */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 opacity-20">
+      {/* Genshin Impact Anime Atmosphere Layer (Soft Celestial Horizon Blend) */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 opacity-10">
         <div 
-          className="w-full h-full bg-cover bg-center animate-ken-burns filter brightness-105 contrast-110"
+          className="w-full h-full bg-cover bg-center filter blur-[1px] brightness-110 contrast-105"
           style={{ backgroundImage: `url('/images/genshin-scenery.jpg')` }}
         />
-        {/* Soft anime atmospheric horizon blend */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#FAFCFF] via-transparent to-[#FAFCFF]" />
+        {/* Soft atmospheric horizon blend */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAFCFF] via-[#FAFCFF]/60 to-[#FAFCFF]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#FAFCFF] via-transparent to-[#FAFCFF]" />
       </div>
 
@@ -108,8 +108,8 @@ export default function Hero({ onOpenMythology }) {
         </div>
 
         {/* MAIN HEADING: "ADHITHYAN M." IN ULTRA-BOLD WITH SPIDER-VERSE GLITCH EFFECT */}
-        <div className="relative py-2 my-1">
-          <h1 className="spider-glitch font-syne font-black text-6xl sm:text-7xl md:text-8xl lg:text-[9.5rem] leading-[0.9] text-[#0B0E14] tracking-tight uppercase select-none cursor-default drop-shadow-[4px_4px_0px_#00F0FF]">
+        <div className="relative py-2 my-1 max-w-full overflow-hidden">
+          <h1 className="spider-glitch font-syne font-black text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.8rem] leading-[0.95] text-[#0B0E14] tracking-tight uppercase select-none cursor-default drop-shadow-[4px_4px_0px_#00F0FF] whitespace-nowrap inline-block">
             ADHITHYAN M.
           </h1>
         </div>
@@ -215,14 +215,14 @@ export default function Hero({ onOpenMythology }) {
 
         {/* Centered Spider-Verse Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-          {/* Ancient Mythological Codex Portal Button: "WHAT" in Matte Sand with Slow Breathing */}
+          {/* Ancient Mythological Codex Portal Button */}
           <button
             onClick={onOpenMythology}
             className="matte-sand-btn animate-matte-sand-pulse px-7 py-3.5 rounded-xl text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2.5"
-            title="Unlock the Ancient Neuromarketing Codex Realm"
+            title="Unlock the Ancient Arabian Neuromarketing Codex Realm"
           >
             <Eye className="w-4 h-4 stroke-[2.5]" />
-            <span>WHAT</span>
+            <span>ENTER ARABIAN CODEX</span>
             <span className="w-1.5 h-1.5 rounded-full bg-[#5A4832] animate-ping" />
           </button>
 

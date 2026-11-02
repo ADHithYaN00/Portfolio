@@ -98,7 +98,7 @@ export default function MythologicalSanctum({ onReturnToModern }) {
               title="Return to the Spider-Verse Modern Portfolio"
             >
               <ArrowLeft className="w-4 h-4 stroke-[3] group-hover:-translate-x-1 transition-transform" />
-              <span>WHAT // RETURN</span>
+              <span>RETURN TO MODERN REALM</span>
             </button>
           </div>
 
@@ -384,7 +384,7 @@ export default function MythologicalSanctum({ onReturnToModern }) {
           className="matte-sand-btn px-4 py-2.5 rounded-full text-xs uppercase tracking-widest flex items-center gap-2 transition-all transform hover:scale-105"
         >
           <ArrowLeft className="w-4 h-4 stroke-[3] group-hover:-translate-x-1 transition-transform" />
-          <span>WHAT // EXIT SANCTUM</span>
+          <span>EXIT ARABIAN SANCTUM</span>
         </button>
       </div>
 
