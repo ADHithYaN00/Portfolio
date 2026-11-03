@@ -106,11 +106,11 @@ export default function Navbar({
             href="#hero" 
             className="group flex items-center gap-3 focus:outline-none"
           >
-            <div className="font-mono font-black text-sm px-2.5 py-1.5 rounded-lg bg-[#141822] text-white border border-white/20 shadow-sm group-hover:border-[#F59E0B] transition-colors shrink-0">
+            <div className="font-sans font-black text-sm px-2.5 py-1.5 rounded-xl bg-white text-black shadow-md group-hover:bg-[#F59E0B] transition-colors shrink-0">
               AM
             </div>
             <div>
-              <span className="font-serif font-black text-base sm:text-lg tracking-tight block leading-tight text-white group-hover:text-[#F59E0B] transition-colors">
+              <span className="font-serif font-bold text-base sm:text-lg tracking-tight block leading-tight text-white group-hover:text-[#F59E0B] transition-colors">
                 Adhithyan M.
               </span>
               <span className="font-sans text-[11px] text-zinc-400 block -mt-0.5 font-normal tracking-normal">
@@ -162,12 +162,12 @@ export default function Navbar({
               <span>Resume</span>
             </a>
 
-            {/* Let's Build Button (Golden Yellow) */}
+            {/* Let's Connect Button (Golden Yellow) matching Mockup */}
             <a
               href="#contact"
-              className="px-5 py-2 rounded-full bg-[#F59E0B] hover:bg-[#EAB308] text-black font-sans font-bold text-xs uppercase tracking-wider inline-flex items-center gap-1.5 transition-all transform hover:scale-105 shadow-[0_4px_14px_rgba(245,158,11,0.35)] cursor-pointer"
+              className="px-5 py-2 rounded-full bg-[#F59E0B] hover:bg-[#EAB308] text-black font-sans font-bold text-xs tracking-wider inline-flex items-center gap-1.5 transition-all transform hover:scale-105 shadow-[0_4px_14px_rgba(245,158,11,0.35)] cursor-pointer"
             >
-              <span>Let's Build</span>
+              <span>Let's Connect</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-[3]" />
             </a>
 
